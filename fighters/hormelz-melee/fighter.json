@@ -1,0 +1,102 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "hormelz-melee",
+  "kind": "2d",
+  "order": 130,
+  "identity": {
+    "displayName": "Hormelz Melee Character",
+    "archetype": "Martial Artist",
+    "playstyle": "Chained jabs, fireballs, and advancing kicks",
+    "colors": {
+      "primary": "#ef825c",
+      "secondary": "#762f43",
+      "accent": "#55c9e8"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 64,
+      "height": 92
+    },
+    "spriteReferenceHeight": 138,
+    "weight": 94,
+    "dash": 1.92,
+    "dashFrames": 7,
+    "run": 1.81,
+    "air": 1.04,
+    "gravity": 0.104,
+    "fall": 2.3,
+    "fastFall": 3.12,
+    "jump": 2.64,
+    "doubleJump": 2.39,
+    "jumpSquat": 4,
+    "shortHop": 0.64,
+    "power": 1.02,
+    "speed": 1.08,
+    "reach": 0.99,
+    "specials": {
+      "neutral-special": {
+        "label": "Fireball",
+        "damage": 9,
+        "projectile": {
+          "kind": "fireball",
+          "speed": 465,
+          "gravity": 115,
+          "lifetimeFrames": 100,
+          "radius": 17,
+          "absorbable": true,
+          "bounces": 1
+        }
+      },
+      "side-special": {
+        "label": "Flying Kick",
+        "damage": 13,
+        "specialMovement": {
+          "kind": "directional-launch",
+          "speed": 590
+        },
+        "radius": 52
+      },
+      "up-special": {
+        "label": "Rising Kick",
+        "damage": 11,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 660,
+          "horizontalSpeed": 255,
+          "steerFrames": 20
+        },
+        "multiHit": 2,
+        "radius": 49
+      },
+      "down-special": {
+        "label": "Focus",
+        "damage": 14,
+        "startup": 5,
+        "active": 12,
+        "counters": true,
+        "radius": 53
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Hormelz Melee Character — Hormelz",
+    "sourcePage": "https://hormelz.itch.io/8-directional-melee-character",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "fire",
+      "side-special": "wind",
+      "up-special": "wind",
+      "down-special": "physical"
+    },
+    "traits": []
+  }
+}

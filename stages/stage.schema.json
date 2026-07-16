@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://super-bash-folds.local/schemas/stage.schema.json",
+  "title": "Super Bash Folds stage pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "status",
+    "id",
+    "order",
+    "identity",
+    "gameplay",
+    "render",
+    "colors",
+    "license"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "status": { "enum": ["draft", "ready"] },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "order": { "type": "integer", "minimum": 1 },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["displayName", "series", "description"],
+      "properties": {
+        "displayName": { "type": "string", "minLength": 1 },
+        "series": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "gameplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platforms", "ledges", "spawns", "blastZone"],
+      "properties": {
+        "platforms": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/platform" }
+        },
+        "ledges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ledge" }
+        },
+        "spawns": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/point" }
+        },
+        "blastZone": { "$ref": "#/$defs/blastZone" }
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "preview", "thumbnail", "arena", "backdrop", "art"],
+      "properties": {
+        "kind": { "enum": ["2d", "3d"] },
+        "preview": { "$ref": "#/$defs/assetPath" },
+        "thumbnail": { "$ref": "#/$defs/assetPath" },
+        "arena": { "$ref": "#/$defs/assetPath" },
+        "backdrop": { "$ref": "#/$defs/assetPath" },
+        "art": { "$ref": "#/$defs/art" },
+        "scene": { "$ref": "#/$defs/scene" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "3d" } } },
+          "then": { "required": ["scene"] },
+          "else": { "not": { "required": ["scene"] } }
+        }
+      ]
+    },
+    "colors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["edge", "surface", "body", "shadow"],
+      "properties": {
+        "edge": { "$ref": "#/$defs/color" },
+        "surface": { "$ref": "#/$defs/color" },
+        "body": { "$ref": "#/$defs/color" },
+        "shadow": { "$ref": "#/$defs/color" }
+      }
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attribution", "sourcePage", "id", "url"],
+      "properties": {
+        "attribution": { "type": "string", "minLength": 1 },
+        "sourcePage": { "type": "string", "format": "uri" },
+        "id": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" }
+      }
+    }
+  },
+  "$defs": {
+    "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "assetPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^assets/[A-Za-z0-9._/-]+$"
+    },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" }
+      }
+    },
+    "platform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "x", "y", "width", "height", "kind"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "kind": { "enum": ["ground", "platform"] },
+        "surfaceY": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "number" }
+        }
+      }
+    },
+    "ledge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platformId", "side"],
+      "properties": {
+        "platformId": { "type": "string" },
+        "side": { "enum": ["left", "right"] }
+      }
+    },
+    "blastZone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["left", "right", "top", "bottom"],
+      "properties": {
+        "left": { "type": "number" },
+        "right": { "type": "number" },
+        "top": { "type": "number" },
+        "bottom": { "type": "number" }
+      }
+    },
+    "art": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "originPx", "worldUnitsPerPixel"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "originPx": { "$ref": "#/$defs/point" },
+        "worldUnitsPerPixel": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file", "scale", "offset", "cameraDirection"],
+      "properties": {
+        "file": { "$ref": "#/$defs/assetPath" },
+        "scale": { "type": "number", "exclusiveMinimum": 0 },
+        "offset": { "$ref": "#/$defs/point" },
+        "cameraDirection": { "enum": [-1, 1] }
+      }
+    }
+  }
+}

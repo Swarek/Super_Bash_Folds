@@ -1,0 +1,10 @@
+export const LEGACY_NON_REDISTRIBUTABLE_FIGHTER_IDS: readonly string[];
+export const FORBIDDEN_PUBLIC_ASSET_PREFIXES: readonly string[];
+export const SENSITIVE_DEVELOPMENT_PREFIXES: readonly string[];
+export function isForbiddenPublicAssetPath(value: string): boolean;
+export function isSensitiveDevelopmentRequestPath(value: string): boolean;
+export function isBlockedPublicRuntimeRequestPath(value: string): boolean;
+export function isForbiddenPublicRepositoryPath(value: string): boolean;
+export function findForbiddenSourceMarkers(path: string, contents: string): string[];
+export function findForbiddenRuntimeMarkers(contents: string): string[];
+export function findForbiddenAssetsInDirectory(directory: string): string[];

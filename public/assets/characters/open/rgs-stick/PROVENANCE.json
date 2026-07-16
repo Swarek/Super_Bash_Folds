@@ -1,0 +1,400 @@
+{
+  "id": "rgs-stick",
+  "displayName": "RGS Stick Figure",
+  "author": "RGS_Dev",
+  "sourcePage": "https://rgsdev.itch.io/animated-stick-figure-character-2d-free-cc0",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/rgs-stick-figure/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/rgs-stick-figure/SHA256SUMS",
+  "transformation": "Only upstream raster frames were cropped, uniformly scaled, padded, optionally sampled, tiled and losslessly WebP-encoded. Upstream JSON or GIF companions were used only to read frame rectangles, counts and rates. No frame or motion was synthesized.",
+  "coverageCounts": {
+    "direct": 7,
+    "adapted": 22,
+    "author_required": 21
+  },
+  "actions": {
+    "idle": {
+      "frameCount": 8,
+      "sourceFrameCount": 8,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_Idle_0001.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_Idle_0002.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_Idle_0003.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_Idle_0004.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_Idle_0005.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_Idle_0006.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_Idle_0007.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_Idle_0008.png"
+      ]
+    },
+    "walk": {
+      "frameCount": 8,
+      "sourceFrameCount": 8,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_walk_0009.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_walk_0010.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_walk_0011.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_walk_0012.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_walk_0013.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_walk_0014.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_walk_0015.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_walk_0016.png"
+      ]
+    },
+    "run": {
+      "frameCount": 8,
+      "sourceFrameCount": 8,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_run_0017.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_run_0018.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_run_0019.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_run_0020.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_run_0021.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_run_0022.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_run_0023.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_run_0024.png"
+      ]
+    },
+    "slide": {
+      "frameCount": 8,
+      "sourceFrameCount": 8,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_slide_0025.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_slide_0026.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_slide_0027.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_slide_0028.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_slide_0029.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_slide_0030.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_slide_0031.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_slide_0032.png"
+      ]
+    },
+    "dash": {
+      "frameCount": 6,
+      "sourceFrameCount": 6,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_dash_0033.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_dash_0034.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_dash_0035.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_dash_0036.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_dash_0037.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_dash_0038.png"
+      ]
+    },
+    "climb": {
+      "frameCount": 4,
+      "sourceFrameCount": 4,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_climb_0039.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_climb_0040.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_climb_0041.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_climb_0042.png"
+      ]
+    },
+    "jump": {
+      "frameCount": 5,
+      "sourceFrameCount": 5,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_jump_0043.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_jump_0044.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_jump_0045.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_jump_0046.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_jump_0047.png"
+      ]
+    },
+    "hurt": {
+      "frameCount": 4,
+      "sourceFrameCount": 4,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_hit_0048.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_hit_0049.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_hit_0050.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_hit_0051.png"
+      ]
+    },
+    "death": {
+      "frameCount": 10,
+      "sourceFrameCount": 10,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0052.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0053.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0054.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0055.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0056.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0057.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0058.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0059.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0060.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_death_0061.png"
+      ]
+    },
+    "air_attack": {
+      "frameCount": 2,
+      "sourceFrameCount": 2,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_air_attack_0062.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_air_attack_0063.png"
+      ]
+    },
+    "combo": {
+      "frameCount": 19,
+      "sourceFrameCount": 19,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0064.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0065.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0066.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0067.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0068.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0069.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0070.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0071.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0072.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0073.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0074.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0075.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0076.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0077.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0078.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0079.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0080.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0081.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_combo_0082.png"
+      ]
+    },
+    "wall_slide": {
+      "frameCount": 2,
+      "sourceFrameCount": 2,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_wallslide0083.png",
+        "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites/fighter_wallslide0084.png"
+      ]
+    }
+  },
+  "slots": {
+    "idle": {
+      "action": "idle",
+      "coverage": "direct"
+    },
+    "walk": {
+      "action": "walk",
+      "coverage": "direct"
+    },
+    "dash": {
+      "action": "dash",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "run",
+      "coverage": "direct"
+    },
+    "jump": {
+      "action": "jump",
+      "coverage": "direct"
+    },
+    "neutral_air": {
+      "action": "air_attack",
+      "coverage": "direct"
+    },
+    "hurt": {
+      "action": "hurt",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "walk",
+      "coverage": "adapted"
+    },
+    "jump_squat": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "double_jump": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "fall": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "jab": {
+      "action": "combo",
+      "coverage": "adapted"
+    },
+    "dash_attack": {
+      "action": "dash",
+      "coverage": "adapted"
+    },
+    "forward_tilt": {
+      "action": "combo",
+      "coverage": "adapted"
+    },
+    "up_tilt": {
+      "action": "combo",
+      "coverage": "adapted"
+    },
+    "down_tilt": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "combo",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "combo",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "combo",
+      "coverage": "adapted"
+    },
+    "forward_air": {
+      "action": "air_attack",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "air_attack",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "air_attack",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "air_attack",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "roll_forward": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "roll_back": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "air_dodge": {
+      "action": "air_attack",
+      "coverage": "adapted"
+    },
+    "knockback": {
+      "action": "hurt",
+      "coverage": "adapted"
+    },
+    "ledge": {
+      "action": "wall_slide",
+      "coverage": "adapted"
+    },
+    "crouch": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "fast_fall": {
+      "action": "jump",
+      "coverage": "author_required"
+    },
+    "neutral_special": {
+      "action": "combo",
+      "coverage": "author_required"
+    },
+    "side_special": {
+      "action": "dash",
+      "coverage": "author_required"
+    },
+    "up_special": {
+      "action": "jump",
+      "coverage": "author_required"
+    },
+    "down_special": {
+      "action": "slide",
+      "coverage": "author_required"
+    },
+    "shield": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "item_hold": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "item_pickup": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "item_attack": {
+      "action": "combo",
+      "coverage": "author_required"
+    },
+    "grab": {
+      "action": "combo",
+      "coverage": "author_required"
+    },
+    "grab_hold": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "grabbed": {
+      "action": "hurt",
+      "coverage": "author_required"
+    },
+    "forward_throw": {
+      "action": "combo",
+      "coverage": "author_required"
+    },
+    "back_throw": {
+      "action": "combo",
+      "coverage": "author_required"
+    },
+    "up_throw": {
+      "action": "combo",
+      "coverage": "author_required"
+    },
+    "down_throw": {
+      "action": "combo",
+      "coverage": "author_required"
+    },
+    "downed": {
+      "action": "death",
+      "coverage": "author_required"
+    },
+    "entrance": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "taunt": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "victory": {
+      "action": "idle",
+      "coverage": "author_required"
+    }
+  }
+}

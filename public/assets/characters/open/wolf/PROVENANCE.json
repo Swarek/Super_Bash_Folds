@@ -1,0 +1,213 @@
+{
+  "id": "wolf",
+  "displayName": "Wolf",
+  "author": "Quaternius",
+  "sourcePage": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "additionalSources": [],
+  "model": "assets-source/open-fighters/3d/wolf/upstream/Wolf.blend",
+  "animationSources": [],
+  "slots": {
+    "idle": {
+      "action": "Idle",
+      "coverage": "direct"
+    },
+    "crouch": {
+      "action": "Idle_2_HeadLow",
+      "coverage": "direct"
+    },
+    "walk": {
+      "action": "Walk",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "Idle_2",
+      "coverage": "author_required"
+    },
+    "dash": {
+      "action": "Gallop",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "Gallop",
+      "coverage": "direct"
+    },
+    "jump_squat": {
+      "action": "Gallop_Jump",
+      "coverage": "author_required"
+    },
+    "jump": {
+      "action": "Gallop_Jump",
+      "coverage": "direct"
+    },
+    "double_jump": {
+      "action": "Gallop_Jump",
+      "coverage": "author_required"
+    },
+    "fall": {
+      "action": "Jump_ToIdle",
+      "coverage": "adapted"
+    },
+    "fast_fall": {
+      "action": "Jump_ToIdle",
+      "coverage": "author_required"
+    },
+    "jab": {
+      "action": "Attack",
+      "coverage": "direct"
+    },
+    "dash_attack": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "forward_tilt": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "up_tilt": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "down_tilt": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "neutral_air": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "forward_air": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "neutral_special": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "side_special": {
+      "action": "Gallop",
+      "coverage": "adapted"
+    },
+    "up_special": {
+      "action": "Gallop_Jump",
+      "coverage": "adapted"
+    },
+    "down_special": {
+      "action": "Attack",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "Idle_HitReact_Left",
+      "coverage": "author_required"
+    },
+    "roll_forward": {
+      "action": "Gallop",
+      "coverage": "author_required"
+    },
+    "roll_back": {
+      "action": "Gallop",
+      "coverage": "author_required"
+    },
+    "air_dodge": {
+      "action": "Gallop_Jump",
+      "coverage": "author_required"
+    },
+    "shield": {
+      "action": "Idle_2_HeadLow",
+      "coverage": "author_required"
+    },
+    "item_hold": {
+      "action": "Idle",
+      "coverage": "author_required"
+    },
+    "item_pickup": {
+      "action": "Eating",
+      "coverage": "author_required"
+    },
+    "item_attack": {
+      "action": "Attack",
+      "coverage": "author_required"
+    },
+    "grab": {
+      "action": "Attack",
+      "coverage": "author_required"
+    },
+    "grab_hold": {
+      "action": "Eating",
+      "coverage": "author_required"
+    },
+    "grabbed": {
+      "action": "Idle_HitReact_Left",
+      "coverage": "author_required"
+    },
+    "forward_throw": {
+      "action": "Attack",
+      "coverage": "author_required"
+    },
+    "back_throw": {
+      "action": "Attack",
+      "coverage": "author_required"
+    },
+    "up_throw": {
+      "action": "Attack",
+      "coverage": "author_required"
+    },
+    "down_throw": {
+      "action": "Attack",
+      "coverage": "author_required"
+    },
+    "hurt": {
+      "action": "Idle_HitReact_Left",
+      "coverage": "direct"
+    },
+    "knockback": {
+      "action": "Idle_HitReact_Right",
+      "coverage": "adapted"
+    },
+    "downed": {
+      "action": "Death",
+      "coverage": "adapted"
+    },
+    "ledge": {
+      "action": "Jump_ToIdle",
+      "coverage": "author_required"
+    },
+    "entrance": {
+      "action": "Idle_2",
+      "coverage": "author_required"
+    },
+    "taunt": {
+      "action": "Idle_2",
+      "coverage": "author_required"
+    },
+    "victory": {
+      "action": "Idle_2",
+      "coverage": "author_required"
+    }
+  }
+}

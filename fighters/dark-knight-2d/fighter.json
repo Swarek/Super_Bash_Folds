@@ -1,0 +1,103 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "dark-knight-2d",
+  "kind": "2d",
+  "order": 90,
+  "identity": {
+    "displayName": "Dark Knight 2D",
+    "archetype": "Cursed Knight",
+    "playstyle": "Heavy blade, dark magic, and punishing defense",
+    "colors": {
+      "primary": "#30343a",
+      "secondary": "#111319",
+      "accent": "#c8335b"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 76,
+      "height": 101
+    },
+    "spriteReferenceHeight": 144,
+    "weight": 115,
+    "dash": 1.55,
+    "dashFrames": 10,
+    "run": 1.43,
+    "air": 0.82,
+    "gravity": 0.108,
+    "fall": 2.13,
+    "fastFall": 2.9,
+    "jump": 2.42,
+    "doubleJump": 2.18,
+    "jumpSquat": 5,
+    "shortHop": 0.59,
+    "power": 1.16,
+    "speed": 0.9,
+    "reach": 1.24,
+    "specials": {
+      "neutral-special": {
+        "label": "Cursed Orb",
+        "damage": 11,
+        "projectile": {
+            "kind": "energy-orb",
+          "speed": 430,
+          "gravity": 0,
+          "lifetimeFrames": 110,
+          "radius": 20,
+          "absorbable": true
+        }
+      },
+      "side-special": {
+        "label": "Dark Reaping",
+        "damage": 16,
+        "movement": {
+          "x": 505,
+          "y": 35
+        },
+        "radius": 62
+      },
+      "up-special": {
+        "label": "Rising Slash",
+        "damage": 12,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 625,
+          "horizontalSpeed": 215,
+          "steerFrames": 22
+        },
+        "radius": 58
+      },
+      "down-special": {
+        "label": "Doom Bulwark",
+        "damage": 17,
+        "startup": 6,
+        "active": 14,
+        "counters": true,
+        "radius": 61
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Dark Knight 2D — comphonia",
+    "sourcePage": "https://opengameart.org/content/dark-knight-2d-character-sprites",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "blade",
+      "up-special": "blade",
+      "down-special": "blade"
+    },
+    "traits": [
+      "blade",
+      "heavy"
+    ]
+  }
+}

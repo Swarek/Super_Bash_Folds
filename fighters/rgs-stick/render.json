@@ -1,0 +1,133 @@
+{
+  "displayName": "RGS Stick Figure",
+  "author": "RGS_Dev",
+  "sourcePage": "https://rgsdev.itch.io/animated-stick-figure-character-2d-free-cc0",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/rgs-stick-figure/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/rgs-stick-figure/SHA256SUMS",
+  "defaultFps": 12,
+  "preferredScale": 0.72,
+  "trimTransparent": true,
+  "scaleFilter": "lanczos",
+  "actions": {
+    "idle": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_Idle_[0-9]+\\.png$"
+    },
+    "walk": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_walk_[0-9]+\\.png$"
+    },
+    "run": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_run_[0-9]+\\.png$"
+    },
+    "slide": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_slide_[0-9]+\\.png$"
+    },
+    "dash": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_dash_[0-9]+\\.png$"
+    },
+    "climb": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_climb_[0-9]+\\.png$"
+    },
+    "jump": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_jump_[0-9]+\\.png$"
+    },
+    "hurt": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_hit_[0-9]+\\.png$"
+    },
+    "death": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_death_[0-9]+\\.png$"
+    },
+    "air_attack": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_air_attack_[0-9]+\\.png$"
+    },
+    "combo": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_combo_[0-9]+\\.png$"
+    },
+    "wall_slide": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+      "pattern": "^fighter_wallslide[0-9]+\\.png$"
+    }
+  },
+  "slots": {
+    "direct": {
+      "idle": "idle",
+      "walk": "walk",
+      "dash": "dash",
+      "run": "run",
+      "jump": "jump",
+      "neutral_air": "air_attack",
+      "hurt": "hurt"
+    },
+    "adapted": {
+      "turn": "walk",
+      "jump_squat": "jump",
+      "double_jump": "jump",
+      "fall": "jump",
+      "jab": "combo",
+      "dash_attack": "dash",
+      "forward_tilt": "combo",
+      "up_tilt": "combo",
+      "down_tilt": "slide",
+      "forward_smash": "combo",
+      "up_smash": "combo",
+      "down_smash": "combo",
+      "forward_air": "air_attack",
+      "back_air": "air_attack",
+      "up_air": "air_attack",
+      "down_air": "air_attack",
+      "spot_dodge": "slide",
+      "roll_forward": "slide",
+      "roll_back": "slide",
+      "air_dodge": "air_attack",
+      "knockback": "hurt",
+      "ledge": "wall_slide"
+    },
+    "author_required": {
+      "crouch": "idle",
+      "fast_fall": "jump",
+      "neutral_special": "combo",
+      "side_special": "dash",
+      "up_special": "jump",
+      "down_special": "slide",
+      "shield": "idle",
+      "item_hold": "idle",
+      "item_pickup": "idle",
+      "item_attack": "combo",
+      "grab": "combo",
+      "grab_hold": "idle",
+      "grabbed": "hurt",
+      "forward_throw": "combo",
+      "back_throw": "combo",
+      "up_throw": "combo",
+      "down_throw": "combo",
+      "downed": "death",
+      "entrance": "idle",
+      "taunt": "idle",
+      "victory": "idle"
+    }
+  }
+}

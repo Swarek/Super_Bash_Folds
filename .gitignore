@@ -1,0 +1,32 @@
+node_modules/
+dist/
+coverage/
+.tools/
+.generated/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+.npmrc
+*.key
+*.pem
+*.p12
+*.pfx
+.idea/
+.vscode/
+GOAL_SPEC.md
+validation/
+.local-private/
+
+# Generated public game bundle embedded by the hosted marketing site. Rebuild
+# it from the audited public dist instead of versioning a second 60+ MiB copy.
+website/public/assets/
+website/public/play/
+
+# Local scratch vault. Nothing in this directory is loaded, built, or
+# distributed by the public project.
+assets-source/
+
+# Keep any non-public experiment in the generic local vaults above. The public
+# runtime never discovers or loads those directories.

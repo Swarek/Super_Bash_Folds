@@ -1,0 +1,230 @@
+{
+  "id": "kaykit-knight",
+  "displayName": "KayKit Knight",
+  "author": "Kay Lousberg",
+  "sourcePage": "https://kaylousberg.itch.io/kaykit-adventurers",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "additionalSources": [
+    {
+      "role": "animations",
+      "name": "KayKit Character Animations 1.1",
+      "author": "Kay Lousberg",
+      "sourcePage": "https://kaylousberg.itch.io/kaykit-character-animations",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "model": "assets-source/open-fighters/3d/kaykit-adventurers/extracted/KayKit-Character-Pack-Adventures-1.0-672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb",
+  "animationSources": [
+    "assets-source/open-fighters/3d/kaykit-character-animations/extracted/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_MovementAdvanced.glb",
+    "assets-source/open-fighters/3d/kaykit-character-animations/extracted/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb",
+    "assets-source/open-fighters/3d/kaykit-character-animations/extracted/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_CombatMelee.glb",
+    "assets-source/open-fighters/3d/kaykit-character-animations/extracted/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_CombatRanged.glb",
+    "assets-source/open-fighters/3d/kaykit-character-animations/extracted/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_General.glb",
+    "assets-source/open-fighters/3d/kaykit-character-animations/extracted/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_Simulation.glb",
+    "assets-source/open-fighters/3d/kaykit-character-animations/extracted/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_Special.glb"
+  ],
+  "slots": {
+    "idle": {
+      "action": "Idle_A",
+      "coverage": "direct"
+    },
+    "crouch": {
+      "action": "Crouching",
+      "coverage": "direct"
+    },
+    "walk": {
+      "action": "Walking_A",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "Walking_Backwards",
+      "coverage": "adapted"
+    },
+    "dash": {
+      "action": "Running_A",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "Running_A",
+      "coverage": "direct"
+    },
+    "jump_squat": {
+      "action": "Jump_Start",
+      "coverage": "direct"
+    },
+    "jump": {
+      "action": "Jump_Full_Short",
+      "coverage": "direct"
+    },
+    "double_jump": {
+      "action": "Jump_Full_Long",
+      "coverage": "direct"
+    },
+    "fall": {
+      "action": "Jump_Idle",
+      "coverage": "direct"
+    },
+    "fast_fall": {
+      "action": "Jump_Idle",
+      "coverage": "adapted"
+    },
+    "jab": {
+      "action": "Melee_1H_Attack_Stab",
+      "coverage": "direct"
+    },
+    "dash_attack": {
+      "action": "Melee_1H_Attack_Slice_Horizontal",
+      "coverage": "direct"
+    },
+    "forward_tilt": {
+      "action": "Melee_1H_Attack_Slice_Horizontal",
+      "coverage": "direct"
+    },
+    "up_tilt": {
+      "action": "Melee_1H_Attack_Chop",
+      "coverage": "direct"
+    },
+    "down_tilt": {
+      "action": "Melee_1H_Attack_Slice_Diagonal",
+      "coverage": "direct"
+    },
+    "forward_smash": {
+      "action": "Melee_2H_Attack_Slice",
+      "coverage": "direct"
+    },
+    "up_smash": {
+      "action": "Melee_2H_Attack_Chop",
+      "coverage": "direct"
+    },
+    "down_smash": {
+      "action": "Melee_2H_Attack_Spin",
+      "coverage": "direct"
+    },
+    "neutral_air": {
+      "action": "Melee_2H_Attack_Spinning",
+      "coverage": "adapted"
+    },
+    "forward_air": {
+      "action": "Melee_1H_Attack_Jump_Chop",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "Melee_Unarmed_Attack_Kick",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "Melee_1H_Attack_Chop",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "Melee_2H_Attack_Chop",
+      "coverage": "adapted"
+    },
+    "neutral_special": {
+      "action": "Ranged_Magic_Shoot",
+      "coverage": "adapted"
+    },
+    "side_special": {
+      "action": "Ranged_Magic_Spellcasting_Long",
+      "coverage": "adapted"
+    },
+    "up_special": {
+      "action": "Jump_Full_Long",
+      "coverage": "adapted"
+    },
+    "down_special": {
+      "action": "Melee_Block_Attack",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "Dodge_Left",
+      "coverage": "direct"
+    },
+    "roll_forward": {
+      "action": "Dodge_Forward",
+      "coverage": "direct"
+    },
+    "roll_back": {
+      "action": "Dodge_Backward",
+      "coverage": "direct"
+    },
+    "air_dodge": {
+      "action": "Dodge_Right",
+      "coverage": "adapted"
+    },
+    "shield": {
+      "action": "Melee_Blocking",
+      "coverage": "direct"
+    },
+    "item_hold": {
+      "action": "Melee_2H_Idle",
+      "coverage": "adapted"
+    },
+    "item_pickup": {
+      "action": "PickUp",
+      "coverage": "direct"
+    },
+    "item_attack": {
+      "action": "Use_Item",
+      "coverage": "direct"
+    },
+    "grab": {
+      "action": "Interact",
+      "coverage": "adapted"
+    },
+    "grab_hold": {
+      "action": "Melee_Blocking",
+      "coverage": "adapted"
+    },
+    "grabbed": {
+      "action": "Hit_A",
+      "coverage": "adapted"
+    },
+    "forward_throw": {
+      "action": "Throw",
+      "coverage": "adapted"
+    },
+    "back_throw": {
+      "action": "Throw",
+      "coverage": "adapted"
+    },
+    "up_throw": {
+      "action": "Throw",
+      "coverage": "adapted"
+    },
+    "down_throw": {
+      "action": "Throw",
+      "coverage": "adapted"
+    },
+    "hurt": {
+      "action": "Hit_A",
+      "coverage": "direct"
+    },
+    "knockback": {
+      "action": "Hit_B",
+      "coverage": "adapted"
+    },
+    "downed": {
+      "action": "Lie_Idle",
+      "coverage": "direct"
+    },
+    "ledge": {
+      "action": "Crawling",
+      "coverage": "author_required"
+    },
+    "entrance": {
+      "action": "Spawn_Ground",
+      "coverage": "direct"
+    },
+    "taunt": {
+      "action": "Waving",
+      "coverage": "direct"
+    },
+    "victory": {
+      "action": "Cheering",
+      "coverage": "direct"
+    }
+  }
+}

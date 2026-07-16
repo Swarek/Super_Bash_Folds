@@ -1,0 +1,213 @@
+{
+  "id": "cactus",
+  "displayName": "Cactus",
+  "author": "Quaternius",
+  "sourcePage": "https://quaternius.com/packs/cutemonsters.html",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "additionalSources": [],
+  "model": "assets-source/open-fighters/3d/cactus/upstream/Cactus.blend",
+  "animationSources": [],
+  "slots": {
+    "idle": {
+      "action": "Idle",
+      "coverage": "direct"
+    },
+    "crouch": {
+      "action": "Idle",
+      "coverage": "author_required"
+    },
+    "walk": {
+      "action": "Walk",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "No",
+      "coverage": "author_required"
+    },
+    "dash": {
+      "action": "Walk",
+      "coverage": "author_required"
+    },
+    "run": {
+      "action": "Walk",
+      "coverage": "author_required"
+    },
+    "jump_squat": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "jump": {
+      "action": "Jump",
+      "coverage": "direct"
+    },
+    "double_jump": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "fall": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "fast_fall": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "jab": {
+      "action": "Bite_InPlace",
+      "coverage": "direct"
+    },
+    "dash_attack": {
+      "action": "Bite_Front",
+      "coverage": "direct"
+    },
+    "forward_tilt": {
+      "action": "Bite_InPlace",
+      "coverage": "adapted"
+    },
+    "up_tilt": {
+      "action": "Bite_InPlace",
+      "coverage": "adapted"
+    },
+    "down_tilt": {
+      "action": "Bite_InPlace",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "Bite_Front",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "Bite_Front",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "Bite_Front",
+      "coverage": "adapted"
+    },
+    "neutral_air": {
+      "action": "Bite_InPlace",
+      "coverage": "adapted"
+    },
+    "forward_air": {
+      "action": "Bite_Front",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "Bite_InPlace",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "Bite_InPlace",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "Bite_Front",
+      "coverage": "adapted"
+    },
+    "neutral_special": {
+      "action": "Bite_Front",
+      "coverage": "adapted"
+    },
+    "side_special": {
+      "action": "Walk",
+      "coverage": "adapted"
+    },
+    "up_special": {
+      "action": "Jump",
+      "coverage": "adapted"
+    },
+    "down_special": {
+      "action": "Bite_InPlace",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "HitRecieve",
+      "coverage": "author_required"
+    },
+    "roll_forward": {
+      "action": "Walk",
+      "coverage": "author_required"
+    },
+    "roll_back": {
+      "action": "Walk",
+      "coverage": "author_required"
+    },
+    "air_dodge": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "shield": {
+      "action": "Idle",
+      "coverage": "author_required"
+    },
+    "item_hold": {
+      "action": "Idle",
+      "coverage": "author_required"
+    },
+    "item_pickup": {
+      "action": "Bite_InPlace",
+      "coverage": "author_required"
+    },
+    "item_attack": {
+      "action": "Bite_Front",
+      "coverage": "author_required"
+    },
+    "grab": {
+      "action": "Bite_InPlace",
+      "coverage": "author_required"
+    },
+    "grab_hold": {
+      "action": "Bite_InPlace",
+      "coverage": "author_required"
+    },
+    "grabbed": {
+      "action": "HitRecieve",
+      "coverage": "author_required"
+    },
+    "forward_throw": {
+      "action": "Bite_Front",
+      "coverage": "author_required"
+    },
+    "back_throw": {
+      "action": "Bite_Front",
+      "coverage": "author_required"
+    },
+    "up_throw": {
+      "action": "Bite_Front",
+      "coverage": "author_required"
+    },
+    "down_throw": {
+      "action": "Bite_Front",
+      "coverage": "author_required"
+    },
+    "hurt": {
+      "action": "HitRecieve",
+      "coverage": "direct"
+    },
+    "knockback": {
+      "action": "HitRecieve",
+      "coverage": "adapted"
+    },
+    "downed": {
+      "action": "Death",
+      "coverage": "adapted"
+    },
+    "ledge": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "entrance": {
+      "action": "Yes",
+      "coverage": "adapted"
+    },
+    "taunt": {
+      "action": "No",
+      "coverage": "direct"
+    },
+    "victory": {
+      "action": "Dance",
+      "coverage": "direct"
+    }
+  }
+}

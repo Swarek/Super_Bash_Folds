@@ -1,0 +1,213 @@
+{
+  "id": "george",
+  "displayName": "George",
+  "author": "Quaternius",
+  "sourcePage": "https://quaternius.com/packs/animatedmech.html",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "additionalSources": [],
+  "model": "assets-source/open-fighters/3d/george-animated-mech/upstream/George.blend",
+  "animationSources": [],
+  "slots": {
+    "idle": {
+      "action": "Idle",
+      "coverage": "direct"
+    },
+    "crouch": {
+      "action": "Idle",
+      "coverage": "author_required"
+    },
+    "walk": {
+      "action": "Walk",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "Walk_Tall",
+      "coverage": "author_required"
+    },
+    "dash": {
+      "action": "Run",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "Run",
+      "coverage": "direct"
+    },
+    "jump_squat": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "jump": {
+      "action": "Jump",
+      "coverage": "direct"
+    },
+    "double_jump": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "fall": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "fast_fall": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "jab": {
+      "action": "Punch",
+      "coverage": "direct"
+    },
+    "dash_attack": {
+      "action": "Kick",
+      "coverage": "adapted"
+    },
+    "forward_tilt": {
+      "action": "Kick",
+      "coverage": "direct"
+    },
+    "up_tilt": {
+      "action": "Punch",
+      "coverage": "adapted"
+    },
+    "down_tilt": {
+      "action": "Kick",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "SwordSlash",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "Punch",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "Kick",
+      "coverage": "adapted"
+    },
+    "neutral_air": {
+      "action": "Kick",
+      "coverage": "adapted"
+    },
+    "forward_air": {
+      "action": "Punch",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "Kick",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "Punch",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "Kick",
+      "coverage": "adapted"
+    },
+    "neutral_special": {
+      "action": "Shoot",
+      "coverage": "adapted"
+    },
+    "side_special": {
+      "action": "Run_Tall",
+      "coverage": "adapted"
+    },
+    "up_special": {
+      "action": "Jump",
+      "coverage": "adapted"
+    },
+    "down_special": {
+      "action": "SwordSlash",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "HitRecieve_1",
+      "coverage": "author_required"
+    },
+    "roll_forward": {
+      "action": "Run",
+      "coverage": "author_required"
+    },
+    "roll_back": {
+      "action": "Run_Tall",
+      "coverage": "author_required"
+    },
+    "air_dodge": {
+      "action": "Jump",
+      "coverage": "author_required"
+    },
+    "shield": {
+      "action": "Idle",
+      "coverage": "author_required"
+    },
+    "item_hold": {
+      "action": "Run_Holding",
+      "coverage": "adapted"
+    },
+    "item_pickup": {
+      "action": "Pickup",
+      "coverage": "direct"
+    },
+    "item_attack": {
+      "action": "SwordSlash",
+      "coverage": "adapted"
+    },
+    "grab": {
+      "action": "Pickup",
+      "coverage": "author_required"
+    },
+    "grab_hold": {
+      "action": "Pickup",
+      "coverage": "author_required"
+    },
+    "grabbed": {
+      "action": "HitRecieve_1",
+      "coverage": "author_required"
+    },
+    "forward_throw": {
+      "action": "Punch",
+      "coverage": "author_required"
+    },
+    "back_throw": {
+      "action": "Kick",
+      "coverage": "author_required"
+    },
+    "up_throw": {
+      "action": "Punch",
+      "coverage": "author_required"
+    },
+    "down_throw": {
+      "action": "Kick",
+      "coverage": "author_required"
+    },
+    "hurt": {
+      "action": "HitRecieve_1",
+      "coverage": "direct"
+    },
+    "knockback": {
+      "action": "HitRecieve_2",
+      "coverage": "adapted"
+    },
+    "downed": {
+      "action": "Death",
+      "coverage": "adapted"
+    },
+    "ledge": {
+      "action": "Pickup",
+      "coverage": "author_required"
+    },
+    "entrance": {
+      "action": "Hello",
+      "coverage": "adapted"
+    },
+    "taunt": {
+      "action": "Hello",
+      "coverage": "direct"
+    },
+    "victory": {
+      "action": "Dance",
+      "coverage": "direct"
+    }
+  }
+}

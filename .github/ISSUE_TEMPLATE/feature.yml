@@ -1,0 +1,40 @@
+name: Feature proposal
+description: Propose a scoped engine, tooling, accessibility, or community improvement.
+title: "[Feature]: "
+labels: ["enhancement", "needs-design"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What player or contributor problem should be solved?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe observable behavior, not only an implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Are you interested in implementing it?
+      options:
+        - Yes, with maintainer guidance
+        - Yes, independently after the design is accepted
+        - No, I am proposing the idea
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing Issues and Discussions.
+          required: true
+        - label: This proposal does not depend on third-party franchise content.
+          required: true

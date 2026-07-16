@@ -1,0 +1,1294 @@
+{
+  "generatedBy": "scripts/fighter_packs.mjs",
+  "version": 1,
+  "cellSize": 192,
+  "columns": 8,
+  "excludedCandidates": {
+    "godinez-free": {
+      "sourceProvenance": "assets-source/open-fighters/2d/godinez-free/PROVENANCE.md",
+      "sourceSha256Manifest": "assets-source/open-fighters/2d/godinez-free/SHA256SUMS",
+      "reason": "The free archive contains two unlabeled sprite sheets without clip metadata or source files; frame-to-action segmentation cannot be established without guessing."
+    }
+  },
+  "fighters": {
+    "rgs-stick": {
+      "displayName": "RGS Stick Figure",
+      "author": "RGS_Dev",
+      "sourcePage": "https://rgsdev.itch.io/animated-stick-figure-character-2d-free-cc0",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceProvenance": "assets-source/open-fighters/2d/rgs-stick-figure/PROVENANCE.md",
+      "sourceSha256Manifest": "assets-source/open-fighters/2d/rgs-stick-figure/SHA256SUMS",
+      "defaultFps": 12,
+      "preferredScale": 0.72,
+      "trimTransparent": true,
+      "scaleFilter": "lanczos",
+      "actions": {
+        "idle": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_Idle_[0-9]+\\.png$"
+        },
+        "walk": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_walk_[0-9]+\\.png$"
+        },
+        "run": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_run_[0-9]+\\.png$"
+        },
+        "slide": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_slide_[0-9]+\\.png$"
+        },
+        "dash": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_dash_[0-9]+\\.png$"
+        },
+        "climb": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_climb_[0-9]+\\.png$"
+        },
+        "jump": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_jump_[0-9]+\\.png$"
+        },
+        "hurt": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_hit_[0-9]+\\.png$"
+        },
+        "death": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_death_[0-9]+\\.png$"
+        },
+        "air_attack": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_air_attack_[0-9]+\\.png$"
+        },
+        "combo": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_combo_[0-9]+\\.png$"
+        },
+        "wall_slide": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-stick-figure/upstream/Stick Figure Character Sprites 2D/Fighter sprites",
+          "pattern": "^fighter_wallslide[0-9]+\\.png$"
+        }
+      },
+      "slots": {
+        "direct": {
+          "idle": "idle",
+          "walk": "walk",
+          "dash": "dash",
+          "run": "run",
+          "jump": "jump",
+          "neutral_air": "air_attack",
+          "hurt": "hurt"
+        },
+        "adapted": {
+          "turn": "walk",
+          "jump_squat": "jump",
+          "double_jump": "jump",
+          "fall": "jump",
+          "jab": "combo",
+          "dash_attack": "dash",
+          "forward_tilt": "combo",
+          "up_tilt": "combo",
+          "down_tilt": "slide",
+          "forward_smash": "combo",
+          "up_smash": "combo",
+          "down_smash": "combo",
+          "forward_air": "air_attack",
+          "back_air": "air_attack",
+          "up_air": "air_attack",
+          "down_air": "air_attack",
+          "spot_dodge": "slide",
+          "roll_forward": "slide",
+          "roll_back": "slide",
+          "air_dodge": "air_attack",
+          "knockback": "hurt",
+          "ledge": "wall_slide"
+        },
+        "author_required": {
+          "crouch": "idle",
+          "fast_fall": "jump",
+          "neutral_special": "combo",
+          "side_special": "dash",
+          "up_special": "jump",
+          "down_special": "slide",
+          "shield": "idle",
+          "item_hold": "idle",
+          "item_pickup": "idle",
+          "item_attack": "combo",
+          "grab": "combo",
+          "grab_hold": "idle",
+          "grabbed": "hurt",
+          "forward_throw": "combo",
+          "back_throw": "combo",
+          "up_throw": "combo",
+          "down_throw": "combo",
+          "downed": "death",
+          "entrance": "idle",
+          "taunt": "idle",
+          "victory": "idle"
+        }
+      }
+    },
+    "dark-knight-2d": {
+      "displayName": "Dark Knight 2D",
+      "author": "comphonia",
+      "sourcePage": "https://opengameart.org/content/dark-knight-2d-character-sprites",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceProvenance": "assets-source/open-fighters/2d/dark-knight-2d/PROVENANCE.md",
+      "sourceSha256Manifest": "assets-source/open-fighters/2d/dark-knight-2d/SHA256SUMS",
+      "defaultFps": 20,
+      "preferredScale": 0.6,
+      "scaleFilter": "lanczos",
+      "actions": {
+        "idle": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Idle.png",
+          "sampleStep": 3
+        },
+        "crouch": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Crouch.png",
+          "sampleStep": 2
+        },
+        "walk": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Walk.png",
+          "sampleStep": 2
+        },
+        "turn": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/180Turn.png",
+          "sampleStep": 2
+        },
+        "run": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Run.png",
+          "sampleStep": 2
+        },
+        "run_back": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/RunBack.png",
+          "sampleStep": 2
+        },
+        "jump": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Jump.png",
+          "sampleStep": 2
+        },
+        "run_jump": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/RunJump.png",
+          "sampleStep": 2
+        },
+        "attack": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Attack1.png",
+          "sampleStep": 2
+        },
+        "slash": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash.png",
+          "sampleStep": 2
+        },
+        "up_slash": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash3.png",
+          "sampleStep": 3
+        },
+        "spin_slash": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash4.png",
+          "sampleStep": 3
+        },
+        "crouch_slash": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/CrouchSlash.png",
+          "sampleStep": 2
+        },
+        "kick": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Kick.png",
+          "sampleStep": 2
+        },
+        "cast": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Casting1.png",
+          "sampleStep": 3
+        },
+        "block": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/BlockIdle.png",
+          "sampleStep": 2
+        },
+        "draw_sword": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/DrawSword.png",
+          "sampleStep": 2
+        },
+        "hurt": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Impact.png",
+          "sampleStep": 2
+        },
+        "knockback": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Impact2.png",
+          "sampleStep": 2
+        },
+        "death": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Death.png",
+          "sampleStep": 3
+        },
+        "taunt": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/IdleVain.png",
+          "sampleStep": 4
+        },
+        "victory": {
+          "type": "unity-sheet",
+          "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/PowerUp.png",
+          "sampleStep": 3
+        }
+      },
+      "slots": {
+        "direct": {
+          "idle": "idle",
+          "crouch": "crouch",
+          "walk": "walk",
+          "turn": "turn",
+          "run": "run",
+          "jump": "jump",
+          "jab": "attack",
+          "forward_tilt": "kick",
+          "down_tilt": "crouch_slash",
+          "neutral_special": "cast",
+          "shield": "block",
+          "item_attack": "slash",
+          "hurt": "hurt",
+          "knockback": "knockback",
+          "taunt": "taunt",
+          "victory": "victory"
+        },
+        "adapted": {
+          "dash": "run",
+          "jump_squat": "jump",
+          "double_jump": "run_jump",
+          "fall": "jump",
+          "fast_fall": "run_jump",
+          "dash_attack": "run_jump",
+          "up_tilt": "up_slash",
+          "forward_smash": "slash",
+          "up_smash": "up_slash",
+          "down_smash": "spin_slash",
+          "neutral_air": "spin_slash",
+          "forward_air": "slash",
+          "back_air": "kick",
+          "up_air": "up_slash",
+          "down_air": "crouch_slash",
+          "side_special": "spin_slash",
+          "up_special": "run_jump",
+          "down_special": "block",
+          "spot_dodge": "crouch",
+          "roll_forward": "run",
+          "roll_back": "run_back",
+          "air_dodge": "jump",
+          "item_hold": "draw_sword",
+          "item_pickup": "draw_sword",
+          "grabbed": "hurt",
+          "downed": "death",
+          "entrance": "draw_sword",
+          "ledge": "jump"
+        },
+        "author_required": {
+          "grab": "attack",
+          "grab_hold": "block",
+          "forward_throw": "attack",
+          "back_throw": "kick",
+          "up_throw": "up_slash",
+          "down_throw": "crouch_slash"
+        }
+      }
+    },
+    "knight-hero": {
+      "displayName": "Knight Hero",
+      "author": "PixiVan",
+      "sourcePage": "https://opengameart.org/content/knight-hero-platformer-animation-pack",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceProvenance": "assets-source/open-fighters/2d/knight-hero/PROVENANCE.md",
+      "sourceSha256Manifest": "assets-source/open-fighters/2d/knight-hero/SHA256SUMS",
+      "defaultFps": 12,
+      "preferredScale": 4.5,
+      "scaleFilter": "neighbor",
+      "actions": {
+        "idle": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Combat Ready Idle.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "walk": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Walk.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "run": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Run.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "jump": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Jump.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "fall": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Fall.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "attack_slam": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Attack 1.png",
+          "frameWidth": 40,
+          "frameHeight": 30
+        },
+        "attack_slash": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Attack 2.png",
+          "frameWidth": 40,
+          "frameHeight": 30
+        },
+        "attack_stab": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Attack 3.png",
+          "frameWidth": 40,
+          "frameHeight": 30
+        },
+        "roll": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Roll.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "shield": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Shield Raise.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "shield_walk": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Shield Raise Walk.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "hurt_front": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Hit Front.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "hurt_back": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Hit Back.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "sword_raise": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Sword Raise.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        },
+        "sword_channel": {
+          "type": "strip",
+          "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Sword Channel.png",
+          "frameWidth": 22,
+          "frameHeight": 24
+        }
+      },
+      "slots": {
+        "direct": {
+          "idle": "idle",
+          "walk": "walk",
+          "run": "run",
+          "jump": "jump",
+          "fall": "fall",
+          "jab": "attack_stab",
+          "forward_tilt": "attack_slash",
+          "roll_forward": "roll",
+          "shield": "shield",
+          "hurt": "hurt_front",
+          "knockback": "hurt_back"
+        },
+        "adapted": {
+          "turn": "walk",
+          "dash": "run",
+          "jump_squat": "jump",
+          "double_jump": "jump",
+          "fast_fall": "fall",
+          "dash_attack": "attack_slam",
+          "up_tilt": "attack_slam",
+          "down_tilt": "attack_stab",
+          "forward_smash": "attack_slash",
+          "up_smash": "attack_slam",
+          "down_smash": "attack_slam",
+          "neutral_air": "attack_slash",
+          "forward_air": "attack_stab",
+          "back_air": "attack_slash",
+          "up_air": "attack_slam",
+          "down_air": "attack_slam",
+          "side_special": "attack_slash",
+          "down_special": "shield",
+          "spot_dodge": "roll",
+          "roll_back": "roll",
+          "air_dodge": "roll",
+          "item_hold": "shield",
+          "item_attack": "attack_slash",
+          "grabbed": "hurt_front",
+          "downed": "hurt_back",
+          "entrance": "sword_raise",
+          "taunt": "sword_channel",
+          "victory": "sword_raise"
+        },
+        "author_required": {
+          "crouch": "idle",
+          "neutral_special": "sword_channel",
+          "up_special": "jump",
+          "item_pickup": "idle",
+          "grab": "attack_stab",
+          "grab_hold": "shield",
+          "forward_throw": "attack_slam",
+          "back_throw": "attack_slash",
+          "up_throw": "attack_slam",
+          "down_throw": "attack_slam",
+          "ledge": "fall"
+        }
+      }
+    },
+    "kenney-toon": {
+      "displayName": "Kenney Toon Adventurer",
+      "author": "Kenney",
+      "sourcePage": "https://kenney.nl/assets/toon-characters",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceProvenance": "assets-source/open-fighters/2d/kenney-toon-characters/PROVENANCE.md",
+      "sourceSha256Manifest": "assets-source/open-fighters/2d/kenney-toon-characters/SHA256SUMS",
+      "defaultFps": 8,
+      "scaleFilter": "lanczos",
+      "actions": {
+        "idle": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_idle.png"
+          ]
+        },
+        "crouch": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_duck.png"
+          ]
+        },
+        "walk": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk0.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk1.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk2.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk3.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk4.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk5.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk6.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk7.png"
+          ]
+        },
+        "turn": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_switch0.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_switch1.png"
+          ]
+        },
+        "run": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_run0.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_run1.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_run2.png"
+          ]
+        },
+        "jump": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_jump.png"
+          ]
+        },
+        "fall": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_fall.png"
+          ]
+        },
+        "fast_fall": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_fallDown.png"
+          ]
+        },
+        "attack": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_attack0.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_attack1.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_attack2.png"
+          ]
+        },
+        "kick": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_attackKick.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_kick.png"
+          ]
+        },
+        "shove": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_shove.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_shoveBack.png"
+          ]
+        },
+        "slide": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_slide.png"
+          ]
+        },
+        "hold": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_hold.png"
+          ]
+        },
+        "interact": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_interact.png"
+          ]
+        },
+        "grab": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_drag.png"
+          ]
+        },
+        "hurt": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_hit.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_hurt.png"
+          ]
+        },
+        "downed": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_down.png"
+          ]
+        },
+        "ledge": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_hang.png"
+          ]
+        },
+        "climb": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_climb0.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_climb1.png"
+          ]
+        },
+        "entrance": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_show.png"
+          ]
+        },
+        "taunt": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_talk.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_think.png"
+          ]
+        },
+        "victory": {
+          "type": "files",
+          "files": [
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_cheer0.png",
+            "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_cheer1.png"
+          ]
+        }
+      },
+      "slots": {
+        "direct": {
+          "idle": "idle",
+          "crouch": "crouch",
+          "walk": "walk",
+          "turn": "turn",
+          "dash": "run",
+          "run": "run",
+          "jump": "jump",
+          "fall": "fall",
+          "fast_fall": "fast_fall",
+          "jab": "attack",
+          "forward_tilt": "kick",
+          "item_hold": "hold",
+          "hurt": "hurt",
+          "downed": "downed",
+          "ledge": "ledge",
+          "entrance": "entrance",
+          "taunt": "taunt",
+          "victory": "victory"
+        },
+        "adapted": {
+          "jump_squat": "crouch",
+          "double_jump": "jump",
+          "dash_attack": "shove",
+          "up_tilt": "shove",
+          "down_tilt": "kick",
+          "forward_smash": "attack",
+          "up_smash": "shove",
+          "down_smash": "kick",
+          "neutral_air": "kick",
+          "forward_air": "attack",
+          "back_air": "kick",
+          "up_air": "shove",
+          "down_air": "kick",
+          "spot_dodge": "slide",
+          "roll_forward": "slide",
+          "roll_back": "slide",
+          "air_dodge": "jump",
+          "shield": "hold",
+          "item_pickup": "interact",
+          "item_attack": "attack",
+          "grab": "grab",
+          "grab_hold": "hold",
+          "grabbed": "hurt",
+          "knockback": "hurt"
+        },
+        "author_required": {
+          "neutral_special": "attack",
+          "side_special": "shove",
+          "up_special": "jump",
+          "down_special": "crouch",
+          "forward_throw": "shove",
+          "back_throw": "shove",
+          "up_throw": "shove",
+          "down_throw": "shove"
+        }
+      }
+    },
+    "rgs-character-prototype": {
+      "displayName": "RGS Character Prototype",
+      "author": "RGS_Dev",
+      "sourcePage": "https://rgsdev.itch.io/character-prototype-animated-cc0",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceProvenance": "assets-source/open-fighters/2d/rgs-character-prototype/PROVENANCE.md",
+      "sourceSha256Manifest": "assets-source/open-fighters/2d/rgs-character-prototype/SHA256SUMS",
+      "defaultFps": 12,
+      "preferredScale": 0.9,
+      "trimTransparent": true,
+      "scaleFilter": "lanczos",
+      "actions": {
+        "idle": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^idle \\([0-9]+\\)\\.png$"
+        },
+        "walk": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^walk \\([0-9]+\\)\\.png$"
+        },
+        "run": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^run \\([0-9]+\\)\\.png$"
+        },
+        "slide": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^slide \\([0-9]+\\)\\.png$"
+        },
+        "roll": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^roll \\([0-9]+\\)\\.png$"
+        },
+        "jump": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^jump \\([0-9]+\\)\\.png$"
+        },
+        "attack": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^attack \\([0-9]+\\)\\.png$"
+        },
+        "hurt": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^hit \\([0-9]+\\)\\.png$"
+        },
+        "death": {
+          "type": "sequence",
+          "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+          "pattern": "^death \\([0-9]+\\)\\.png$"
+        }
+      },
+      "slots": {
+        "direct": {
+          "idle": "idle",
+          "walk": "walk",
+          "run": "run",
+          "jump": "jump",
+          "jab": "attack",
+          "roll_forward": "roll",
+          "hurt": "hurt"
+        },
+        "adapted": {
+          "turn": "walk",
+          "dash": "run",
+          "jump_squat": "jump",
+          "double_jump": "jump",
+          "fall": "jump",
+          "fast_fall": "jump",
+          "dash_attack": "slide",
+          "forward_tilt": "attack",
+          "up_tilt": "attack",
+          "down_tilt": "slide",
+          "forward_smash": "attack",
+          "up_smash": "attack",
+          "down_smash": "slide",
+          "neutral_air": "attack",
+          "forward_air": "attack",
+          "back_air": "attack",
+          "up_air": "attack",
+          "down_air": "attack",
+          "spot_dodge": "roll",
+          "roll_back": "roll",
+          "air_dodge": "roll",
+          "knockback": "hurt",
+          "downed": "death",
+          "ledge": "jump",
+          "entrance": "idle",
+          "taunt": "idle",
+          "victory": "idle"
+        },
+        "author_required": {
+          "crouch": "idle",
+          "neutral_special": "attack",
+          "side_special": "slide",
+          "up_special": "jump",
+          "down_special": "slide",
+          "shield": "idle",
+          "item_hold": "idle",
+          "item_pickup": "idle",
+          "item_attack": "attack",
+          "grab": "attack",
+          "grab_hold": "idle",
+          "grabbed": "hurt",
+          "forward_throw": "attack",
+          "back_throw": "attack",
+          "up_throw": "attack",
+          "down_throw": "attack"
+        }
+      }
+    },
+    "hormelz-melee": {
+      "displayName": "Hormelz Melee Character",
+      "author": "Hormelz",
+      "sourcePage": "https://hormelz.itch.io/8-directional-melee-character",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceProvenance": "assets-source/open-fighters/2d/hormelz-melee/PROVENANCE.md",
+      "sourceSha256Manifest": "assets-source/open-fighters/2d/hormelz-melee/SHA256SUMS",
+      "defaultFps": 25,
+      "preferredScale": 1.3,
+      "trimTransparent": true,
+      "scaleFilter": "lanczos",
+      "actions": {
+        "fight_idle": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FightIdle/Boxer__FightIdle_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FightIdle/Boxer_FightIdle_dir3.gif"
+        },
+        "idle": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Idle1/Boxer__Idle1_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Idle1/Boxer_Idle1_dir3.gif"
+        },
+        "walk": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/WalkFoward/Boxer__WalkFoward_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/WalkFoward/Boxer_WalkFoward_dir3.gif"
+        },
+        "walk_back": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/WalkBack/Boxer__WalkBack_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/WalkBack/Boxer_WalkBack_dir3.gif"
+        },
+        "run": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunForward/Boxer__RunForward_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunForward/Boxer_RunForward_dir3.gif"
+        },
+        "run_back": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunBack/Boxer__RunBack_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunBack/Boxer_RunBack_dir3.gif"
+        },
+        "jump": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Jump1/Boxer__Jump1_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Jump1/Boxer_Jump1_dir3.gif"
+        },
+        "jump_alt": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Jump2/Boxer__Jump2_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Jump2/Boxer_Jump2_dir3.gif"
+        },
+        "left_jab": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/LeftJab/Boxer__LeftJab_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/LeftJab/Boxer_LeftJab_dir3.gif"
+        },
+        "combo": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Combo/Boxer__Combo_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Combo/Boxer_Combo_dir3.gif"
+        },
+        "front_kick": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FrontKick/Boxer__FrontKick_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FrontKick/Boxer_FrontKick_dir3.gif"
+        },
+        "high_kick": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HighKick/Boxer__HighKick_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HighKick/Boxer_HighKick_dir3.gif"
+        },
+        "stomp_kick": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StompKick/Boxer__StompKick_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StompKick/Boxer_StompKick_dir3.gif"
+        },
+        "straight_right": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StraightRight/Boxer__StraightRight_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StraightRight/Boxer_StraightRight_dir3.gif"
+        },
+        "running_slide": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunningSlide/Boxer__RunningSlide_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunningSlide/Boxer_RunningSlide_dir3.gif"
+        },
+        "flying_kick": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FlyingKick/Boxer__FlyingKick_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FlyingKick/Boxer_FlyingKick_dir3.gif"
+        },
+        "side_kick": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/SideKick/Boxer__SideKick_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/SideKick/Boxer_SideKick_dir3.gif"
+        },
+        "fireball": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Fireball/Boxer__Fireball_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Fireball/Boxer_Fireball_dir3.gif"
+        },
+        "forward_roll": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/ForwardRoll/Boxer__ForwardRoll_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/ForwardRoll/Boxer_ForwardRoll_dir3.gif"
+        },
+        "stand_roll": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StandRoll/Boxer__StandRoll_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StandRoll/Boxer_StandRoll_dir3.gif"
+        },
+        "pull": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Pull/Boxer__Pull_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Pull/Boxer_Pull_dir3.gif"
+        },
+        "push": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Push/Boxer__Push_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Push/Boxer_Push_dir3.gif"
+        },
+        "hit_body": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HitBody/Boxer__HitBody_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HitBody/Boxer_HitBody_dir3.gif"
+        },
+        "hit_head": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HitHead/Boxer__HitHead_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HitHead/Boxer_HitHead_dir3.gif"
+        },
+        "die": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Die2/Boxer__Die2_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Die2/Boxer_Die2_dir3.gif"
+        },
+        "battlecry": {
+          "type": "grid-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Battlecry/Boxer__Battlecry_dir3.png",
+          "frameWidth": 126,
+          "frameHeight": 132,
+          "frameCountFrom": "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Battlecry/Boxer_Battlecry_dir3.gif"
+        }
+      },
+      "slots": {
+        "direct": {
+          "idle": "fight_idle",
+          "walk": "walk",
+          "run": "run",
+          "jump": "jump",
+          "jab": "left_jab",
+          "dash_attack": "running_slide",
+          "forward_tilt": "front_kick",
+          "up_tilt": "high_kick",
+          "down_tilt": "stomp_kick",
+          "neutral_air": "flying_kick",
+          "neutral_special": "fireball",
+          "roll_forward": "forward_roll",
+          "hurt": "hit_body",
+          "taunt": "battlecry"
+        },
+        "adapted": {
+          "turn": "walk_back",
+          "dash": "run",
+          "jump_squat": "jump",
+          "double_jump": "jump_alt",
+          "fall": "jump_alt",
+          "fast_fall": "jump_alt",
+          "forward_smash": "straight_right",
+          "up_smash": "high_kick",
+          "down_smash": "stomp_kick",
+          "forward_air": "flying_kick",
+          "back_air": "side_kick",
+          "up_air": "high_kick",
+          "down_air": "stomp_kick",
+          "side_special": "flying_kick",
+          "spot_dodge": "stand_roll",
+          "roll_back": "forward_roll",
+          "air_dodge": "stand_roll",
+          "item_attack": "combo",
+          "grab": "pull",
+          "grab_hold": "pull",
+          "grabbed": "hit_head",
+          "forward_throw": "push",
+          "back_throw": "push",
+          "up_throw": "push",
+          "down_throw": "stomp_kick",
+          "knockback": "hit_head",
+          "downed": "die",
+          "entrance": "idle",
+          "victory": "battlecry"
+        },
+        "author_required": {
+          "crouch": "fight_idle",
+          "up_special": "jump_alt",
+          "down_special": "stomp_kick",
+          "shield": "fight_idle",
+          "item_hold": "fight_idle",
+          "item_pickup": "pull",
+          "ledge": "jump"
+        }
+      }
+    },
+    "hormelz-knight": {
+      "displayName": "Hormelz Knight",
+      "author": "Hormelz",
+      "sourcePage": "https://hormelz.itch.io/8-directional-knight",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceProvenance": "assets-source/open-fighters/2d/hormelz-knight/PROVENANCE.md",
+      "sourceSha256Manifest": "assets-source/open-fighters/2d/hormelz-knight/SHA256SUMS",
+      "defaultFps": 10,
+      "preferredScale": 1.25,
+      "trimTransparent": true,
+      "scaleFilter": "lanczos",
+      "actions": {
+        "idle": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Idle/Knight_Idle_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Idle/Knight_Idle_dir3.json"
+        },
+        "walk": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Walk/Knight_Walk_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Walk/Knight_Walk_dir3.json"
+        },
+        "run": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Run/Knight_Run_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Run/Knight_Run_dir3.json"
+        },
+        "jump": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Jump/Knight_Jump_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Jump/Knight_Jump_dir3.json"
+        },
+        "attack": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Attack/Knight_Attack_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Attack/Knight_Attack_dir3.json"
+        },
+        "combo": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/ComboAttack/Knight_ComboAttack_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/ComboAttack/Knight_ComboAttack_dir3.json"
+        },
+        "kick": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Kick/Knight_Kick_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Kick/Knight_Kick_dir3.json"
+        },
+        "crouch_attack": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CrouchAttack/Knight_CrouchAttack_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CrouchAttack/Knight_CrouchAttack_dir3.json"
+        },
+        "spin_attack": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/SpinAttack/Knight_SpinAttack_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/SpinAttack/Knight_SpinAttack_dir3.json"
+        },
+        "jump_attack": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpAttack/Knight_JumpAttack_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpAttack/Knight_JumpAttack_dir3.json"
+        },
+        "jump_spin": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpSpinAttack/Knight_JumpSpinAttack_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpSpinAttack/Knight_JumpSpinAttack_dir3.json"
+        },
+        "cast": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Cast/Knight_Cast_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Cast/Knight_Cast_dir3.json"
+        },
+        "cast_sky": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CastSky/Knight_CastSky_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CastSky/Knight_CastSky_dir3.json"
+        },
+        "block": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Block/Knight_Block_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Block/Knight_Block_dir3.json"
+        },
+        "impact": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Impact/Knight_Impact_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Impact/Knight_Impact_dir3.json"
+        },
+        "knock": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Knock/Knight_Knock_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Knock/Knight_Knock_dir3.json"
+        },
+        "die": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Die/Knight_Die_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Die/Knight_Die_dir3.json"
+        },
+        "die_alt": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Die2/Knight_Die2_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Die2/Knight_Die2_dir3.json"
+        },
+        "crouch": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Crouch/Knight_Crouch_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Crouch/Knight_Crouch_dir3.json"
+        },
+        "walk_back": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/WalkBack/Knight_WalkBack_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/WalkBack/Knight_WalkBack_dir3.json"
+        },
+        "run_jump": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/RunJump/Knight_RunJump_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/RunJump/Knight_RunJump_dir3.json"
+        },
+        "slide": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Slide/Knight_Slide_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Slide/Knight_Slide_dir3.json"
+        },
+        "strafe_back": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/StrafeBack/Knight_StrafeBack_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/StrafeBack/Knight_StrafeBack_dir3.json"
+        },
+        "climb": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Climb/Knight_Climb_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Climb/Knight_Climb_dir3.json"
+        },
+        "draw": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Draw/Knight_Draw_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Draw/Knight_Draw_dir3.json"
+        },
+        "idle3": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Idle3/Knight_Idle3_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Idle3/Knight_Idle3_dir3.json"
+        },
+        "power_up": {
+          "type": "json-sheet",
+          "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/PowerUp/Knight_PowerUp_dir3.png",
+          "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/PowerUp/Knight_PowerUp_dir3.json"
+        }
+      },
+      "slots": {
+        "direct": {
+          "idle": "idle",
+          "crouch": "crouch",
+          "walk": "walk",
+          "run": "run",
+          "jump": "jump",
+          "jab": "attack",
+          "forward_tilt": "kick",
+          "down_tilt": "crouch_attack",
+          "neutral_air": "jump_spin",
+          "forward_air": "jump_attack",
+          "neutral_special": "cast",
+          "shield": "block",
+          "hurt": "impact",
+          "knockback": "knock",
+          "ledge": "climb",
+          "entrance": "draw",
+          "victory": "power_up"
+        },
+        "adapted": {
+          "turn": "walk_back",
+          "dash": "run",
+          "jump_squat": "crouch",
+          "double_jump": "run_jump",
+          "fall": "jump",
+          "fast_fall": "jump",
+          "dash_attack": "slide",
+          "up_tilt": "kick",
+          "forward_smash": "combo",
+          "up_smash": "jump_attack",
+          "down_smash": "spin_attack",
+          "back_air": "jump_spin",
+          "up_air": "jump_attack",
+          "down_air": "jump_attack",
+          "side_special": "slide",
+          "up_special": "cast_sky",
+          "down_special": "power_up",
+          "spot_dodge": "strafe_back",
+          "roll_forward": "slide",
+          "roll_back": "strafe_back",
+          "air_dodge": "jump_spin",
+          "item_attack": "attack",
+          "grabbed": "impact",
+          "downed": "die_alt",
+          "taunt": "idle3"
+        },
+        "author_required": {
+          "item_hold": "block",
+          "item_pickup": "crouch",
+          "grab": "attack",
+          "grab_hold": "block",
+          "forward_throw": "combo",
+          "back_throw": "kick",
+          "up_throw": "jump_attack",
+          "down_throw": "crouch_attack"
+        }
+      }
+    }
+  }
+}

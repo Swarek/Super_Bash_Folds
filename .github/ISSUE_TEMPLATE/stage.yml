@@ -1,0 +1,39 @@
+name: Stage proposal
+description: Propose an original or clearly redistributable stage pack.
+title: "[Stage]: "
+labels: ["stage-pack", "art-animation", "needs-design"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Stage name
+    validations:
+      required: true
+  - type: textarea
+    id: concept
+    attributes:
+      label: Visual and gameplay concept
+      description: Describe the identity, layout, platform structure, ledges, and intended match flow.
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Author, source, and license
+      description: Required for existing art. Include direct source and license URLs.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Current state
+      description: List finished assets and remaining work.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Rights and scope
+      options:
+        - label: This proposal does not reproduce a commercial-game stage, logo, or distinctive identity.
+          required: true
+        - label: I have the right to submit every attached asset.
+          required: true

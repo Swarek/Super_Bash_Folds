@@ -1,0 +1,105 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "platformer",
+  "kind": "3d",
+  "order": 30,
+  "identity": {
+    "displayName": "Platformer",
+    "archetype": "Mobile Scout",
+    "playstyle": "Quick shots, slides, and aerial pursuit",
+    "colors": {
+      "primary": "#e65d52",
+      "secondary": "#27364f",
+      "accent": "#ffd76a"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 61,
+      "height": 88
+    },
+    "spriteReferenceHeight": 140,
+    "weight": 88,
+    "dash": 1.94,
+    "dashFrames": 7,
+    "run": 1.82,
+    "air": 1.08,
+    "gravity": 0.105,
+    "fall": 2.25,
+    "fastFall": 3.05,
+    "jump": 2.72,
+    "doubleJump": 2.48,
+    "jumpSquat": 3,
+    "shortHop": 0.66,
+    "speed": 1.12,
+    "specials": {
+      "neutral-special": {
+        "label": "Scout Shot",
+        "damage": 6,
+        "projectile": {
+          "kind": "blaster",
+          "speed": 690,
+          "gravity": 0,
+          "lifetimeFrames": 70,
+          "radius": 12,
+          "absorbable": true
+        }
+      },
+      "side-special": {
+        "label": "Covering Run",
+        "damage": 10,
+        "movement": {
+          "x": 625,
+          "y": 15
+        },
+        "radius": 48
+      },
+      "up-special": {
+        "label": "Boosted Jump",
+        "damage": 8,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 675,
+          "horizontalSpeed": 285,
+          "steerFrames": 21
+        },
+        "radius": 45
+      },
+      "down-special": {
+        "label": "Ground Mine",
+        "damage": 13,
+        "projectile": {
+          "kind": "bomb",
+          "speed": 180,
+          "gravity": 650,
+          "lifetimeFrames": 180,
+          "radius": 20,
+          "absorbable": true,
+          "manualDetonation": true,
+          "explosionRadius": 72,
+          "restsOnGround": true
+        }
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Ultimate Platformer Pack — Quaternius",
+    "sourcePage": "https://quaternius.com/packs/ultimateplatformer.html",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "wind",
+      "up-special": "wind",
+      "down-special": "heavy"
+    },
+    "traits": []
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "yeti",
+  "kind": "3d",
+  "order": 60,
+  "identity": {
+    "displayName": "Yeti",
+    "archetype": "Snow Colossus",
+    "playstyle": "Massive strikes, ground impacts, and lasting endurance",
+    "colors": {
+      "primary": "#dcebf1",
+      "secondary": "#5f7f9a",
+      "accent": "#8fe9ff"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 93,
+      "height": 103
+    },
+    "spriteReferenceHeight": 145,
+    "weight": 130,
+    "dash": 1.34,
+    "dashFrames": 12,
+    "run": 1.25,
+    "air": 0.72,
+    "gravity": 0.12,
+    "fall": 2.2,
+    "fastFall": 2.92,
+    "jump": 2.32,
+    "doubleJump": 2.08,
+    "jumpSquat": 6,
+    "shortHop": 0.57,
+    "power": 1.22,
+    "speed": 0.82,
+    "reach": 1.16,
+    "specials": {
+      "neutral-special": {
+        "label": "Blizzard Fist",
+        "damage": 23,
+        "chargeable": true,
+        "maxChargeFrames": 72,
+        "radius": 62
+      },
+      "side-special": {
+        "label": "Glacier Charge",
+        "damage": 17,
+        "movement": {
+          "x": 520,
+          "y": 20
+        },
+        "radius": 64
+      },
+      "up-special": {
+        "label": "Avalanche Uppercut",
+        "damage": 13,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 590,
+          "horizontalSpeed": 190,
+          "steerFrames": 22
+        },
+        "radius": 60
+      },
+      "down-special": {
+        "label": "Polar Crash",
+        "damage": 18,
+        "projectile": {
+          "kind": "ground-wave",
+          "speed": 420,
+          "gravity": 0,
+          "lifetimeFrames": 48,
+          "radius": 31,
+          "absorbable": true,
+          "restsOnGround": true
+        },
+        "radius": 66
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Cute Animated Monsters — Quaternius",
+    "sourcePage": "https://quaternius.com/packs/cutemonsters.html",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "heavy",
+      "side-special": "heavy",
+      "up-special": "wind",
+      "down-special": "heavy"
+    },
+    "traits": [
+      "heavy"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+name: Fighter proposal
+description: Propose an original or clearly redistributable fighter pack.
+title: "[Fighter]: "
+labels: ["fighter-pack", "art-animation", "needs-design"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Fighter name
+    validations:
+      required: true
+  - type: dropdown
+    id: ownership
+    attributes:
+      label: Content origin
+      options:
+        - Original work I own
+        - Existing work with an explicit open license
+        - Early design with no assets yet
+    validations:
+      required: true
+  - type: textarea
+    id: identity
+    attributes:
+      label: Identity and play style
+      description: Explain the fighter's original visual identity, archetype, strengths, weaknesses, and counterplay.
+    validations:
+      required: true
+  - type: textarea
+    id: moves
+    attributes:
+      label: Special-move concept
+      description: Outline neutral, side, up, and down specials.
+    validations:
+      required: true
+  - type: textarea
+    id: animation
+    attributes:
+      label: Animation coverage
+      description: Link a legal source and describe coverage of the 50 animation slots, or explain what must be created.
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Author, source, and license
+      description: Required for every existing asset. Include direct source and license URLs.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Rights and scope
+      options:
+        - label: This proposal does not reproduce a commercial-game character, logo, or distinctive identity.
+          required: true
+        - label: I have the right to submit every attached asset.
+          required: true

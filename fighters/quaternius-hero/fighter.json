@@ -1,0 +1,101 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "quaternius-hero",
+  "kind": "3d",
+  "order": 70,
+  "identity": {
+    "displayName": "Quaternius Ranger",
+    "archetype": "Arcane Ranger",
+    "playstyle": "Arrows, sword rushes, and versatile ninja mobility",
+    "colors": {
+      "primary": "#4e8b67",
+      "secondary": "#263b31",
+      "accent": "#dfba67"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 68,
+      "height": 95
+    },
+    "spriteReferenceHeight": 140,
+    "weight": 92,
+    "dash": 1.87,
+    "dashFrames": 8,
+    "run": 1.75,
+    "air": 1.05,
+    "gravity": 0.101,
+    "fall": 2.18,
+    "fastFall": 3.01,
+    "jump": 2.67,
+    "doubleJump": 2.46,
+    "jumpSquat": 4,
+    "shortHop": 0.65,
+    "speed": 1.06,
+    "reach": 1.15,
+    "specials": {
+      "neutral-special": {
+        "label": "Arcane Arrow",
+        "damage": 9,
+        "projectile": {
+          "kind": "arrow",
+          "speed": 610,
+          "gravity": 180,
+          "lifetimeFrames": 105,
+          "radius": 13,
+          "absorbable": true
+        }
+      },
+      "side-special": {
+        "label": "Ranger Rush",
+        "damage": 13,
+        "movement": {
+          "x": 575,
+          "y": 35
+        },
+        "radius": 55
+      },
+      "up-special": {
+        "label": "Ninja Leap",
+        "damage": 9,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 685,
+          "horizontalSpeed": 290,
+          "steerFrames": 20
+        },
+        "radius": 49
+      },
+      "down-special": {
+        "label": "Ranger Parry",
+        "damage": 15,
+        "startup": 5,
+        "active": 13,
+        "counters": true,
+        "radius": 56
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Modular Character Outfits Fantasy — Quaternius",
+    "sourcePage": "https://quaternius.com/packs/modularcharacteroutfitsfantasy.html",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "blade",
+      "up-special": "wind",
+      "down-special": "blade"
+    },
+    "traits": [
+      "blade"
+    ]
+  }
+}

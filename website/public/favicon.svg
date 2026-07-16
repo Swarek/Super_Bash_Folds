@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Super Bash Folds">
+  <defs>
+    <linearGradient id="sky" x1="8" y1="6" x2="58" y2="58">
+      <stop stop-color="#73e0d1"/>
+      <stop offset="1" stop-color="#2878ff"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 4 57 18v28L32 60 7 46V18Z" fill="#071522" stroke="#f4f1e8" stroke-width="4"/>
+  <path d="M17 17v24h17" fill="none" stroke="url(#sky)" stroke-width="8" stroke-linecap="square"/>
+  <path d="M31 23v24h16" fill="none" stroke="#ff7657" stroke-width="8" stroke-linecap="square"/>
+</svg>

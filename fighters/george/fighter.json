@@ -1,0 +1,109 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "george",
+  "kind": "3d",
+  "order": 20,
+  "identity": {
+    "displayName": "George",
+    "archetype": "Siege Mech",
+    "playstyle": "Heavy armor, propulsion, and ranged control",
+    "colors": {
+      "primary": "#d9a441",
+      "secondary": "#4c566a",
+      "accent": "#8ff0ff"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 82,
+      "height": 105
+    },
+    "spriteReferenceHeight": 145,
+    "weight": 124,
+    "dash": 1.38,
+    "dashFrames": 11,
+    "run": 1.27,
+    "air": 0.76,
+    "gravity": 0.115,
+    "fall": 2.15,
+    "fastFall": 2.85,
+    "jump": 2.34,
+    "doubleJump": 2.12,
+    "jumpSquat": 5,
+    "shortHop": 0.58,
+    "power": 1.17,
+    "speed": 0.9,
+    "reach": 1.08,
+    "specials": {
+      "neutral-special": {
+        "label": "Pulse Cannon",
+        "damage": 8,
+        "projectile": {
+          "kind": "blaster",
+          "speed": 620,
+          "gravity": 0,
+          "lifetimeFrames": 78,
+          "radius": 14,
+          "absorbable": true
+        }
+      },
+      "side-special": {
+        "label": "Turbo Ram",
+        "damage": 15,
+        "movement": {
+          "x": 560,
+          "y": 25
+        },
+        "radius": 58
+      },
+      "up-special": {
+        "label": "Vertical Thrusters",
+        "damage": 10,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 620,
+          "horizontalSpeed": 205,
+          "steerFrames": 24
+        },
+        "multiHit": 3,
+        "radius": 55
+      },
+      "down-special": {
+        "label": "Seismic Wave",
+        "damage": 14,
+        "projectile": {
+          "kind": "ground-wave",
+          "speed": 450,
+          "gravity": 0,
+          "lifetimeFrames": 44,
+          "radius": 28,
+          "absorbable": true,
+          "restsOnGround": true
+        },
+        "radius": 58
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Animated Mech — Quaternius",
+    "sourcePage": "https://quaternius.com/packs/animatedmech.html",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "heavy",
+      "up-special": "wind",
+      "down-special": "heavy"
+    },
+    "traits": [
+      "heavy"
+    ]
+  }
+}
