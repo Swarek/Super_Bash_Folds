@@ -49,7 +49,7 @@ const projectCreatedWork: Credit[] = [
     note: "20 original SVG icons, directed and reviewed by Swarek.",
     pack: "Original project artwork",
     sources: [
-      { label: "View files on GitHub", href: "https://github.com/Swarek/Super-Open-Bros/tree/main/public/assets/open/items" },
+      { label: "View files on GitHub", href: "https://github.com/Swarek/Super_Bash_Folds/tree/main/public/assets/open/items" },
     ],
     license: cc0,
   },
@@ -60,7 +60,7 @@ const projectCreatedWork: Credit[] = [
     note: "Original pointer and grab cursors, directed and reviewed by Swarek.",
     pack: "Original project artwork",
     sources: [
-      { label: "View files on GitHub", href: "https://github.com/Swarek/Super-Open-Bros/tree/main/public/assets/open/ui" },
+      { label: "View files on GitHub", href: "https://github.com/Swarek/Super_Bash_Folds/tree/main/public/assets/open/ui" },
     ],
     license: cc0,
   },
@@ -71,7 +71,7 @@ const projectCreatedWork: Credit[] = [
     note: "Original SVG identity mark, directed and reviewed by Swarek.",
     pack: "Original project artwork",
     sources: [
-      { label: "View file on GitHub", href: "https://github.com/Swarek/Super-Open-Bros/blob/main/public/favicon.svg" },
+      { label: "View file on GitHub", href: "https://github.com/Swarek/Super_Bash_Folds/blob/main/public/favicon.svg" },
     ],
     license: cc0,
   },
@@ -145,7 +145,7 @@ export default function Credits() {
         <div><p className="eyebrow"><span /> Provenance matters</p><h2>Built open.<br /><em>Credited clearly.</em></h2></div>
         <div>
           <p>These credits come from provenance records shipped in the public repository. Human artists and AI-assisted work are labeled separately. CC0 does not require attribution, but transparent authorship still matters.</p>
-          <a className="text-link" href="https://github.com/Swarek/Super-Open-Bros/blob/main/THIRD_PARTY_ASSETS.md" target="_blank" rel="noreferrer">View the full asset manifest <span aria-hidden="true">↗</span></a>
+          <a className="text-link" href="https://github.com/Swarek/Super_Bash_Folds/blob/main/THIRD_PARTY_ASSETS.md" target="_blank" rel="noreferrer">View the full asset manifest <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 

@@ -133,7 +133,7 @@ export default function Home() {
           <p className="eyebrow"><span /> Build your own stage</p>
           <h2>Your idea.<br />Your rules.<br /><em>Your fold.</em></h2>
           <p>Stage packs keep collisions, platforms, blast zones, spawn points, rendering, and licensing together in one clear folder.</p>
-          <a className="text-link" href="https://github.com/Swarek/Super-Open-Bros/blob/main/stages/README.md" target="_blank" rel="noreferrer">
+          <a className="text-link" href="https://github.com/Swarek/Super_Bash_Folds/blob/main/stages/README.md" target="_blank" rel="noreferrer">
             Read the stage guide <span aria-hidden="true">↗</span>
           </a>
         </div>
@@ -146,7 +146,7 @@ export default function Home() {
         </div>
         <div className="terminal-card">
           <div className="terminal-bar"><i /><i /><i /><span>super-bash-folds — zsh</span></div>
-          <pre><code><span>$</span> git clone https://github.com/Swarek/Super-Open-Bros.git{"\n"}<span>$</span> cd Super-Open-Bros{"\n"}<span>$</span> npm ci{"\n"}<span>$</span> npm run dev</code></pre>
+          <pre><code><span>$</span> git clone https://github.com/Swarek/Super_Bash_Folds.git{"\n"}<span>$</span> cd Super_Bash_Folds{"\n"}<span>$</span> npm ci{"\n"}<span>$</span> npm run dev</code></pre>
           <p>Node.js 20+ · macOS, Windows, and Linux</p>
         </div>
       </section>
@@ -157,7 +157,7 @@ export default function Home() {
           <span><strong>Super Bash</strong><em>Folds</em></span>
         </a>
         <p>An independent, open-source platform fighter.<br />Not affiliated with or endorsed by any video game publisher.</p>
-        <div><a href="/play/index.html">Play now →</a><a href="https://github.com/Swarek/Super-Open-Bros" target="_blank" rel="noreferrer">GitHub ↗</a><a href="#create">Documentation</a><a href="/credits">Credits &amp; sources</a><a href="#top">Back to top ↑</a></div>
+        <div><a href="/play/index.html">Play now →</a><a href="https://github.com/Swarek/Super_Bash_Folds" target="_blank" rel="noreferrer">GitHub ↗</a><a href="#create">Documentation</a><a href="/credits">Credits &amp; sources</a><a href="#top">Back to top ↑</a></div>
       </footer>
     </main>
   );

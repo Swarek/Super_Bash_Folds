@@ -1,7 +1,7 @@
 # Super Bash Folds
 
 [Official website](https://super-bash-folds.spry-crumb-3668.chatgpt.site) ·
-[Source code](https://github.com/Swarek/Super-Open-Bros)
+[Source code](https://github.com/Swarek/Super_Bash_Folds)
 
 A local two-player platform fighter designed so that fighters and stages can be
 added as self-contained packs instead of requiring changes to the engine.
@@ -20,8 +20,8 @@ are limited to original code and content with documented redistribution rights.
 Prerequisite: Node.js 20 or newer.
 
 ```sh
-git clone https://github.com/Swarek/Super-Open-Bros.git
-cd Super-Open-Bros
+git clone https://github.com/Swarek/Super_Bash_Folds.git
+cd Super_Bash_Folds
 npm ci
 npm run dev
 ```

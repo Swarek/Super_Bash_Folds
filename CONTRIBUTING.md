@@ -6,8 +6,8 @@ add content.
 ## Setup
 
 ```sh
-git clone https://github.com/Swarek/Super-Open-Bros.git
-cd Super-Open-Bros
+git clone https://github.com/Swarek/Super_Bash_Folds.git
+cd Super_Bash_Folds
 npm ci
 npm run dev
 ```
