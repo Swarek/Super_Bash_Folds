@@ -1,0 +1,87 @@
+{
+  "$schema": "../stage.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "verdant-grove",
+  "order": 10,
+  "identity": {
+    "displayName": "Verdant Grove",
+    "series": "Super Bash Folds",
+    "description": "An open clearing and three platforms for fast play on the ground and in the air"
+  },
+  "gameplay": {
+    "platforms": [
+      {
+        "id": "main",
+        "x": 0,
+        "y": -96,
+        "width": 1420,
+        "height": 192,
+        "kind": "ground"
+      },
+      {
+        "id": "left",
+        "x": -299.46,
+        "y": 152,
+        "width": 264,
+        "height": 24,
+        "kind": "platform"
+      },
+      {
+        "id": "right",
+        "x": 299.46,
+        "y": 152,
+        "width": 264,
+        "height": 24,
+        "kind": "platform"
+      },
+      {
+        "id": "top",
+        "x": 0,
+        "y": 317,
+        "width": 255,
+        "height": 24,
+        "kind": "platform"
+      }
+    ],
+    "ledges": [
+      { "platformId": "main", "side": "left" },
+      { "platformId": "main", "side": "right" }
+    ],
+    "spawns": [
+      { "x": -186, "y": 60 },
+      { "x": 186, "y": 60 }
+    ],
+    "blastZone": {
+      "left": -1250,
+      "right": 1250,
+      "top": 1080,
+      "bottom": -760
+    }
+  },
+  "render": {
+    "kind": "2d",
+    "preview": "assets/preview.png",
+    "thumbnail": "assets/preview.thumb.webp",
+    "arena": "assets/arena.webp",
+    "backdrop": "assets/backdrop.webp",
+    "art": {
+      "width": 1920,
+      "height": 1080,
+      "originPx": { "x": 960, "y": 760 },
+      "worldUnitsPerPixel": 0.93
+    }
+  },
+  "colors": {
+    "edge": "#b9f56b",
+    "surface": "#20b74a",
+    "body": "#9a6500",
+    "shadow": "#355b2c"
+  },
+  "license": {
+    "attribution": "Free vector grass tileset — RGS_Dev",
+    "sourcePage": "https://opengameart.org/content/free-vector-grass-tileset",
+    "id": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  }
+}

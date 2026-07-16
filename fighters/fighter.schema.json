@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://super-bash-folds.local/schemas/fighter.schema.json",
+  "title": "Super Bash Folds fighter pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "status",
+    "id",
+    "kind",
+    "order",
+    "identity",
+    "gameplay",
+    "visual",
+    "effects"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "status": { "enum": ["draft", "ready"] },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "kind": { "enum": ["2d", "3d"] },
+    "order": { "type": "integer", "minimum": 1 },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["displayName", "archetype", "playstyle", "colors"],
+      "properties": {
+        "displayName": { "type": "string", "minLength": 1 },
+        "archetype": { "type": "string", "minLength": 1 },
+        "playstyle": { "type": "string", "minLength": 1 },
+        "colors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["primary", "secondary", "accent"],
+          "properties": {
+            "primary": { "$ref": "#/$defs/color" },
+            "secondary": { "$ref": "#/$defs/color" },
+            "accent": { "$ref": "#/$defs/color" }
+          }
+        }
+      }
+    },
+    "gameplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "size", "spriteReferenceHeight", "weight", "dash", "dashFrames",
+        "run", "air", "gravity", "fall", "fastFall", "jump", "doubleJump",
+        "jumpSquat", "shortHop", "specials"
+      ],
+      "properties": {
+        "size": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["width", "height"],
+          "properties": {
+            "width": { "type": "number", "exclusiveMinimum": 0 },
+            "height": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        },
+        "spriteReferenceHeight": { "type": "number", "exclusiveMinimum": 0 },
+        "weight": { "type": "number", "exclusiveMinimum": 0 },
+        "dash": { "type": "number", "exclusiveMinimum": 0 },
+        "dashFrames": { "type": "integer", "minimum": 1 },
+        "run": { "type": "number", "exclusiveMinimum": 0 },
+        "air": { "type": "number", "exclusiveMinimum": 0 },
+        "gravity": { "type": "number", "exclusiveMinimum": 0 },
+        "fall": { "type": "number", "exclusiveMinimum": 0 },
+        "fastFall": { "type": "number", "exclusiveMinimum": 0 },
+        "jump": { "type": "number", "exclusiveMinimum": 0 },
+        "doubleJump": { "type": "number", "exclusiveMinimum": 0 },
+        "jumpSquat": { "type": "integer", "minimum": 1 },
+        "shortHop": { "type": "number", "exclusiveMinimum": 0 },
+        "power": { "type": "number", "exclusiveMinimum": 0 },
+        "speed": { "type": "number", "exclusiveMinimum": 0 },
+        "reach": { "type": "number", "exclusiveMinimum": 0 },
+        "specials": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["neutral-special", "side-special", "up-special", "down-special"],
+          "properties": {
+            "neutral-special": { "$ref": "#/$defs/special" },
+            "side-special": { "$ref": "#/$defs/special" },
+            "up-special": { "$ref": "#/$defs/special" },
+            "down-special": { "$ref": "#/$defs/special" }
+          }
+        }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceFacing", "attribution", "sourcePage", "license"],
+      "properties": {
+        "sourceFacing": { "enum": ["left", "right"] },
+        "attribution": { "type": "string", "minLength": 1 },
+        "sourcePage": { "type": "string", "format": "uri" },
+        "license": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1 },
+            "url": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["materials", "traits"],
+      "properties": {
+        "materials": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": ["physical", "blade", "heavy", "fire", "electric", "energy", "wind", "water"]
+          }
+        },
+        "traits": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["blade", "heavy", "electric"] }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "special": {
+      "type": "object",
+      "required": ["label", "damage"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "damage": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": true
+    }
+  }
+}

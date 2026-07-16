@@ -1,0 +1,233 @@
+{
+  "id": "quaternius-hero",
+  "displayName": "Quaternius Ranger",
+  "author": "Quaternius",
+  "sourcePage": "https://quaternius.com/packs/modularcharacteroutfitsfantasy.html",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "additionalSources": [
+    {
+      "role": "animations",
+      "name": "Universal Animation Library 1",
+      "author": "Quaternius",
+      "sourcePage": "https://quaternius.com/packs/universalanimationlibrary.html",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "role": "animations",
+      "name": "Universal Animation Library 2",
+      "author": "Quaternius",
+      "sourcePage": "https://quaternius.com/packs/universalanimationlibrary2.html",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "model": "assets-source/open-fighters/3d/quaternius-fantasy-outfits/extracted/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Ranger.gltf",
+  "animationSources": [
+    "assets-source/open-fighters/3d/quaternius-universal-animation-library-1/extracted/Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb",
+    "assets-source/open-fighters/3d/quaternius-universal-animation-library-2/extracted/Universal Animation Library 2[Standard]/Unreal-Godot/UAL2_Standard.glb"
+  ],
+  "slots": {
+    "idle": {
+      "action": "Idle_Loop",
+      "coverage": "direct"
+    },
+    "crouch": {
+      "action": "Crouch_Idle_Loop",
+      "coverage": "direct"
+    },
+    "walk": {
+      "action": "Walk_Loop",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "Walk_Formal_Loop",
+      "coverage": "adapted"
+    },
+    "dash": {
+      "action": "Sprint_Loop",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "Jog_Fwd_Loop",
+      "coverage": "direct"
+    },
+    "jump_squat": {
+      "action": "Jump_Start",
+      "coverage": "direct"
+    },
+    "jump": {
+      "action": "Jump_Loop",
+      "coverage": "direct"
+    },
+    "double_jump": {
+      "action": "NinjaJump_Start",
+      "coverage": "direct"
+    },
+    "fall": {
+      "action": "NinjaJump_Idle_Loop",
+      "coverage": "direct"
+    },
+    "fast_fall": {
+      "action": "NinjaJump_Idle_Loop",
+      "coverage": "author_required"
+    },
+    "jab": {
+      "action": "Punch_Jab",
+      "coverage": "direct"
+    },
+    "dash_attack": {
+      "action": "Sword_Dash",
+      "coverage": "direct"
+    },
+    "forward_tilt": {
+      "action": "Sword_Regular_A",
+      "coverage": "direct"
+    },
+    "up_tilt": {
+      "action": "Melee_Hook",
+      "coverage": "adapted"
+    },
+    "down_tilt": {
+      "action": "Sword_Regular_B",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "Sword_Heavy_Combo",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "Sword_Regular_C",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "Sword_Regular_Combo",
+      "coverage": "adapted"
+    },
+    "neutral_air": {
+      "action": "Punch_Cross",
+      "coverage": "author_required"
+    },
+    "forward_air": {
+      "action": "Sword_Attack",
+      "coverage": "author_required"
+    },
+    "back_air": {
+      "action": "Melee_Hook",
+      "coverage": "author_required"
+    },
+    "up_air": {
+      "action": "Sword_Regular_A",
+      "coverage": "author_required"
+    },
+    "down_air": {
+      "action": "Sword_Regular_B",
+      "coverage": "author_required"
+    },
+    "neutral_special": {
+      "action": "Spell_Simple_Shoot",
+      "coverage": "direct"
+    },
+    "side_special": {
+      "action": "Sword_Dash",
+      "coverage": "direct"
+    },
+    "up_special": {
+      "action": "NinjaJump_Start",
+      "coverage": "author_required"
+    },
+    "down_special": {
+      "action": "Sword_Block",
+      "coverage": "direct"
+    },
+    "spot_dodge": {
+      "action": "Roll",
+      "coverage": "direct"
+    },
+    "roll_forward": {
+      "action": "Roll",
+      "coverage": "direct"
+    },
+    "roll_back": {
+      "action": "Roll",
+      "coverage": "author_required"
+    },
+    "air_dodge": {
+      "action": "NinjaJump_Idle_Loop",
+      "coverage": "author_required"
+    },
+    "shield": {
+      "action": "Idle_Shield_Loop",
+      "coverage": "direct"
+    },
+    "item_hold": {
+      "action": "Sword_Idle",
+      "coverage": "direct"
+    },
+    "item_pickup": {
+      "action": "PickUp_Table",
+      "coverage": "direct"
+    },
+    "item_attack": {
+      "action": "Sword_Attack",
+      "coverage": "adapted"
+    },
+    "grab": {
+      "action": "Interact",
+      "coverage": "adapted"
+    },
+    "grab_hold": {
+      "action": "Push_Loop",
+      "coverage": "adapted"
+    },
+    "grabbed": {
+      "action": "Hit_Chest",
+      "coverage": "author_required"
+    },
+    "forward_throw": {
+      "action": "OverhandThrow",
+      "coverage": "adapted"
+    },
+    "back_throw": {
+      "action": "OverhandThrow",
+      "coverage": "adapted"
+    },
+    "up_throw": {
+      "action": "OverhandThrow",
+      "coverage": "adapted"
+    },
+    "down_throw": {
+      "action": "OverhandThrow",
+      "coverage": "adapted"
+    },
+    "hurt": {
+      "action": "Hit_Chest",
+      "coverage": "direct"
+    },
+    "knockback": {
+      "action": "Hit_Knockback",
+      "coverage": "direct"
+    },
+    "downed": {
+      "action": "Death01",
+      "coverage": "adapted"
+    },
+    "ledge": {
+      "action": "ClimbUp_1m",
+      "coverage": "direct"
+    },
+    "entrance": {
+      "action": "Jump_Land",
+      "coverage": "adapted"
+    },
+    "taunt": {
+      "action": "Idle_No_Loop",
+      "coverage": "direct"
+    },
+    "victory": {
+      "action": "Dance_Loop",
+      "coverage": "direct"
+    }
+  }
+}

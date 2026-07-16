@@ -1,0 +1,490 @@
+{
+  "id": "hormelz-knight",
+  "displayName": "Hormelz Knight",
+  "author": "Hormelz",
+  "sourcePage": "https://hormelz.itch.io/8-directional-knight",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/hormelz-knight/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/hormelz-knight/SHA256SUMS",
+  "transformation": "Only upstream raster frames were cropped, uniformly scaled, padded, optionally sampled, tiled and losslessly WebP-encoded. Upstream JSON or GIF companions were used only to read frame rectangles, counts and rates. No frame or motion was synthesized.",
+  "coverageCounts": {
+    "direct": 17,
+    "adapted": 25,
+    "author_required": 8
+  },
+  "actions": {
+    "idle": {
+      "frameCount": 17,
+      "sourceFrameCount": 17,
+      "sampleStep": 1,
+      "fps": 7,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Idle/Knight_Idle_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Idle/Knight_Idle_dir3.json"
+      ]
+    },
+    "walk": {
+      "frameCount": 11,
+      "sourceFrameCount": 11,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Walk/Knight_Walk_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Walk/Knight_Walk_dir3.json"
+      ]
+    },
+    "run": {
+      "frameCount": 8,
+      "sourceFrameCount": 8,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Run/Knight_Run_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Run/Knight_Run_dir3.json"
+      ]
+    },
+    "jump": {
+      "frameCount": 11,
+      "sourceFrameCount": 11,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Jump/Knight_Jump_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Jump/Knight_Jump_dir3.json"
+      ]
+    },
+    "attack": {
+      "frameCount": 15,
+      "sourceFrameCount": 15,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Attack/Knight_Attack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Attack/Knight_Attack_dir3.json"
+      ]
+    },
+    "combo": {
+      "frameCount": 35,
+      "sourceFrameCount": 35,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/ComboAttack/Knight_ComboAttack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/ComboAttack/Knight_ComboAttack_dir3.json"
+      ]
+    },
+    "kick": {
+      "frameCount": 12,
+      "sourceFrameCount": 12,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Kick/Knight_Kick_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Kick/Knight_Kick_dir3.json"
+      ]
+    },
+    "crouch_attack": {
+      "frameCount": 13,
+      "sourceFrameCount": 13,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CrouchAttack/Knight_CrouchAttack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CrouchAttack/Knight_CrouchAttack_dir3.json"
+      ]
+    },
+    "spin_attack": {
+      "frameCount": 17,
+      "sourceFrameCount": 17,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/SpinAttack/Knight_SpinAttack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/SpinAttack/Knight_SpinAttack_dir3.json"
+      ]
+    },
+    "jump_attack": {
+      "frameCount": 23,
+      "sourceFrameCount": 23,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpAttack/Knight_JumpAttack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpAttack/Knight_JumpAttack_dir3.json"
+      ]
+    },
+    "jump_spin": {
+      "frameCount": 24,
+      "sourceFrameCount": 24,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpSpinAttack/Knight_JumpSpinAttack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpSpinAttack/Knight_JumpSpinAttack_dir3.json"
+      ]
+    },
+    "cast": {
+      "frameCount": 10,
+      "sourceFrameCount": 10,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Cast/Knight_Cast_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Cast/Knight_Cast_dir3.json"
+      ]
+    },
+    "cast_sky": {
+      "frameCount": 20,
+      "sourceFrameCount": 20,
+      "sampleStep": 1,
+      "fps": 7,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CastSky/Knight_CastSky_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CastSky/Knight_CastSky_dir3.json"
+      ]
+    },
+    "block": {
+      "frameCount": 6,
+      "sourceFrameCount": 6,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Block/Knight_Block_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Block/Knight_Block_dir3.json"
+      ]
+    },
+    "impact": {
+      "frameCount": 9,
+      "sourceFrameCount": 9,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Impact/Knight_Impact_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Impact/Knight_Impact_dir3.json"
+      ]
+    },
+    "knock": {
+      "frameCount": 10,
+      "sourceFrameCount": 10,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Knock/Knight_Knock_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Knock/Knight_Knock_dir3.json"
+      ]
+    },
+    "die": {
+      "frameCount": 27,
+      "sourceFrameCount": 27,
+      "sampleStep": 1,
+      "fps": 7,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Die/Knight_Die_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Die/Knight_Die_dir3.json"
+      ]
+    },
+    "die_alt": {
+      "frameCount": 16,
+      "sourceFrameCount": 16,
+      "sampleStep": 1,
+      "fps": 7,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Die2/Knight_Die2_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Die2/Knight_Die2_dir3.json"
+      ]
+    },
+    "crouch": {
+      "frameCount": 6,
+      "sourceFrameCount": 6,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Crouch/Knight_Crouch_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Crouch/Knight_Crouch_dir3.json"
+      ]
+    },
+    "walk_back": {
+      "frameCount": 12,
+      "sourceFrameCount": 12,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/WalkBack/Knight_WalkBack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/WalkBack/Knight_WalkBack_dir3.json"
+      ]
+    },
+    "run_jump": {
+      "frameCount": 10,
+      "sourceFrameCount": 10,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/RunJump/Knight_RunJump_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/RunJump/Knight_RunJump_dir3.json"
+      ]
+    },
+    "slide": {
+      "frameCount": 15,
+      "sourceFrameCount": 15,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Slide/Knight_Slide_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Slide/Knight_Slide_dir3.json"
+      ]
+    },
+    "strafe_back": {
+      "frameCount": 5,
+      "sourceFrameCount": 5,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/StrafeBack/Knight_StrafeBack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/StrafeBack/Knight_StrafeBack_dir3.json"
+      ]
+    },
+    "climb": {
+      "frameCount": 7,
+      "sourceFrameCount": 7,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Climb/Knight_Climb_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Climb/Knight_Climb_dir3.json"
+      ]
+    },
+    "draw": {
+      "frameCount": 7,
+      "sourceFrameCount": 7,
+      "sampleStep": 1,
+      "fps": 10,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Draw/Knight_Draw_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Draw/Knight_Draw_dir3.json"
+      ]
+    },
+    "idle3": {
+      "frameCount": 37,
+      "sourceFrameCount": 37,
+      "sampleStep": 1,
+      "fps": 5,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Idle3/Knight_Idle3_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Idle3/Knight_Idle3_dir3.json"
+      ]
+    },
+    "power_up": {
+      "frameCount": 16,
+      "sourceFrameCount": 16,
+      "sampleStep": 1,
+      "fps": 7,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/PowerUp/Knight_PowerUp_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/PowerUp/Knight_PowerUp_dir3.json"
+      ]
+    }
+  },
+  "slots": {
+    "idle": {
+      "action": "idle",
+      "coverage": "direct"
+    },
+    "crouch": {
+      "action": "crouch",
+      "coverage": "direct"
+    },
+    "walk": {
+      "action": "walk",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "run",
+      "coverage": "direct"
+    },
+    "jump": {
+      "action": "jump",
+      "coverage": "direct"
+    },
+    "jab": {
+      "action": "attack",
+      "coverage": "direct"
+    },
+    "forward_tilt": {
+      "action": "kick",
+      "coverage": "direct"
+    },
+    "down_tilt": {
+      "action": "crouch_attack",
+      "coverage": "direct"
+    },
+    "neutral_air": {
+      "action": "jump_spin",
+      "coverage": "direct"
+    },
+    "forward_air": {
+      "action": "jump_attack",
+      "coverage": "direct"
+    },
+    "neutral_special": {
+      "action": "cast",
+      "coverage": "direct"
+    },
+    "shield": {
+      "action": "block",
+      "coverage": "direct"
+    },
+    "hurt": {
+      "action": "impact",
+      "coverage": "direct"
+    },
+    "knockback": {
+      "action": "knock",
+      "coverage": "direct"
+    },
+    "ledge": {
+      "action": "climb",
+      "coverage": "direct"
+    },
+    "entrance": {
+      "action": "draw",
+      "coverage": "direct"
+    },
+    "victory": {
+      "action": "power_up",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "walk_back",
+      "coverage": "adapted"
+    },
+    "dash": {
+      "action": "run",
+      "coverage": "adapted"
+    },
+    "jump_squat": {
+      "action": "crouch",
+      "coverage": "adapted"
+    },
+    "double_jump": {
+      "action": "run_jump",
+      "coverage": "adapted"
+    },
+    "fall": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "fast_fall": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "dash_attack": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "up_tilt": {
+      "action": "kick",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "combo",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "jump_attack",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "spin_attack",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "jump_spin",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "jump_attack",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "jump_attack",
+      "coverage": "adapted"
+    },
+    "side_special": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "up_special": {
+      "action": "cast_sky",
+      "coverage": "adapted"
+    },
+    "down_special": {
+      "action": "power_up",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "strafe_back",
+      "coverage": "adapted"
+    },
+    "roll_forward": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "roll_back": {
+      "action": "strafe_back",
+      "coverage": "adapted"
+    },
+    "air_dodge": {
+      "action": "jump_spin",
+      "coverage": "adapted"
+    },
+    "item_attack": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "grabbed": {
+      "action": "impact",
+      "coverage": "adapted"
+    },
+    "downed": {
+      "action": "die_alt",
+      "coverage": "adapted"
+    },
+    "taunt": {
+      "action": "idle3",
+      "coverage": "adapted"
+    },
+    "item_hold": {
+      "action": "block",
+      "coverage": "author_required"
+    },
+    "item_pickup": {
+      "action": "crouch",
+      "coverage": "author_required"
+    },
+    "grab": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "grab_hold": {
+      "action": "block",
+      "coverage": "author_required"
+    },
+    "forward_throw": {
+      "action": "combo",
+      "coverage": "author_required"
+    },
+    "back_throw": {
+      "action": "kick",
+      "coverage": "author_required"
+    },
+    "up_throw": {
+      "action": "jump_attack",
+      "coverage": "author_required"
+    },
+    "down_throw": {
+      "action": "crouch_attack",
+      "coverage": "author_required"
+    }
+  }
+}

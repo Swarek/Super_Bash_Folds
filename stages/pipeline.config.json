@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "assetBudgets": {
+    "preview": 4194304,
+    "thumbnail": 307200,
+    "arena": 8388608,
+    "backdrop": 8388608,
+    "scene": 25165824
+  }
+}

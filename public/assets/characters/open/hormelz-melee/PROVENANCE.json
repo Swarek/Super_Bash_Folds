@@ -1,0 +1,480 @@
+{
+  "id": "hormelz-melee",
+  "displayName": "Hormelz Melee Character",
+  "author": "Hormelz",
+  "sourcePage": "https://hormelz.itch.io/8-directional-melee-character",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/hormelz-melee/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/hormelz-melee/SHA256SUMS",
+  "transformation": "Only upstream raster frames were cropped, uniformly scaled, padded, optionally sampled, tiled and losslessly WebP-encoded. Upstream JSON or GIF companions were used only to read frame rectangles, counts and rates. No frame or motion was synthesized.",
+  "coverageCounts": {
+    "direct": 14,
+    "adapted": 29,
+    "author_required": 7
+  },
+  "actions": {
+    "fight_idle": {
+      "frameCount": 34,
+      "sourceFrameCount": 34,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FightIdle/Boxer__FightIdle_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FightIdle/Boxer_FightIdle_dir3.gif"
+      ]
+    },
+    "idle": {
+      "frameCount": 31,
+      "sourceFrameCount": 31,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Idle1/Boxer__Idle1_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Idle1/Boxer_Idle1_dir3.gif"
+      ]
+    },
+    "walk": {
+      "frameCount": 24,
+      "sourceFrameCount": 24,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/WalkFoward/Boxer__WalkFoward_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/WalkFoward/Boxer_WalkFoward_dir3.gif"
+      ]
+    },
+    "walk_back": {
+      "frameCount": 23,
+      "sourceFrameCount": 23,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/WalkBack/Boxer__WalkBack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/WalkBack/Boxer_WalkBack_dir3.gif"
+      ]
+    },
+    "run": {
+      "frameCount": 14,
+      "sourceFrameCount": 14,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunForward/Boxer__RunForward_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunForward/Boxer_RunForward_dir3.gif"
+      ]
+    },
+    "run_back": {
+      "frameCount": 13,
+      "sourceFrameCount": 13,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunBack/Boxer__RunBack_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunBack/Boxer_RunBack_dir3.gif"
+      ]
+    },
+    "jump": {
+      "frameCount": 25,
+      "sourceFrameCount": 25,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Jump1/Boxer__Jump1_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Jump1/Boxer_Jump1_dir3.gif"
+      ]
+    },
+    "jump_alt": {
+      "frameCount": 38,
+      "sourceFrameCount": 38,
+      "sampleStep": 1,
+      "fps": 50,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Jump2/Boxer__Jump2_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Jump2/Boxer_Jump2_dir3.gif"
+      ]
+    },
+    "left_jab": {
+      "frameCount": 15,
+      "sourceFrameCount": 15,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/LeftJab/Boxer__LeftJab_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/LeftJab/Boxer_LeftJab_dir3.gif"
+      ]
+    },
+    "combo": {
+      "frameCount": 27,
+      "sourceFrameCount": 27,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Combo/Boxer__Combo_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Combo/Boxer_Combo_dir3.gif"
+      ]
+    },
+    "front_kick": {
+      "frameCount": 29,
+      "sourceFrameCount": 29,
+      "sampleStep": 1,
+      "fps": 50,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FrontKick/Boxer__FrontKick_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FrontKick/Boxer_FrontKick_dir3.gif"
+      ]
+    },
+    "high_kick": {
+      "frameCount": 33,
+      "sourceFrameCount": 33,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HighKick/Boxer__HighKick_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HighKick/Boxer_HighKick_dir3.gif"
+      ]
+    },
+    "stomp_kick": {
+      "frameCount": 29,
+      "sourceFrameCount": 29,
+      "sampleStep": 1,
+      "fps": 50,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StompKick/Boxer__StompKick_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StompKick/Boxer_StompKick_dir3.gif"
+      ]
+    },
+    "straight_right": {
+      "frameCount": 25,
+      "sourceFrameCount": 25,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StraightRight/Boxer__StraightRight_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StraightRight/Boxer_StraightRight_dir3.gif"
+      ]
+    },
+    "running_slide": {
+      "frameCount": 22,
+      "sourceFrameCount": 22,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunningSlide/Boxer__RunningSlide_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/RunningSlide/Boxer_RunningSlide_dir3.gif"
+      ]
+    },
+    "flying_kick": {
+      "frameCount": 48,
+      "sourceFrameCount": 48,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FlyingKick/Boxer__FlyingKick_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/FlyingKick/Boxer_FlyingKick_dir3.gif"
+      ]
+    },
+    "side_kick": {
+      "frameCount": 20,
+      "sourceFrameCount": 20,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/SideKick/Boxer__SideKick_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/SideKick/Boxer_SideKick_dir3.gif"
+      ]
+    },
+    "fireball": {
+      "frameCount": 48,
+      "sourceFrameCount": 48,
+      "sampleStep": 1,
+      "fps": 50,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Fireball/Boxer__Fireball_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Fireball/Boxer_Fireball_dir3.gif"
+      ]
+    },
+    "forward_roll": {
+      "frameCount": 16,
+      "sourceFrameCount": 16,
+      "sampleStep": 1,
+      "fps": 25,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/ForwardRoll/Boxer__ForwardRoll_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/ForwardRoll/Boxer_ForwardRoll_dir3.gif"
+      ]
+    },
+    "stand_roll": {
+      "frameCount": 33,
+      "sourceFrameCount": 33,
+      "sampleStep": 1,
+      "fps": 50,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StandRoll/Boxer__StandRoll_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/StandRoll/Boxer_StandRoll_dir3.gif"
+      ]
+    },
+    "pull": {
+      "frameCount": 15,
+      "sourceFrameCount": 15,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Pull/Boxer__Pull_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Pull/Boxer_Pull_dir3.gif"
+      ]
+    },
+    "push": {
+      "frameCount": 37,
+      "sourceFrameCount": 37,
+      "sampleStep": 1,
+      "fps": 50,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Push/Boxer__Push_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Push/Boxer_Push_dir3.gif"
+      ]
+    },
+    "hit_body": {
+      "frameCount": 21,
+      "sourceFrameCount": 21,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HitBody/Boxer__HitBody_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HitBody/Boxer_HitBody_dir3.gif"
+      ]
+    },
+    "hit_head": {
+      "frameCount": 18,
+      "sourceFrameCount": 18,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HitHead/Boxer__HitHead_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/HitHead/Boxer_HitHead_dir3.gif"
+      ]
+    },
+    "die": {
+      "frameCount": 63,
+      "sourceFrameCount": 63,
+      "sampleStep": 1,
+      "fps": 50,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Die2/Boxer__Die2_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Die2/Boxer_Die2_dir3.gif"
+      ]
+    },
+    "battlecry": {
+      "frameCount": 51,
+      "sourceFrameCount": 51,
+      "sampleStep": 1,
+      "fps": 33.333333,
+      "sources": [
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Battlecry/Boxer__Battlecry_dir3.png",
+        "assets-source/open-fighters/2d/hormelz-melee/upstream/MeleeCharacter/Battlecry/Boxer_Battlecry_dir3.gif"
+      ]
+    }
+  },
+  "slots": {
+    "idle": {
+      "action": "fight_idle",
+      "coverage": "direct"
+    },
+    "walk": {
+      "action": "walk",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "run",
+      "coverage": "direct"
+    },
+    "jump": {
+      "action": "jump",
+      "coverage": "direct"
+    },
+    "jab": {
+      "action": "left_jab",
+      "coverage": "direct"
+    },
+    "dash_attack": {
+      "action": "running_slide",
+      "coverage": "direct"
+    },
+    "forward_tilt": {
+      "action": "front_kick",
+      "coverage": "direct"
+    },
+    "up_tilt": {
+      "action": "high_kick",
+      "coverage": "direct"
+    },
+    "down_tilt": {
+      "action": "stomp_kick",
+      "coverage": "direct"
+    },
+    "neutral_air": {
+      "action": "flying_kick",
+      "coverage": "direct"
+    },
+    "neutral_special": {
+      "action": "fireball",
+      "coverage": "direct"
+    },
+    "roll_forward": {
+      "action": "forward_roll",
+      "coverage": "direct"
+    },
+    "hurt": {
+      "action": "hit_body",
+      "coverage": "direct"
+    },
+    "taunt": {
+      "action": "battlecry",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "walk_back",
+      "coverage": "adapted"
+    },
+    "dash": {
+      "action": "run",
+      "coverage": "adapted"
+    },
+    "jump_squat": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "double_jump": {
+      "action": "jump_alt",
+      "coverage": "adapted"
+    },
+    "fall": {
+      "action": "jump_alt",
+      "coverage": "adapted"
+    },
+    "fast_fall": {
+      "action": "jump_alt",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "straight_right",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "high_kick",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "stomp_kick",
+      "coverage": "adapted"
+    },
+    "forward_air": {
+      "action": "flying_kick",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "side_kick",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "high_kick",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "stomp_kick",
+      "coverage": "adapted"
+    },
+    "side_special": {
+      "action": "flying_kick",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "stand_roll",
+      "coverage": "adapted"
+    },
+    "roll_back": {
+      "action": "forward_roll",
+      "coverage": "adapted"
+    },
+    "air_dodge": {
+      "action": "stand_roll",
+      "coverage": "adapted"
+    },
+    "item_attack": {
+      "action": "combo",
+      "coverage": "adapted"
+    },
+    "grab": {
+      "action": "pull",
+      "coverage": "adapted"
+    },
+    "grab_hold": {
+      "action": "pull",
+      "coverage": "adapted"
+    },
+    "grabbed": {
+      "action": "hit_head",
+      "coverage": "adapted"
+    },
+    "forward_throw": {
+      "action": "push",
+      "coverage": "adapted"
+    },
+    "back_throw": {
+      "action": "push",
+      "coverage": "adapted"
+    },
+    "up_throw": {
+      "action": "push",
+      "coverage": "adapted"
+    },
+    "down_throw": {
+      "action": "stomp_kick",
+      "coverage": "adapted"
+    },
+    "knockback": {
+      "action": "hit_head",
+      "coverage": "adapted"
+    },
+    "downed": {
+      "action": "die",
+      "coverage": "adapted"
+    },
+    "entrance": {
+      "action": "idle",
+      "coverage": "adapted"
+    },
+    "victory": {
+      "action": "battlecry",
+      "coverage": "adapted"
+    },
+    "crouch": {
+      "action": "fight_idle",
+      "coverage": "author_required"
+    },
+    "up_special": {
+      "action": "jump_alt",
+      "coverage": "author_required"
+    },
+    "down_special": {
+      "action": "stomp_kick",
+      "coverage": "author_required"
+    },
+    "shield": {
+      "action": "fight_idle",
+      "coverage": "author_required"
+    },
+    "item_hold": {
+      "action": "fight_idle",
+      "coverage": "author_required"
+    },
+    "item_pickup": {
+      "action": "pull",
+      "coverage": "author_required"
+    },
+    "ledge": {
+      "action": "jump",
+      "coverage": "author_required"
+    }
+  }
+}

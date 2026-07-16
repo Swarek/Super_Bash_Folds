@@ -1,0 +1,94 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "wolf",
+  "kind": "3d",
+  "order": 40,
+  "identity": {
+    "displayName": "Wolf",
+    "archetype": "Swift Predator",
+    "playstyle": "Rushes, bites, and tempo changes",
+    "colors": {
+      "primary": "#6b7884",
+      "secondary": "#303a45",
+      "accent": "#9be270"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 75,
+      "height": 78
+    },
+    "spriteReferenceHeight": 128,
+    "weight": 91,
+    "dash": 2.08,
+    "dashFrames": 7,
+    "run": 1.98,
+    "air": 1.14,
+    "gravity": 0.11,
+    "fall": 2.5,
+    "fastFall": 3.35,
+    "jump": 2.58,
+    "doubleJump": 2.38,
+    "jumpSquat": 3,
+    "shortHop": 0.62,
+    "speed": 1.15,
+    "reach": 1.06,
+    "specials": {
+      "neutral-special": {
+        "label": "Bite",
+        "damage": 12,
+        "radius": 48
+      },
+      "side-special": {
+        "label": "Hunting Leap",
+        "damage": 14,
+        "specialMovement": {
+          "kind": "directional-launch",
+          "speed": 620
+        },
+        "radius": 54
+      },
+      "up-special": {
+        "label": "Moon Leap",
+        "damage": 9,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 640,
+          "horizontalSpeed": 320,
+          "steerFrames": 20
+        },
+        "radius": 48
+      },
+      "down-special": {
+        "label": "Howl",
+        "damage": 5,
+        "statusEffect": "stun",
+        "statusFrames": 38,
+        "radius": 70,
+        "offset": {
+          "x": 0,
+          "y": 5
+        }
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Ultimate Animated Animals — Quaternius",
+    "sourcePage": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "side-special": "wind",
+      "up-special": "wind",
+      "down-special": "energy"
+    },
+    "traits": []
+  }
+}

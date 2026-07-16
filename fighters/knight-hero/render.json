@@ -1,0 +1,162 @@
+{
+  "displayName": "Knight Hero",
+  "author": "PixiVan",
+  "sourcePage": "https://opengameart.org/content/knight-hero-platformer-animation-pack",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/knight-hero/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/knight-hero/SHA256SUMS",
+  "defaultFps": 12,
+  "preferredScale": 4.5,
+  "scaleFilter": "neighbor",
+  "actions": {
+    "idle": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Combat Ready Idle.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "walk": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Walk.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "run": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Run.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "jump": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Jump.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "fall": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Fall.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "attack_slam": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Attack 1.png",
+      "frameWidth": 40,
+      "frameHeight": 30
+    },
+    "attack_slash": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Attack 2.png",
+      "frameWidth": 40,
+      "frameHeight": 30
+    },
+    "attack_stab": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Attack 3.png",
+      "frameWidth": 40,
+      "frameHeight": 30
+    },
+    "roll": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Roll.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "shield": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Shield Raise.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "shield_walk": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Shield Raise Walk.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "hurt_front": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Hit Front.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "hurt_back": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Hit Back.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "sword_raise": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Sword Raise.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    },
+    "sword_channel": {
+      "type": "strip",
+      "sheet": "assets-source/open-fighters/2d/knight-hero/upstream/Knight Hero Platfomer/Sword Channel.png",
+      "frameWidth": 22,
+      "frameHeight": 24
+    }
+  },
+  "slots": {
+    "direct": {
+      "idle": "idle",
+      "walk": "walk",
+      "run": "run",
+      "jump": "jump",
+      "fall": "fall",
+      "jab": "attack_stab",
+      "forward_tilt": "attack_slash",
+      "roll_forward": "roll",
+      "shield": "shield",
+      "hurt": "hurt_front",
+      "knockback": "hurt_back"
+    },
+    "adapted": {
+      "turn": "walk",
+      "dash": "run",
+      "jump_squat": "jump",
+      "double_jump": "jump",
+      "fast_fall": "fall",
+      "dash_attack": "attack_slam",
+      "up_tilt": "attack_slam",
+      "down_tilt": "attack_stab",
+      "forward_smash": "attack_slash",
+      "up_smash": "attack_slam",
+      "down_smash": "attack_slam",
+      "neutral_air": "attack_slash",
+      "forward_air": "attack_stab",
+      "back_air": "attack_slash",
+      "up_air": "attack_slam",
+      "down_air": "attack_slam",
+      "side_special": "attack_slash",
+      "down_special": "shield",
+      "spot_dodge": "roll",
+      "roll_back": "roll",
+      "air_dodge": "roll",
+      "item_hold": "shield",
+      "item_attack": "attack_slash",
+      "grabbed": "hurt_front",
+      "downed": "hurt_back",
+      "entrance": "sword_raise",
+      "taunt": "sword_channel",
+      "victory": "sword_raise"
+    },
+    "author_required": {
+      "crouch": "idle",
+      "neutral_special": "sword_channel",
+      "up_special": "jump",
+      "item_pickup": "idle",
+      "grab": "attack_stab",
+      "grab_hold": "shield",
+      "forward_throw": "attack_slam",
+      "back_throw": "attack_slash",
+      "up_throw": "attack_slam",
+      "down_throw": "attack_slam",
+      "ledge": "fall"
+    }
+  }
+}

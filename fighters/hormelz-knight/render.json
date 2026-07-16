@@ -1,0 +1,208 @@
+{
+  "displayName": "Hormelz Knight",
+  "author": "Hormelz",
+  "sourcePage": "https://hormelz.itch.io/8-directional-knight",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/hormelz-knight/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/hormelz-knight/SHA256SUMS",
+  "defaultFps": 10,
+  "preferredScale": 1.25,
+  "trimTransparent": true,
+  "scaleFilter": "lanczos",
+  "actions": {
+    "idle": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Idle/Knight_Idle_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Idle/Knight_Idle_dir3.json"
+    },
+    "walk": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Walk/Knight_Walk_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Walk/Knight_Walk_dir3.json"
+    },
+    "run": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Run/Knight_Run_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Run/Knight_Run_dir3.json"
+    },
+    "jump": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Jump/Knight_Jump_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Jump/Knight_Jump_dir3.json"
+    },
+    "attack": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Attack/Knight_Attack_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Attack/Knight_Attack_dir3.json"
+    },
+    "combo": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/ComboAttack/Knight_ComboAttack_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/ComboAttack/Knight_ComboAttack_dir3.json"
+    },
+    "kick": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Kick/Knight_Kick_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Kick/Knight_Kick_dir3.json"
+    },
+    "crouch_attack": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CrouchAttack/Knight_CrouchAttack_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CrouchAttack/Knight_CrouchAttack_dir3.json"
+    },
+    "spin_attack": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/SpinAttack/Knight_SpinAttack_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/SpinAttack/Knight_SpinAttack_dir3.json"
+    },
+    "jump_attack": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpAttack/Knight_JumpAttack_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpAttack/Knight_JumpAttack_dir3.json"
+    },
+    "jump_spin": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpSpinAttack/Knight_JumpSpinAttack_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/JumpSpinAttack/Knight_JumpSpinAttack_dir3.json"
+    },
+    "cast": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Cast/Knight_Cast_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Cast/Knight_Cast_dir3.json"
+    },
+    "cast_sky": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CastSky/Knight_CastSky_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/CastSky/Knight_CastSky_dir3.json"
+    },
+    "block": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Block/Knight_Block_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Block/Knight_Block_dir3.json"
+    },
+    "impact": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Impact/Knight_Impact_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Impact/Knight_Impact_dir3.json"
+    },
+    "knock": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Knock/Knight_Knock_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Knock/Knight_Knock_dir3.json"
+    },
+    "die": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Die/Knight_Die_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightBasic/Die/Knight_Die_dir3.json"
+    },
+    "die_alt": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Die2/Knight_Die2_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightAdvCombat/Die2/Knight_Die2_dir3.json"
+    },
+    "crouch": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Crouch/Knight_Crouch_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Crouch/Knight_Crouch_dir3.json"
+    },
+    "walk_back": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/WalkBack/Knight_WalkBack_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/WalkBack/Knight_WalkBack_dir3.json"
+    },
+    "run_jump": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/RunJump/Knight_RunJump_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/RunJump/Knight_RunJump_dir3.json"
+    },
+    "slide": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Slide/Knight_Slide_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Slide/Knight_Slide_dir3.json"
+    },
+    "strafe_back": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/StrafeBack/Knight_StrafeBack_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/StrafeBack/Knight_StrafeBack_dir3.json"
+    },
+    "climb": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Climb/Knight_Climb_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Climb/Knight_Climb_dir3.json"
+    },
+    "draw": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Draw/Knight_Draw_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Draw/Knight_Draw_dir3.json"
+    },
+    "idle3": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Idle3/Knight_Idle3_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/Idle3/Knight_Idle3_dir3.json"
+    },
+    "power_up": {
+      "type": "json-sheet",
+      "sheet": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/PowerUp/Knight_PowerUp_dir3.png",
+      "json": "assets-source/open-fighters/2d/hormelz-knight/upstream/KnightExMovement/PowerUp/Knight_PowerUp_dir3.json"
+    }
+  },
+  "slots": {
+    "direct": {
+      "idle": "idle",
+      "crouch": "crouch",
+      "walk": "walk",
+      "run": "run",
+      "jump": "jump",
+      "jab": "attack",
+      "forward_tilt": "kick",
+      "down_tilt": "crouch_attack",
+      "neutral_air": "jump_spin",
+      "forward_air": "jump_attack",
+      "neutral_special": "cast",
+      "shield": "block",
+      "hurt": "impact",
+      "knockback": "knock",
+      "ledge": "climb",
+      "entrance": "draw",
+      "victory": "power_up"
+    },
+    "adapted": {
+      "turn": "walk_back",
+      "dash": "run",
+      "jump_squat": "crouch",
+      "double_jump": "run_jump",
+      "fall": "jump",
+      "fast_fall": "jump",
+      "dash_attack": "slide",
+      "up_tilt": "kick",
+      "forward_smash": "combo",
+      "up_smash": "jump_attack",
+      "down_smash": "spin_attack",
+      "back_air": "jump_spin",
+      "up_air": "jump_attack",
+      "down_air": "jump_attack",
+      "side_special": "slide",
+      "up_special": "cast_sky",
+      "down_special": "power_up",
+      "spot_dodge": "strafe_back",
+      "roll_forward": "slide",
+      "roll_back": "strafe_back",
+      "air_dodge": "jump_spin",
+      "item_attack": "attack",
+      "grabbed": "impact",
+      "downed": "die_alt",
+      "taunt": "idle3"
+    },
+    "author_required": {
+      "item_hold": "block",
+      "item_pickup": "crouch",
+      "grab": "attack",
+      "grab_hold": "block",
+      "forward_throw": "combo",
+      "back_throw": "kick",
+      "up_throw": "jump_attack",
+      "down_throw": "crouch_attack"
+    }
+  }
+}

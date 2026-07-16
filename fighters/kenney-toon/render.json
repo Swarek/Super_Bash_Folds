@@ -1,0 +1,221 @@
+{
+  "displayName": "Kenney Toon Adventurer",
+  "author": "Kenney",
+  "sourcePage": "https://kenney.nl/assets/toon-characters",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/kenney-toon-characters/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/kenney-toon-characters/SHA256SUMS",
+  "defaultFps": 8,
+  "scaleFilter": "lanczos",
+  "actions": {
+    "idle": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_idle.png"
+      ]
+    },
+    "crouch": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_duck.png"
+      ]
+    },
+    "walk": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk0.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk1.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk2.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk3.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk4.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk5.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk6.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_walk7.png"
+      ]
+    },
+    "turn": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_switch0.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_switch1.png"
+      ]
+    },
+    "run": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_run0.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_run1.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_run2.png"
+      ]
+    },
+    "jump": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_jump.png"
+      ]
+    },
+    "fall": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_fall.png"
+      ]
+    },
+    "fast_fall": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_fallDown.png"
+      ]
+    },
+    "attack": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_attack0.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_attack1.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_attack2.png"
+      ]
+    },
+    "kick": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_attackKick.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_kick.png"
+      ]
+    },
+    "shove": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_shove.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_shoveBack.png"
+      ]
+    },
+    "slide": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_slide.png"
+      ]
+    },
+    "hold": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_hold.png"
+      ]
+    },
+    "interact": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_interact.png"
+      ]
+    },
+    "grab": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_drag.png"
+      ]
+    },
+    "hurt": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_hit.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_hurt.png"
+      ]
+    },
+    "downed": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_down.png"
+      ]
+    },
+    "ledge": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_hang.png"
+      ]
+    },
+    "climb": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_climb0.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_climb1.png"
+      ]
+    },
+    "entrance": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_show.png"
+      ]
+    },
+    "taunt": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_talk.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_think.png"
+      ]
+    },
+    "victory": {
+      "type": "files",
+      "files": [
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_cheer0.png",
+        "assets-source/open-fighters/2d/kenney-toon-characters/upstream/Male adventurer/PNG/Poses HD/character_maleAdventurer_cheer1.png"
+      ]
+    }
+  },
+  "slots": {
+    "direct": {
+      "idle": "idle",
+      "crouch": "crouch",
+      "walk": "walk",
+      "turn": "turn",
+      "dash": "run",
+      "run": "run",
+      "jump": "jump",
+      "fall": "fall",
+      "fast_fall": "fast_fall",
+      "jab": "attack",
+      "forward_tilt": "kick",
+      "item_hold": "hold",
+      "hurt": "hurt",
+      "downed": "downed",
+      "ledge": "ledge",
+      "entrance": "entrance",
+      "taunt": "taunt",
+      "victory": "victory"
+    },
+    "adapted": {
+      "jump_squat": "crouch",
+      "double_jump": "jump",
+      "dash_attack": "shove",
+      "up_tilt": "shove",
+      "down_tilt": "kick",
+      "forward_smash": "attack",
+      "up_smash": "shove",
+      "down_smash": "kick",
+      "neutral_air": "kick",
+      "forward_air": "attack",
+      "back_air": "kick",
+      "up_air": "shove",
+      "down_air": "kick",
+      "spot_dodge": "slide",
+      "roll_forward": "slide",
+      "roll_back": "slide",
+      "air_dodge": "jump",
+      "shield": "hold",
+      "item_pickup": "interact",
+      "item_attack": "attack",
+      "grab": "grab",
+      "grab_hold": "hold",
+      "grabbed": "hurt",
+      "knockback": "hurt"
+    },
+    "author_required": {
+      "neutral_special": "attack",
+      "side_special": "shove",
+      "up_special": "jump",
+      "down_special": "crouch",
+      "forward_throw": "shove",
+      "back_throw": "shove",
+      "up_throw": "shove",
+      "down_throw": "shove"
+    }
+  }
+}

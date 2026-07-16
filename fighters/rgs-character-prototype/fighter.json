@@ -1,0 +1,102 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "rgs-character-prototype",
+  "kind": "2d",
+  "order": 120,
+  "identity": {
+    "displayName": "RGS Character Prototype",
+    "archetype": "Polymorphic Prototype",
+    "playstyle": "Control orbs, quick rolls, and unpredictable trajectories",
+    "colors": {
+      "primary": "#eeeeee",
+      "secondary": "#7f858d",
+      "accent": "#78d7ff"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 57,
+      "height": 86
+    },
+    "spriteReferenceHeight": 133,
+    "weight": 82,
+    "dash": 1.9,
+    "dashFrames": 7,
+    "run": 1.79,
+    "air": 1.09,
+    "gravity": 0.1,
+    "fall": 2.2,
+    "fastFall": 3.04,
+    "jump": 2.71,
+    "doubleJump": 2.47,
+    "jumpSquat": 3,
+    "shortHop": 0.66,
+    "speed": 1.09,
+    "reach": 0.96,
+    "specials": {
+      "neutral-special": {
+        "label": "Prototype Orb",
+        "damage": 7,
+        "projectile": {
+          "kind": "blaster",
+          "speed": 530,
+          "gravity": 0,
+          "lifetimeFrames": 86,
+          "radius": 14,
+          "absorbable": true
+        }
+      },
+      "side-special": {
+        "label": "Vector Slide",
+        "damage": 10,
+        "specialMovement": {
+          "kind": "ground-steered",
+          "speed": 555
+        },
+        "radius": 48
+      },
+      "up-special": {
+        "label": "Experimental Rebound",
+        "damage": 8,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 675,
+          "horizontalSpeed": 305,
+          "steerFrames": 20
+        },
+        "radius": 46
+      },
+      "down-special": {
+        "label": "Phase Shift",
+        "damage": 5,
+        "statusEffect": "stun",
+        "statusFrames": 30,
+        "radius": 61,
+        "offset": {
+          "x": 0,
+          "y": 3
+        }
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "RGS Character Prototype — RGS_Dev",
+    "sourcePage": "https://rgsdev.itch.io/character-prototype-animated-cc0",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "wind",
+      "up-special": "wind",
+      "down-special": "energy"
+    },
+    "traits": []
+  }
+}

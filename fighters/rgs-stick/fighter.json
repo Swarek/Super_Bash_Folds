@@ -1,0 +1,94 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "rgs-stick",
+  "kind": "2d",
+  "order": 80,
+  "identity": {
+    "displayName": "RGS Stick Figure",
+    "archetype": "Line Fighter",
+    "playstyle": "Fast pressure, long rushes, and instant counters",
+    "colors": {
+      "primary": "#f4f4f4",
+      "secondary": "#252525",
+      "accent": "#ff4d4d"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 54,
+      "height": 85
+    },
+    "spriteReferenceHeight": 132,
+    "weight": 74,
+    "dash": 2.08,
+    "dashFrames": 6,
+    "run": 2.03,
+    "air": 1.2,
+    "gravity": 0.102,
+    "fall": 2.34,
+    "fastFall": 3.22,
+    "jump": 2.82,
+    "doubleJump": 2.58,
+    "jumpSquat": 3,
+    "shortHop": 0.68,
+    "power": 0.88,
+    "speed": 1.2,
+    "reach": 0.92,
+    "specials": {
+      "neutral-special": {
+        "label": "Line Combo",
+        "damage": 9,
+        "multiHit": 3,
+        "radius": 45
+      },
+      "side-special": {
+        "label": "Lightning Stroke",
+        "damage": 11,
+        "specialMovement": {
+          "kind": "directional-launch",
+          "speed": 690
+        },
+        "radius": 47
+      },
+      "up-special": {
+        "label": "Line Ascent",
+        "damage": 8,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 710,
+          "horizontalSpeed": 335,
+          "steerFrames": 19
+        },
+        "radius": 44
+      },
+      "down-special": {
+        "label": "Counter Sketch",
+        "damage": 13,
+        "startup": 4,
+        "active": 10,
+        "counters": true,
+        "radius": 48
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "RGS Stick Figure — RGS_Dev",
+    "sourcePage": "https://rgsdev.itch.io/animated-stick-figure-character-2d-free-cc0",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "physical",
+      "side-special": "wind",
+      "up-special": "wind",
+      "down-special": "energy"
+    },
+    "traits": []
+  }
+}

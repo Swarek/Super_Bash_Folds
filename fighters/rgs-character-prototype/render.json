@@ -1,0 +1,118 @@
+{
+  "displayName": "RGS Character Prototype",
+  "author": "RGS_Dev",
+  "sourcePage": "https://rgsdev.itch.io/character-prototype-animated-cc0",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/rgs-character-prototype/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/rgs-character-prototype/SHA256SUMS",
+  "defaultFps": 12,
+  "preferredScale": 0.9,
+  "trimTransparent": true,
+  "scaleFilter": "lanczos",
+  "actions": {
+    "idle": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^idle \\([0-9]+\\)\\.png$"
+    },
+    "walk": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^walk \\([0-9]+\\)\\.png$"
+    },
+    "run": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^run \\([0-9]+\\)\\.png$"
+    },
+    "slide": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^slide \\([0-9]+\\)\\.png$"
+    },
+    "roll": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^roll \\([0-9]+\\)\\.png$"
+    },
+    "jump": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^jump \\([0-9]+\\)\\.png$"
+    },
+    "attack": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^attack \\([0-9]+\\)\\.png$"
+    },
+    "hurt": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^hit \\([0-9]+\\)\\.png$"
+    },
+    "death": {
+      "type": "sequence",
+      "directory": "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character",
+      "pattern": "^death \\([0-9]+\\)\\.png$"
+    }
+  },
+  "slots": {
+    "direct": {
+      "idle": "idle",
+      "walk": "walk",
+      "run": "run",
+      "jump": "jump",
+      "jab": "attack",
+      "roll_forward": "roll",
+      "hurt": "hurt"
+    },
+    "adapted": {
+      "turn": "walk",
+      "dash": "run",
+      "jump_squat": "jump",
+      "double_jump": "jump",
+      "fall": "jump",
+      "fast_fall": "jump",
+      "dash_attack": "slide",
+      "forward_tilt": "attack",
+      "up_tilt": "attack",
+      "down_tilt": "slide",
+      "forward_smash": "attack",
+      "up_smash": "attack",
+      "down_smash": "slide",
+      "neutral_air": "attack",
+      "forward_air": "attack",
+      "back_air": "attack",
+      "up_air": "attack",
+      "down_air": "attack",
+      "spot_dodge": "roll",
+      "roll_back": "roll",
+      "air_dodge": "roll",
+      "knockback": "hurt",
+      "downed": "death",
+      "ledge": "jump",
+      "entrance": "idle",
+      "taunt": "idle",
+      "victory": "idle"
+    },
+    "author_required": {
+      "crouch": "idle",
+      "neutral_special": "attack",
+      "side_special": "slide",
+      "up_special": "jump",
+      "down_special": "slide",
+      "shield": "idle",
+      "item_hold": "idle",
+      "item_pickup": "idle",
+      "item_attack": "attack",
+      "grab": "attack",
+      "grab_hold": "idle",
+      "grabbed": "hurt",
+      "forward_throw": "attack",
+      "back_throw": "attack",
+      "up_throw": "attack",
+      "down_throw": "attack"
+    }
+  }
+}

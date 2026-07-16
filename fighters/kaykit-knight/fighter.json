@@ -1,0 +1,100 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "kaykit-knight",
+  "kind": "3d",
+  "order": 10,
+  "identity": {
+    "displayName": "KayKit Knight",
+    "archetype": "Arcane Knight",
+    "playstyle": "Sword reach, defense, and versatile magic",
+    "colors": {
+      "primary": "#4e73c8",
+      "secondary": "#d8dde8",
+      "accent": "#80d8ff"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 67,
+      "height": 94
+    },
+    "spriteReferenceHeight": 136,
+    "weight": 103,
+    "dash": 1.72,
+    "dashFrames": 9,
+    "run": 1.64,
+    "air": 0.95,
+    "gravity": 0.1,
+    "fall": 2.05,
+    "fastFall": 2.85,
+    "jump": 2.58,
+    "doubleJump": 2.34,
+    "jumpSquat": 4,
+    "shortHop": 0.63,
+    "reach": 1.15,
+    "specials": {
+      "neutral-special": {
+        "label": "Arcane Bolt",
+        "damage": 9,
+        "projectile": {
+          "kind": "shadow-ball",
+          "speed": 410,
+          "gravity": 0,
+          "lifetimeFrames": 105,
+          "radius": 18,
+          "absorbable": true
+        }
+      },
+      "side-special": {
+        "label": "Enchanted Charge",
+        "damage": 13,
+        "movement": {
+          "x": 545,
+          "y": 45
+        },
+        "radius": 52
+      },
+      "up-special": {
+        "label": "Heroic Ascent",
+        "damage": 11,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 650,
+          "horizontalSpeed": 260,
+          "steerFrames": 22
+        },
+        "radius": 50
+      },
+      "down-special": {
+        "label": "Bulwark Counter",
+        "damage": 15,
+        "startup": 5,
+        "active": 12,
+        "counters": true,
+        "radius": 54
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "KayKit Adventurers — Kay Lousberg",
+    "sourcePage": "https://kaylousberg.itch.io/kaykit-adventurers",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "blade",
+      "up-special": "wind",
+      "down-special": "blade"
+    },
+    "traits": [
+      "blade"
+    ]
+  }
+}

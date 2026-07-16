@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "threeD": {
+    "version": 1,
+    "slotProfiles": {
+      "platform-fighter": {
+        "idle": "idle",
+        "crouch": "crouch",
+        "walk": "walk",
+        "turn": "turn",
+        "dash": "dash",
+        "run": "run",
+        "jump_squat": "jumpStart",
+        "jump": "jump",
+        "double_jump": "doubleJump",
+        "fall": "fall",
+        "fast_fall": "fastFall",
+        "jab": "jab",
+        "dash_attack": "dashAttack",
+        "forward_tilt": "forwardTilt",
+        "up_tilt": "upTilt",
+        "down_tilt": "downTilt",
+        "forward_smash": "forwardSmash",
+        "up_smash": "upSmash",
+        "down_smash": "downSmash",
+        "neutral_air": "neutralAir",
+        "forward_air": "forwardAir",
+        "back_air": "backAir",
+        "up_air": "upAir",
+        "down_air": "downAir",
+        "neutral_special": "neutralSpecial",
+        "side_special": "sideSpecial",
+        "up_special": "upSpecial",
+        "down_special": "downSpecial",
+        "spot_dodge": "spotDodge",
+        "roll_forward": "rollForward",
+        "roll_back": "rollBack",
+        "air_dodge": "airDodge",
+        "shield": "shield",
+        "item_hold": "itemHold",
+        "item_pickup": "itemPickup",
+        "item_attack": "itemAttack",
+        "grab": "grab",
+        "grab_hold": "grabHold",
+        "grabbed": "grabbed",
+        "forward_throw": "forwardThrow",
+        "back_throw": "backThrow",
+        "up_throw": "upThrow",
+        "down_throw": "downThrow",
+        "hurt": "hurt",
+        "knockback": "knockback",
+        "downed": "downed",
+        "ledge": "ledge",
+        "entrance": "entrance",
+        "taunt": "taunt",
+        "victory": "victory"
+      }
+    }
+  },
+  "twoD": {
+    "version": 1,
+    "cellSize": 192,
+    "columns": 8,
+    "excludedCandidates": {
+      "godinez-free": {
+        "sourceProvenance": "assets-source/open-fighters/2d/godinez-free/PROVENANCE.md",
+        "sourceSha256Manifest": "assets-source/open-fighters/2d/godinez-free/SHA256SUMS",
+        "reason": "The free archive contains two unlabeled sprite sheets without clip metadata or source files; frame-to-action segmentation cannot be established without guessing."
+      }
+    }
+  }
+}

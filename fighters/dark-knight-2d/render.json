@@ -1,0 +1,182 @@
+{
+  "displayName": "Dark Knight 2D",
+  "author": "comphonia",
+  "sourcePage": "https://opengameart.org/content/dark-knight-2d-character-sprites",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/dark-knight-2d/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/dark-knight-2d/SHA256SUMS",
+  "defaultFps": 20,
+  "preferredScale": 0.6,
+  "scaleFilter": "lanczos",
+  "actions": {
+    "idle": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Idle.png",
+      "sampleStep": 3
+    },
+    "crouch": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Crouch.png",
+      "sampleStep": 2
+    },
+    "walk": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Walk.png",
+      "sampleStep": 2
+    },
+    "turn": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/180Turn.png",
+      "sampleStep": 2
+    },
+    "run": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Run.png",
+      "sampleStep": 2
+    },
+    "run_back": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/RunBack.png",
+      "sampleStep": 2
+    },
+    "jump": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Jump.png",
+      "sampleStep": 2
+    },
+    "run_jump": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/RunJump.png",
+      "sampleStep": 2
+    },
+    "attack": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Attack1.png",
+      "sampleStep": 2
+    },
+    "slash": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash.png",
+      "sampleStep": 2
+    },
+    "up_slash": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash3.png",
+      "sampleStep": 3
+    },
+    "spin_slash": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash4.png",
+      "sampleStep": 3
+    },
+    "crouch_slash": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/CrouchSlash.png",
+      "sampleStep": 2
+    },
+    "kick": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Kick.png",
+      "sampleStep": 2
+    },
+    "cast": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Casting1.png",
+      "sampleStep": 3
+    },
+    "block": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/BlockIdle.png",
+      "sampleStep": 2
+    },
+    "draw_sword": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/DrawSword.png",
+      "sampleStep": 2
+    },
+    "hurt": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Impact.png",
+      "sampleStep": 2
+    },
+    "knockback": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Impact2.png",
+      "sampleStep": 2
+    },
+    "death": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Death.png",
+      "sampleStep": 3
+    },
+    "taunt": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/IdleVain.png",
+      "sampleStep": 4
+    },
+    "victory": {
+      "type": "unity-sheet",
+      "sheet": "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/PowerUp.png",
+      "sampleStep": 3
+    }
+  },
+  "slots": {
+    "direct": {
+      "idle": "idle",
+      "crouch": "crouch",
+      "walk": "walk",
+      "turn": "turn",
+      "run": "run",
+      "jump": "jump",
+      "jab": "attack",
+      "forward_tilt": "kick",
+      "down_tilt": "crouch_slash",
+      "neutral_special": "cast",
+      "shield": "block",
+      "item_attack": "slash",
+      "hurt": "hurt",
+      "knockback": "knockback",
+      "taunt": "taunt",
+      "victory": "victory"
+    },
+    "adapted": {
+      "dash": "run",
+      "jump_squat": "jump",
+      "double_jump": "run_jump",
+      "fall": "jump",
+      "fast_fall": "run_jump",
+      "dash_attack": "run_jump",
+      "up_tilt": "up_slash",
+      "forward_smash": "slash",
+      "up_smash": "up_slash",
+      "down_smash": "spin_slash",
+      "neutral_air": "spin_slash",
+      "forward_air": "slash",
+      "back_air": "kick",
+      "up_air": "up_slash",
+      "down_air": "crouch_slash",
+      "side_special": "spin_slash",
+      "up_special": "run_jump",
+      "down_special": "block",
+      "spot_dodge": "crouch",
+      "roll_forward": "run",
+      "roll_back": "run_back",
+      "air_dodge": "jump",
+      "item_hold": "draw_sword",
+      "item_pickup": "draw_sword",
+      "grabbed": "hurt",
+      "downed": "death",
+      "entrance": "draw_sword",
+      "ledge": "jump"
+    },
+    "author_required": {
+      "grab": "attack",
+      "grab_hold": "block",
+      "forward_throw": "attack",
+      "back_throw": "kick",
+      "up_throw": "up_slash",
+      "down_throw": "crouch_slash"
+    }
+  }
+}

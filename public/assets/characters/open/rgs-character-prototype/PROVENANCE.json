@@ -1,0 +1,353 @@
+{
+  "id": "rgs-character-prototype",
+  "displayName": "RGS Character Prototype",
+  "author": "RGS_Dev",
+  "sourcePage": "https://rgsdev.itch.io/character-prototype-animated-cc0",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/rgs-character-prototype/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/rgs-character-prototype/SHA256SUMS",
+  "transformation": "Only upstream raster frames were cropped, uniformly scaled, padded, optionally sampled, tiled and losslessly WebP-encoded. Upstream JSON or GIF companions were used only to read frame rectangles, counts and rates. No frame or motion was synthesized.",
+  "coverageCounts": {
+    "direct": 7,
+    "adapted": 27,
+    "author_required": 16
+  },
+  "actions": {
+    "idle": {
+      "frameCount": 4,
+      "sourceFrameCount": 4,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/idle (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/idle (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/idle (3).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/idle (4).png"
+      ]
+    },
+    "walk": {
+      "frameCount": 8,
+      "sourceFrameCount": 8,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/walk (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/walk (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/walk (3).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/walk (4).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/walk (5).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/walk (6).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/walk (7).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/walk (8).png"
+      ]
+    },
+    "run": {
+      "frameCount": 8,
+      "sourceFrameCount": 8,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/run (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/run (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/run (3).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/run (4).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/run (5).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/run (6).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/run (7).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/run (8).png"
+      ]
+    },
+    "slide": {
+      "frameCount": 5,
+      "sourceFrameCount": 5,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/slide (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/slide (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/slide (3).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/slide (4).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/slide (5).png"
+      ]
+    },
+    "roll": {
+      "frameCount": 7,
+      "sourceFrameCount": 7,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/roll (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/roll (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/roll (3).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/roll (4).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/roll (5).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/roll (6).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/roll (7).png"
+      ]
+    },
+    "jump": {
+      "frameCount": 8,
+      "sourceFrameCount": 8,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/jump (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/jump (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/jump (3).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/jump (4).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/jump (5).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/jump (6).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/jump (7).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/jump (8).png"
+      ]
+    },
+    "attack": {
+      "frameCount": 13,
+      "sourceFrameCount": 13,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (3).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (4).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (5).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (6).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (7).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (8).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (9).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (10).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (11).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (12).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/attack (13).png"
+      ]
+    },
+    "hurt": {
+      "frameCount": 3,
+      "sourceFrameCount": 3,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/hit (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/hit (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/hit (3).png"
+      ]
+    },
+    "death": {
+      "frameCount": 5,
+      "sourceFrameCount": 5,
+      "sampleStep": 1,
+      "fps": 12,
+      "sources": [
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/death (1).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/death (2).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/death (3).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/death (4).png",
+        "assets-source/open-fighters/2d/rgs-character-prototype/upstream/Animated Prototype Character/Base Character/death (5).png"
+      ]
+    }
+  },
+  "slots": {
+    "idle": {
+      "action": "idle",
+      "coverage": "direct"
+    },
+    "walk": {
+      "action": "walk",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "run",
+      "coverage": "direct"
+    },
+    "jump": {
+      "action": "jump",
+      "coverage": "direct"
+    },
+    "jab": {
+      "action": "attack",
+      "coverage": "direct"
+    },
+    "roll_forward": {
+      "action": "roll",
+      "coverage": "direct"
+    },
+    "hurt": {
+      "action": "hurt",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "walk",
+      "coverage": "adapted"
+    },
+    "dash": {
+      "action": "run",
+      "coverage": "adapted"
+    },
+    "jump_squat": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "double_jump": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "fall": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "fast_fall": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "dash_attack": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "forward_tilt": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "up_tilt": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "down_tilt": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "slide",
+      "coverage": "adapted"
+    },
+    "neutral_air": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "forward_air": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "attack",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "roll",
+      "coverage": "adapted"
+    },
+    "roll_back": {
+      "action": "roll",
+      "coverage": "adapted"
+    },
+    "air_dodge": {
+      "action": "roll",
+      "coverage": "adapted"
+    },
+    "knockback": {
+      "action": "hurt",
+      "coverage": "adapted"
+    },
+    "downed": {
+      "action": "death",
+      "coverage": "adapted"
+    },
+    "ledge": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "entrance": {
+      "action": "idle",
+      "coverage": "adapted"
+    },
+    "taunt": {
+      "action": "idle",
+      "coverage": "adapted"
+    },
+    "victory": {
+      "action": "idle",
+      "coverage": "adapted"
+    },
+    "crouch": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "neutral_special": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "side_special": {
+      "action": "slide",
+      "coverage": "author_required"
+    },
+    "up_special": {
+      "action": "jump",
+      "coverage": "author_required"
+    },
+    "down_special": {
+      "action": "slide",
+      "coverage": "author_required"
+    },
+    "shield": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "item_hold": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "item_pickup": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "item_attack": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "grab": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "grab_hold": {
+      "action": "idle",
+      "coverage": "author_required"
+    },
+    "grabbed": {
+      "action": "hurt",
+      "coverage": "author_required"
+    },
+    "forward_throw": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "back_throw": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "up_throw": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "down_throw": {
+      "action": "attack",
+      "coverage": "author_required"
+    }
+  }
+}

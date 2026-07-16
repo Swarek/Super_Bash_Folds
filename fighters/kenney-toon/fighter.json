@@ -1,0 +1,103 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "kenney-toon",
+  "kind": "2d",
+  "order": 110,
+  "identity": {
+    "displayName": "Kenney Toon Adventurer",
+    "archetype": "Toon Adventurer",
+    "playstyle": "Aerial mobility, improvised items, and disruptive strikes",
+    "colors": {
+      "primary": "#42a968",
+      "secondary": "#92572f",
+      "accent": "#f09a58"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 62,
+      "height": 89
+    },
+    "spriteReferenceHeight": 136,
+    "weight": 84,
+    "dash": 1.96,
+    "dashFrames": 7,
+    "run": 1.87,
+    "air": 1.11,
+    "gravity": 0.098,
+    "fall": 2.18,
+    "fastFall": 3.02,
+    "jump": 2.73,
+    "doubleJump": 2.5,
+    "jumpSquat": 3,
+    "shortHop": 0.67,
+    "speed": 1.12,
+    "specials": {
+      "neutral-special": {
+        "label": "Thrown Gadget",
+        "damage": 7,
+        "projectile": {
+          "kind": "capsule",
+          "speed": 515,
+          "gravity": 310,
+          "lifetimeFrames": 95,
+          "radius": 15,
+          "absorbable": true,
+          "launchVelocityY": 185,
+          "bounces": 1
+        }
+      },
+      "side-special": {
+        "label": "Adventure Slide",
+        "damage": 10,
+        "specialMovement": {
+          "kind": "ground-steered",
+          "speed": 565
+        },
+        "radius": 48
+      },
+      "up-special": {
+        "label": "Hero Jump",
+        "damage": 8,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 690,
+          "horizontalSpeed": 295,
+          "steerFrames": 20
+        },
+        "radius": 46
+      },
+      "down-special": {
+        "label": "Confusing Pose",
+        "damage": 5,
+        "statusEffect": "stun",
+        "statusFrames": 34,
+        "radius": 66,
+        "offset": {
+          "x": 0,
+          "y": 4
+        }
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Kenney Toon Adventurer — Kenney",
+    "sourcePage": "https://kenney.nl/assets/toon-characters",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "wind",
+      "up-special": "wind",
+      "down-special": "physical"
+    },
+    "traits": []
+  }
+}

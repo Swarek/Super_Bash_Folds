@@ -1,0 +1,101 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "hormelz-knight",
+  "kind": "2d",
+  "order": 140,
+  "identity": {
+    "displayName": "Hormelz Knight",
+    "archetype": "Runic Knight",
+    "playstyle": "Armor, vertical spells, and close-range charged strikes",
+    "colors": {
+      "primary": "#93afbb",
+      "secondary": "#3c5260",
+      "accent": "#77e4ff"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 73,
+      "height": 98
+    },
+    "spriteReferenceHeight": 142,
+    "weight": 108,
+    "dash": 1.62,
+    "dashFrames": 9,
+    "run": 1.52,
+    "air": 0.88,
+    "gravity": 0.107,
+    "fall": 2.12,
+    "fastFall": 2.91,
+    "jump": 2.49,
+    "doubleJump": 2.25,
+    "jumpSquat": 5,
+    "shortHop": 0.6,
+    "power": 1.13,
+    "speed": 0.92,
+    "reach": 1.16,
+    "specials": {
+      "neutral-special": {
+        "label": "Runic Seal",
+        "damage": 10,
+        "projectile": {
+          "kind": "shadow-ball",
+          "speed": 420,
+          "gravity": 0,
+          "lifetimeFrames": 108,
+          "radius": 19,
+          "absorbable": true
+        }
+      },
+      "side-special": {
+        "label": "Armored Slide",
+        "damage": 14,
+        "movement": {
+          "x": 525,
+          "y": 25
+        },
+        "radius": 58
+      },
+      "up-special": {
+        "label": "Skyward Summon",
+        "damage": 12,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 640,
+          "horizontalSpeed": 220,
+          "steerFrames": 22
+        },
+        "radius": 55
+      },
+      "down-special": {
+        "label": "Armor Overload",
+        "damage": 19,
+        "chargeable": true,
+        "maxChargeFrames": 58,
+        "radius": 61
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Hormelz Knight — Hormelz",
+    "sourcePage": "https://hormelz.itch.io/8-directional-knight",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "blade",
+      "up-special": "energy",
+      "down-special": "heavy"
+    },
+    "traits": [
+      "blade"
+    ]
+  }
+}

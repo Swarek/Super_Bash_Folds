@@ -1,0 +1,418 @@
+{
+  "id": "dark-knight-2d",
+  "displayName": "Dark Knight 2D",
+  "author": "comphonia",
+  "sourcePage": "https://opengameart.org/content/dark-knight-2d-character-sprites",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceProvenance": "assets-source/open-fighters/2d/dark-knight-2d/PROVENANCE.md",
+  "sourceSha256Manifest": "assets-source/open-fighters/2d/dark-knight-2d/SHA256SUMS",
+  "transformation": "Only upstream raster frames were cropped, uniformly scaled, padded, optionally sampled, tiled and losslessly WebP-encoded. Upstream JSON or GIF companions were used only to read frame rectangles, counts and rates. No frame or motion was synthesized.",
+  "coverageCounts": {
+    "direct": 16,
+    "adapted": 28,
+    "author_required": 6
+  },
+  "actions": {
+    "idle": {
+      "frameCount": 18,
+      "sourceFrameCount": 51,
+      "sampleStep": 3,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Idle.png"
+      ]
+    },
+    "crouch": {
+      "frameCount": 10,
+      "sourceFrameCount": 18,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Crouch.png"
+      ]
+    },
+    "walk": {
+      "frameCount": 18,
+      "sourceFrameCount": 34,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Walk.png"
+      ]
+    },
+    "turn": {
+      "frameCount": 14,
+      "sourceFrameCount": 26,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/180Turn.png"
+      ]
+    },
+    "run": {
+      "frameCount": 12,
+      "sourceFrameCount": 22,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Run.png"
+      ]
+    },
+    "run_back": {
+      "frameCount": 9,
+      "sourceFrameCount": 17,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/RunBack.png"
+      ]
+    },
+    "jump": {
+      "frameCount": 16,
+      "sourceFrameCount": 30,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Jump.png"
+      ]
+    },
+    "run_jump": {
+      "frameCount": 14,
+      "sourceFrameCount": 26,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/RunJump.png"
+      ]
+    },
+    "attack": {
+      "frameCount": 16,
+      "sourceFrameCount": 31,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Attack1.png"
+      ]
+    },
+    "slash": {
+      "frameCount": 24,
+      "sourceFrameCount": 46,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash.png"
+      ]
+    },
+    "up_slash": {
+      "frameCount": 18,
+      "sourceFrameCount": 51,
+      "sampleStep": 3,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash3.png"
+      ]
+    },
+    "spin_slash": {
+      "frameCount": 26,
+      "sourceFrameCount": 74,
+      "sampleStep": 3,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Slash4.png"
+      ]
+    },
+    "crouch_slash": {
+      "frameCount": 22,
+      "sourceFrameCount": 42,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/CrouchSlash.png"
+      ]
+    },
+    "kick": {
+      "frameCount": 19,
+      "sourceFrameCount": 37,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Kick.png"
+      ]
+    },
+    "cast": {
+      "frameCount": 31,
+      "sourceFrameCount": 90,
+      "sampleStep": 3,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Casting1.png"
+      ]
+    },
+    "block": {
+      "frameCount": 11,
+      "sourceFrameCount": 21,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/BlockIdle.png"
+      ]
+    },
+    "draw_sword": {
+      "frameCount": 13,
+      "sourceFrameCount": 24,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/DrawSword.png"
+      ]
+    },
+    "hurt": {
+      "frameCount": 13,
+      "sourceFrameCount": 24,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Impact.png"
+      ]
+    },
+    "knockback": {
+      "frameCount": 16,
+      "sourceFrameCount": 30,
+      "sampleStep": 2,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Impact2.png"
+      ]
+    },
+    "death": {
+      "frameCount": 24,
+      "sourceFrameCount": 70,
+      "sampleStep": 3,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/Death.png"
+      ]
+    },
+    "taunt": {
+      "frameCount": 26,
+      "sourceFrameCount": 101,
+      "sampleStep": 4,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/IdleVain.png"
+      ]
+    },
+    "victory": {
+      "frameCount": 25,
+      "sourceFrameCount": 72,
+      "sampleStep": 3,
+      "fps": 20,
+      "sources": [
+        "assets-source/open-fighters/2d/dark-knight-2d/upstream/Knight 2D/Sprites/PowerUp.png"
+      ]
+    }
+  },
+  "slots": {
+    "idle": {
+      "action": "idle",
+      "coverage": "direct"
+    },
+    "crouch": {
+      "action": "crouch",
+      "coverage": "direct"
+    },
+    "walk": {
+      "action": "walk",
+      "coverage": "direct"
+    },
+    "turn": {
+      "action": "turn",
+      "coverage": "direct"
+    },
+    "run": {
+      "action": "run",
+      "coverage": "direct"
+    },
+    "jump": {
+      "action": "jump",
+      "coverage": "direct"
+    },
+    "jab": {
+      "action": "attack",
+      "coverage": "direct"
+    },
+    "forward_tilt": {
+      "action": "kick",
+      "coverage": "direct"
+    },
+    "down_tilt": {
+      "action": "crouch_slash",
+      "coverage": "direct"
+    },
+    "neutral_special": {
+      "action": "cast",
+      "coverage": "direct"
+    },
+    "shield": {
+      "action": "block",
+      "coverage": "direct"
+    },
+    "item_attack": {
+      "action": "slash",
+      "coverage": "direct"
+    },
+    "hurt": {
+      "action": "hurt",
+      "coverage": "direct"
+    },
+    "knockback": {
+      "action": "knockback",
+      "coverage": "direct"
+    },
+    "taunt": {
+      "action": "taunt",
+      "coverage": "direct"
+    },
+    "victory": {
+      "action": "victory",
+      "coverage": "direct"
+    },
+    "dash": {
+      "action": "run",
+      "coverage": "adapted"
+    },
+    "jump_squat": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "double_jump": {
+      "action": "run_jump",
+      "coverage": "adapted"
+    },
+    "fall": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "fast_fall": {
+      "action": "run_jump",
+      "coverage": "adapted"
+    },
+    "dash_attack": {
+      "action": "run_jump",
+      "coverage": "adapted"
+    },
+    "up_tilt": {
+      "action": "up_slash",
+      "coverage": "adapted"
+    },
+    "forward_smash": {
+      "action": "slash",
+      "coverage": "adapted"
+    },
+    "up_smash": {
+      "action": "up_slash",
+      "coverage": "adapted"
+    },
+    "down_smash": {
+      "action": "spin_slash",
+      "coverage": "adapted"
+    },
+    "neutral_air": {
+      "action": "spin_slash",
+      "coverage": "adapted"
+    },
+    "forward_air": {
+      "action": "slash",
+      "coverage": "adapted"
+    },
+    "back_air": {
+      "action": "kick",
+      "coverage": "adapted"
+    },
+    "up_air": {
+      "action": "up_slash",
+      "coverage": "adapted"
+    },
+    "down_air": {
+      "action": "crouch_slash",
+      "coverage": "adapted"
+    },
+    "side_special": {
+      "action": "spin_slash",
+      "coverage": "adapted"
+    },
+    "up_special": {
+      "action": "run_jump",
+      "coverage": "adapted"
+    },
+    "down_special": {
+      "action": "block",
+      "coverage": "adapted"
+    },
+    "spot_dodge": {
+      "action": "crouch",
+      "coverage": "adapted"
+    },
+    "roll_forward": {
+      "action": "run",
+      "coverage": "adapted"
+    },
+    "roll_back": {
+      "action": "run_back",
+      "coverage": "adapted"
+    },
+    "air_dodge": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "item_hold": {
+      "action": "draw_sword",
+      "coverage": "adapted"
+    },
+    "item_pickup": {
+      "action": "draw_sword",
+      "coverage": "adapted"
+    },
+    "grabbed": {
+      "action": "hurt",
+      "coverage": "adapted"
+    },
+    "downed": {
+      "action": "death",
+      "coverage": "adapted"
+    },
+    "entrance": {
+      "action": "draw_sword",
+      "coverage": "adapted"
+    },
+    "ledge": {
+      "action": "jump",
+      "coverage": "adapted"
+    },
+    "grab": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "grab_hold": {
+      "action": "block",
+      "coverage": "author_required"
+    },
+    "forward_throw": {
+      "action": "attack",
+      "coverage": "author_required"
+    },
+    "back_throw": {
+      "action": "kick",
+      "coverage": "author_required"
+    },
+    "up_throw": {
+      "action": "up_slash",
+      "coverage": "author_required"
+    },
+    "down_throw": {
+      "action": "crouch_slash",
+      "coverage": "author_required"
+    }
+  }
+}

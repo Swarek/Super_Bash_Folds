@@ -1,0 +1,101 @@
+{
+  "$schema": "../fighter.schema.json",
+  "schemaVersion": 1,
+  "status": "ready",
+  "id": "knight-hero",
+  "kind": "2d",
+  "order": 100,
+  "identity": {
+    "displayName": "Knight Hero",
+    "archetype": "Sword Hero",
+    "playstyle": "Balanced neutral game, solid reach, and reliable defense",
+    "colors": {
+      "primary": "#e6e0cf",
+      "secondary": "#59606b",
+      "accent": "#d53b32"
+    }
+  },
+  "gameplay": {
+    "size": {
+      "width": 66,
+      "height": 91
+    },
+    "spriteReferenceHeight": 138,
+    "weight": 98,
+    "dash": 1.77,
+    "dashFrames": 8,
+    "run": 1.67,
+    "air": 0.98,
+    "gravity": 0.1,
+    "fall": 2.04,
+    "fastFall": 2.86,
+    "jump": 2.61,
+    "doubleJump": 2.37,
+    "jumpSquat": 4,
+    "shortHop": 0.63,
+    "reach": 1.18,
+    "specials": {
+      "neutral-special": {
+        "label": "Heroic Wave",
+        "damage": 8,
+        "projectile": {
+          "kind": "ground-wave",
+          "speed": 470,
+          "gravity": 0,
+          "lifetimeFrames": 55,
+          "radius": 22,
+          "absorbable": true,
+          "restsOnGround": true
+        }
+      },
+      "side-special": {
+        "label": "Royal Breakthrough",
+        "damage": 13,
+        "movement": {
+          "x": 555,
+          "y": 30
+        },
+        "radius": 55
+      },
+      "up-special": {
+        "label": "Sky Blade",
+        "damage": 11,
+        "specialMovement": {
+          "kind": "steered-rise",
+          "riseSpeed": 665,
+          "horizontalSpeed": 255,
+          "steerFrames": 21
+        },
+        "radius": 53
+      },
+      "down-special": {
+        "label": "Hero Guard",
+        "damage": 15,
+        "startup": 5,
+        "active": 13,
+        "counters": true,
+        "radius": 56
+      }
+    }
+  },
+  "visual": {
+    "sourceFacing": "right",
+    "attribution": "Knight Hero — PixiVan",
+    "sourcePage": "https://opengameart.org/content/knight-hero-platformer-animation-pack",
+    "license": {
+      "id": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "effects": {
+    "materials": {
+      "neutral-special": "energy",
+      "side-special": "blade",
+      "up-special": "blade",
+      "down-special": "blade"
+    },
+    "traits": [
+      "blade"
+    ]
+  }
+}
