@@ -9,16 +9,16 @@ permissions:
   contents: read
 
 jobs:
-  validate:
+  game:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
       PUBLIC_CONTENT_ONLY: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           cache: npm
@@ -27,4 +27,29 @@ jobs:
           sudo apt-get update
           sudo apt-get install --no-install-recommends --yes webp
       - run: npm ci
+      - run: npm audit --audit-level=high
       - run: npm run validate:public
+
+  website:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            website/package-lock.json
+      - run: npm ci
+        working-directory: ${{ github.workspace }}
+      - run: npm run site:sync-game
+        working-directory: ${{ github.workspace }}
+      - run: npm ci
+      - run: npm test
+      - run: npm run lint
+      - run: npm audit --audit-level=high

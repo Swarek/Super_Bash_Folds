@@ -473,18 +473,7 @@ describe("complete local UI flow", () => {
     expect(prototypeCard.dataset.openContent).toBe("true");
     expect(prototypeCard.dataset.productionReady).toBe("false");
     expect(prototypeCard.querySelector("small")?.textContent).toBe("Open prototype");
-    const privateMeleeCard = grid.querySelector<HTMLButtonElement>(
-      "[data-fighter='mario']",
-    );
-    if (__PUBLIC_CONTENT_ONLY__) {
-      expect(privateMeleeCard).toBeNull();
-      expect(cards.every((card) => card.dataset.openContent === "true")).toBe(true);
-    } else {
-      expect(privateMeleeCard?.dataset.openContent).toBe("false");
-      expect(privateMeleeCard?.dataset.productionReady).toBe("false");
-      expect(privateMeleeCard?.classList.contains("is-open-prototype")).toBe(false);
-      expect(privateMeleeCard?.querySelector("small")?.textContent).not.toBe("Open prototype");
-    }
+    expect(cards.every((card) => card.dataset.openContent === "true")).toBe(true);
 
     cards[0]!.focus();
     cards[0]!.dispatchEvent(new KeyboardEvent("keydown", { bubbles: true, code: "ArrowDown" }));

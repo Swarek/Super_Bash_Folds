@@ -16,7 +16,7 @@ import {
 } from "../game/engine";
 import { ITEM_DEFINITIONS, isAutomaticItem, type ItemKind } from "../game/items";
 import { FIGHTER_IDS, getFighterDefinition } from "../game/roster";
-import { exactSpritePixelScale } from "../game/render";
+import { spritePixelScale } from "../game/render";
 import {
   DEFAULT_STAGE_ID,
   STAGE_DEFINITIONS,
@@ -65,8 +65,7 @@ export const labFrameAtTime = (
 const fighterLabel = (fighter: FighterId): string =>
   getFighterDefinition(fighter).displayName;
 
-const DEFAULT_LAB_FIGHTER =
-  FIGHTER_IDS.find((fighter) => fighter === "mario") ?? FIGHTER_IDS[0];
+const DEFAULT_LAB_FIGHTER = FIGHTER_IDS[0];
 
 if (!DEFAULT_LAB_FIGHTER) {
   throw new Error("No fighter is available for the Lab.");
@@ -322,7 +321,7 @@ export class TestLabController {
     );
     const displayedCell = this.canvas.getBoundingClientRect().width || this.canvas.width;
     const pixelsPerWorldUnit =
-      displayedCell / (this.definition().cellSize * exactSpritePixelScale(this.state.fighter));
+      displayedCell / (this.definition().cellSize * spritePixelScale(this.state.fighter));
     overlay.style.width = `${profile.radius * 2 * pixelsPerWorldUnit}px`;
     overlay.style.height = `${profile.halfHeight * 2 * pixelsPerWorldUnit}px`;
     overlay.style.transform = `translateY(${-profile.centerOffsetY * pixelsPerWorldUnit}px)`;
@@ -496,7 +495,6 @@ export class TestLabController {
     const output = this.root.querySelector<HTMLOutputElement>("[data-lab-item-result]");
     const definition = ITEM_DEFINITIONS[this.selectedItem];
     const targetFighter =
-      FIGHTER_IDS.find((fighter) => fighter === "link") ??
       FIGHTER_IDS.find((fighter) => fighter !== this.state.fighter) ??
       this.state.fighter;
     const game = createGame(

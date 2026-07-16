@@ -71,23 +71,6 @@ describe("settings", () => {
     expect(loadSettings(storage).musicVolume).toBe(0.31);
   });
 
-  it("keeps settings saved under both previous game names", () => {
-    const storage = new MemoryStorage();
-    storage.setItem(
-      "super-open-bros.settings.v1",
-      JSON.stringify({ ...createDefaultSettings(), musicVolume: 0.38 }),
-    );
-    expect(loadSettings(storage).musicVolume).toBe(0.38);
-
-    storage.removeItem("super-open-bros.settings.v1");
-    storage.setItem(
-      "cousins-clash.settings.v1",
-      JSON.stringify({ ...createDefaultSettings(), musicVolume: 0.42 }),
-    );
-
-    expect(loadSettings(storage).musicVolume).toBe(0.42);
-  });
-
   it("saves only validated values and can reset persistence", () => {
     const storage = new MemoryStorage();
     const unsafe = { ...createDefaultSettings(), effectsVolume: 12 };
@@ -97,8 +80,6 @@ describe("settings", () => {
 
     expect(resetSettings(storage)).toEqual(createDefaultSettings());
     expect(storage.getItem(SETTINGS_STORAGE_KEY)).toBeNull();
-    expect(storage.getItem("super-open-bros.settings.v1")).toBeNull();
-    expect(storage.getItem("cousins-clash.settings.v1")).toBeNull();
   });
 
   it("swaps colliding rebinds instead of disabling another action", () => {

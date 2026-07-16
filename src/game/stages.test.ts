@@ -34,9 +34,9 @@ describe("open stage inventory", () => {
     expect(new Set(STAGE_IDS).size).toBe(STAGE_IDS.length);
   });
 
-  it.runIf(!__PRIVATE_CONTENT_MODE__)("exposes no local-only stages in public mode", () => {
-    expect(STAGE_IDS).toEqual(["verdant-grove"]);
-    expect(Object.keys(STAGE_DEFINITIONS)).toEqual(["verdant-grove"]);
+  it("exposes only generated open stage packs", () => {
+    expect(STAGE_IDS).toEqual([...OPEN_STAGE_IDS]);
+    expect(Object.keys(STAGE_DEFINITIONS)).toEqual([...OPEN_STAGE_IDS]);
   });
 
   it.each(OPEN_STAGE_IDS)("contains a complete distributable definition for %s", (id) => {

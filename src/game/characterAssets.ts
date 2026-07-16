@@ -1,20 +1,10 @@
 import {
-  isMeleeFighterId,
   type FighterId,
   type Open2DFighterId,
   type OpenFighterId,
   type SkinId,
 } from "./contracts";
 import { effectiveJumpSquatFrames, type FighterSnapshot } from "./engine";
-import {
-  EXACT_ANIMATION_CELL_SIZE,
-  EXACT_ANIMATION_COLUMNS,
-  EXACT_ANIMATION_METADATA,
-} from "./exactAnimationMetadata";
-import {
-  EXACT_SPECIAL_ANIMATION_SEGMENTS,
-  type ExactSpecialAnimationSegment,
-} from "./exactSpecialAnimationMetadata";
 import {
   CHARACTER_PORTRAITS,
   FIGHTER_VISUAL_MANIFESTS,
@@ -25,10 +15,9 @@ import {
 import { OPEN_ANIMATION_METADATA } from "./openAnimationMetadata";
 import { FIGHTER_IDS, getFighterDefinition, type MoveName } from "./roster";
 
-const BROWSER_ANIMATION_CELL_SIZE = EXACT_ANIMATION_CELL_SIZE;
 const ALL_SKIN_IDS = ["00", "01", "02", "03"] as const satisfies readonly SkinId[];
-export const MELEE_RUN_PLAYBACK_MULTIPLIER = 2;
-export const ICE_CLIMBERS_COMPANION_ASSET_ID = "ice-climbers-nana";
+const DEFAULT_ANIMATION_CELL_SIZE = 192;
+const DEFAULT_ANIMATION_COLUMNS = 8;
 
 export type CharacterAnimation =
   | "idle"
@@ -138,9 +127,6 @@ interface Open2DRuntimeContent {
 }
 
 const OPEN_2D_RUNTIME_CONTENT = __OPEN_2D_RUNTIME_CONTENT__ as Open2DRuntimeContent;
-const PRIVATE_ANIMATION_AVAILABILITY = __PRIVATE_ANIMATION_AVAILABILITY__ as Readonly<
-  Record<string, Readonly<Record<string, readonly string[]>>>
->;
 
 export interface RemoteAnimationDefinition {
   /** Static frame atlas rendered locally from the source asset. */
@@ -161,7 +147,7 @@ export interface RemoteAnimationDefinition {
 }
 
 export interface RemoteAnimationConfig {
-  /** Must remain explicit: false disables the exact local render layer. */
+  /** Must remain explicit so tests can exercise the local fallback renderer. */
   enabled: boolean;
   attribution: { label: string; url: string };
   fighters: Readonly<
@@ -181,34 +167,6 @@ export interface FighterSkinSelection {
   fighter: FighterId;
   skin: SkinId;
 }
-
-type SpecialPhaseSegments = Readonly<
-  Record<"startup" | "active" | "recovery" | "landing", readonly [number, number]>
->;
-
-/** Clip indices inside the official concatenated Up-B atlases. */
-const UP_SPECIAL_PHASE_SEGMENTS: Partial<Record<FighterId, SpecialPhaseSegments>> = {
-  peach: { startup: [0, 0], active: [1, 1], recovery: [2, 2], landing: [3, 3] },
-  "captain-falcon": { startup: [0, 0], active: [0, 0], recovery: [0, 0], landing: [0, 0] },
-  ganondorf: { startup: [0, 0], active: [0, 0], recovery: [0, 0], landing: [0, 0] },
-  falco: { startup: [0, 0], active: [1, 1], recovery: [2, 2], landing: [3, 3] },
-  fox: { startup: [0, 0], active: [1, 1], recovery: [2, 2], landing: [3, 3] },
-  ness: { startup: [0, 0], active: [1, 1], recovery: [2, 2], landing: [2, 2] },
-  "ice-climbers": { startup: [0, 0], active: [1, 1], recovery: [2, 2], landing: [2, 2] },
-  kirby: { startup: [0, 0], active: [1, 2], recovery: [3, 3], landing: [3, 3] },
-  zelda: { startup: [0, 0], active: [1, 1], recovery: [1, 1], landing: [1, 1] },
-  sheik: { startup: [0, 0], active: [1, 1], recovery: [1, 1], landing: [1, 1] },
-  link: { startup: [0, 1], active: [2, 2], recovery: [2, 2], landing: [2, 2] },
-  "young-link": { startup: [0, 1], active: [2, 2], recovery: [2, 2], landing: [2, 2] },
-  pichu: { startup: [0, 0], active: [1, 1], recovery: [2, 2], landing: [2, 2] },
-  pikachu: { startup: [0, 0], active: [1, 1], recovery: [2, 2], landing: [2, 2] },
-  mewtwo: { startup: [0, 0], active: [1, 1], recovery: [1, 1], landing: [1, 1] },
-  "mr-game-and-watch": { startup: [0, 0], active: [1, 1], recovery: [2, 2], landing: [2, 2] },
-};
-
-const SPECIAL_SEGMENTS = EXACT_SPECIAL_ANIMATION_SEGMENTS as Readonly<
-  Record<string, readonly ExactSpecialAnimationSegment[]>
->;
 
 const ANIMATION_LABELS: Readonly<Record<RemoteAnimationSlot, string>> = {
   idle: "Idle",
@@ -284,81 +242,54 @@ export {
   type FighterVisualManifest,
 };
 
-const exactAnimation = (
+const atlasAnimation = (
   fighter: FighterId,
   skin: SkinId,
   slot: RemoteAnimationSlot,
-  containsHitboxOverlay = false,
-  assetFighter: string = fighter,
 ): RemoteAnimationDefinition => {
   const manifest = FIGHTER_VISUAL_MANIFESTS[fighter];
-  const openMetadata = isMeleeFighterId(fighter) ? undefined : OPEN_METADATA[fighter]?.[slot];
-  const exactMetadata = isMeleeFighterId(fighter)
-    ? EXACT_ANIMATION_METADATA[`${fighter}/${slot}`]
-    : undefined;
-  const frameCount = openMetadata?.frameCount ?? exactMetadata?.frameCount ??
-    (manifest.sourceKind === "private-3d" ? 1 : 4);
-  const fps = openMetadata?.fps ?? exactMetadata?.fps ??
-    (manifest.sourceKind === "private-3d" ? 1 : 8);
-  const atlasRoot = assetFighter === fighter
-    ? manifest.atlasRoot
-    : `/assets/characters/ultimate-sheets-native/${assetFighter}`;
+  const metadata = OPEN_METADATA[fighter]?.[slot];
   const version = `?v=${CHARACTER_ATLAS_REVISION}`;
-  const resolvedSkin = manifest.sourceKind === "private-3d" &&
-      !PRIVATE_ANIMATION_AVAILABILITY[assetFighter]?.[skin]?.includes(slot)
-    ? "00"
-    : skin;
   return {
-    mediaUrl: `${atlasRoot}/${resolvedSkin}/${slot}.webp${version}`,
+    mediaUrl: `${manifest.atlasRoot}/${skin}/${slot}.webp${version}`,
     sourcePage: manifest.sourcePage,
     label: ANIMATION_LABELS[slot],
-    containsHitboxOverlay,
-    frameCount,
-    fps,
-    columns: openMetadata?.columns ?? EXACT_ANIMATION_COLUMNS,
-    cellSize: openMetadata?.cellSize ?? BROWSER_ANIMATION_CELL_SIZE,
+    containsHitboxOverlay: false,
+    frameCount: metadata?.frameCount ?? 1,
+    fps: metadata?.fps ?? 1,
+    columns: metadata?.columns ?? DEFAULT_ANIMATION_COLUMNS,
+    cellSize: metadata?.cellSize ?? DEFAULT_ANIMATION_CELL_SIZE,
     sourceFacing: manifest.sourceFacing,
-    // Mario's authored turn clip goes from the old facing to the new facing,
-    // while the engine switches facing as soon as turn starts. Reading this
-    // one clip backwards keeps every displayed frame on the engine's basis.
-    reversePlayback: fighter === "mario" && slot === "turn",
   };
 };
 
 const animationSet = (
   fighter: FighterId,
   skin: SkinId,
-  assetFighter: string = fighter,
 ): Record<RemoteAnimationSlot, RemoteAnimationDefinition> =>
   Object.fromEntries(
     REMOTE_ANIMATION_SLOTS.map((slot) => [
       slot,
-      exactAnimation(fighter, skin, slot, false, assetFighter),
+      atlasAnimation(fighter, skin, slot),
     ]),
   ) as Record<RemoteAnimationSlot, RemoteAnimationDefinition>;
 
 const skinAnimationSets = (
   fighter: FighterId,
-  assetFighter: string = fighter,
 ): Partial<Record<SkinId, Record<RemoteAnimationSlot, RemoteAnimationDefinition>>> =>
   Object.fromEntries(
     FIGHTER_VISUAL_MANIFESTS[fighter].availableSkins.map((skin) => [
       skin,
-      animationSet(fighter, skin, assetFighter),
+      animationSet(fighter, skin),
     ]),
   ) as Partial<Record<SkinId, Record<RemoteAnimationSlot, RemoteAnimationDefinition>>>;
 
-const ICE_CLIMBERS_COMPANION_ANIMATIONS = skinAnimationSets(
-  "ice-climbers",
-  ICE_CLIMBERS_COMPANION_ASSET_ID,
-) as Record<SkinId, Record<RemoteAnimationSlot, RemoteAnimationDefinition>>;
-
-/** Local browser atlases for private Melee content and distributable open fighters. */
+/** Local browser atlases generated from redistributable fighter packs. */
 export const REMOTE_ANIMATION_CONFIG: RemoteAnimationConfig = {
   enabled: true,
   attribution: {
-    label: "Local SSBU files supplied by the user",
-    url: "https://gitlab.com/Worldblender/smash-ultimate-models-exported",
+    label: "Open fighter sources",
+    url: "/THIRD_PARTY_ASSETS.md",
   },
   fighters: Object.fromEntries(
     FIGHTER_IDS.map((fighter) => [fighter, skinAnimationSets(fighter)]),
@@ -412,7 +343,7 @@ export interface ResolvedCharacterFrame {
   sourceFacing?: "left" | "right";
 }
 
-interface ActiveExactAnimation {
+interface ActiveAtlasAnimation {
   key: string;
   image: HTMLImageElement;
   startedAt: number;
@@ -442,69 +373,19 @@ const humanoidAnimations = (fighter: FighterId): FighterAnimationSet => ({
   victory: { frames: sequence(fighter, "victory", [0, 1]), fps: 4, loop: true },
 });
 
-const LEGACY_CHARACTER_ANIMATIONS: Readonly<Partial<Record<FighterId, FighterAnimationSet>>> = {
-  mario: humanoidAnimations("mario"),
-  link: humanoidAnimations("link"),
-  samus: humanoidAnimations("samus"),
-  pikachu: {
-    idle: { frames: sequence("pikachu", "idle", ["000", "002", "004", "006"]), fps: 5, loop: true },
-    run: { frames: sequence("pikachu", "run", ["000", "001", "002", "003", "004", "005", "006", "007"]), fps: 14, loop: true },
-    jump: { frames: [asset("pikachu", "jump.png")], fps: 1 },
-    fall: { frames: [asset("pikachu", "fall.png")], fps: 1 },
-    attack: { frames: sequence("pikachu", "attack", ["001", "003", "005", "007"]), fps: 15 },
-    special: { frames: sequence("pikachu", "special", ["001", "003", "005", "007"]), fps: 15 },
-    hurt: { frames: sequence("pikachu", "hurt", ["000", "002", "003", "005"]), fps: 11 },
-    dodge: { frames: sequence("pikachu", "dodge", ["000", "002", "004", "006", "008"]), fps: 16 },
-    grab: { frames: sequence("pikachu", "attack", ["001", "003"]), fps: 10 },
-    victory: { frames: sequence("pikachu", "idle", ["006", "004", "002"]), fps: 6, loop: true },
-  },
-  "donkey-kong": {
-    idle: { frames: sequence("donkey-kong", "idle", [1, 2, 3]), fps: 4, loop: true },
-    run: { frames: sequence("donkey-kong", "run", [1, 2, 3, 4, 5, 6, 7]), fps: 12, loop: true },
-    jump: { frames: sequence("donkey-kong", "jump", [1, 2, 3]), fps: 9 },
-    fall: { frames: sequence("donkey-kong", "jump", [4, 5, 6, 7]), fps: 8 },
-    attack: { frames: sequence("donkey-kong", "run", [2, 4, 6, 4]), fps: 11 },
-    special: { frames: sequence("donkey-kong", "jump", [2, 3, 4, 5]), fps: 10 },
-    hurt: { frames: sequence("donkey-kong", "jump", [5, 6]), fps: 8 },
-    dodge: { frames: sequence("donkey-kong", "run", [7, 1, 3, 5]), fps: 15 },
-    grab: { frames: sequence("donkey-kong", "idle", [1, 2]), fps: 6 },
-    victory: { frames: sequence("donkey-kong", "idle", [1, 2, 3, 2]), fps: 5, loop: true },
-  },
-};
-
 export const CHARACTER_ANIMATIONS = Object.fromEntries(
   FIGHTER_IDS.map((fighter) => [
     fighter,
-    LEGACY_CHARACTER_ANIMATIONS[fighter] ?? humanoidAnimations(fighter),
+    humanoidAnimations(fighter),
   ]),
 ) as Readonly<Record<FighterId, FighterAnimationSet>>;
-
-const LEGACY_RENDER_PROFILES: Readonly<Partial<Record<FighterId, CharacterRenderProfile>>> = {
-  mario: { width: 105, height: 144, x: -52.5, y: -90 },
-  link: { width: 105, height: 144, x: -52.5, y: -90 },
-  samus: { width: 109, height: 150, x: -54.5, y: -96 },
-  pikachu: {
-    crop: { x: 176, y: 25, width: 325, height: 475 },
-    width: 102,
-    height: 149,
-    x: -51,
-    y: -94,
-  },
-  "donkey-kong": {
-    crop: { x: 38, y: 28, width: 180, height: 207 },
-    width: 132,
-    height: 152,
-    x: -66,
-    y: -98,
-  },
-};
 
 export const CHARACTER_RENDER_PROFILES = Object.fromEntries(
   FIGHTER_IDS.map((fighter) => {
     const definition = getFighterDefinition(fighter);
     const height = definition.size.height * 1.68;
     const width = definition.size.width * 1.68;
-    return [fighter, LEGACY_RENDER_PROFILES[fighter] ?? {
+    return [fighter, {
       width,
       height,
       x: -width / 2,
@@ -605,8 +486,8 @@ export class CharacterSpriteLibrary {
   private readonly warmContext = this.warmCanvas?.getContext("2d") ?? null;
   private readonly primedFighterSkins = new Set<string>();
   private matchPreloadAbort?: AbortController;
-  private readonly activeExactImages = new Map<number, ActiveExactAnimation>();
-  private readonly lastResolvedExactFrames = new Map<
+  private readonly activeAtlasImages = new Map<number, ActiveAtlasAnimation>();
+  private readonly lastResolvedAtlasFrames = new Map<
     number,
     { identity: string; skin: SkinId; frame: ResolvedCharacterFrame }
   >();
@@ -629,7 +510,7 @@ export class CharacterSpriteLibrary {
       }
     }
 
-    // Exact WebP atlases are primed one selected fighter/skin at a time by remoteFrameFor.
+    // WebP atlases are primed one selected fighter/skin at a time by remoteFrameFor.
     // This makes every move ready during the countdown without loading the
     // complete roster library up front.
   }
@@ -637,12 +518,12 @@ export class CharacterSpriteLibrary {
   destroy(): void {
     this.matchPreloadAbort?.abort();
     this.matchPreloadAbort = undefined;
-    this.activeExactImages.clear();
+    this.activeAtlasImages.clear();
     this.primedFighterSkins.clear();
     this.remoteImages.clear();
     this.pinnedRemoteUrls.clear();
     this.failedRemoteImages.clear();
-    this.lastResolvedExactFrames.clear();
+    this.lastResolvedAtlasFrames.clear();
   }
 
   prepareMatch(selections: readonly FighterSkinSelection[]): void {
@@ -653,22 +534,11 @@ export class CharacterSpriteLibrary {
       ...remoteAnimationSetForFighter(fighter, skin, this.remoteAnimation),
     }));
     const selected = new Set(
-      resolvedSelections.flatMap(({ fighter, skin }) => [
-        `${fighter}:${skin}`,
-        ...(fighter === "ice-climbers"
-          ? [`${ICE_CLIMBERS_COMPANION_ASSET_ID}:${skin}`]
-          : []),
-      ]),
+      resolvedSelections.map(({ fighter, skin }) => `${fighter}:${skin}`),
     );
     const keepUrls = new Set(
-      resolvedSelections.flatMap(({ fighter, skin, animations }) => {
-        const urls = Object.values(animations)
-          .map(({ mediaUrl }) => mediaUrl);
-        if (fighter === "ice-climbers") {
-          urls.push(...Object.values(ICE_CLIMBERS_COMPANION_ANIMATIONS[skin])
-            .map(({ mediaUrl }) => mediaUrl));
-        }
-        return urls;
+      resolvedSelections.flatMap(({ animations }) => {
+        return Object.values(animations).map(({ mediaUrl }) => mediaUrl);
       }),
     );
     for (const url of this.remoteImages.keys()) {
@@ -683,8 +553,8 @@ export class CharacterSpriteLibrary {
     for (const fighterSkin of this.primedFighterSkins) {
       if (!selected.has(fighterSkin)) this.primedFighterSkins.delete(fighterSkin);
     }
-    this.activeExactImages.clear();
-    this.lastResolvedExactFrames.clear();
+    this.activeAtlasImages.clear();
+    this.lastResolvedAtlasFrames.clear();
   }
 
   async preloadMatch(
@@ -698,21 +568,13 @@ export class CharacterSpriteLibrary {
     if (options.signal?.aborted) abortFromCaller();
     else options.signal?.addEventListener("abort", abortFromCaller, { once: true });
 
-    const animationSets = selections.flatMap(({ fighter, skin }) => {
+    const animationSets = selections.map(({ fighter, skin }) => {
       const resolved = remoteAnimationSetForFighter(fighter, skin, this.remoteAnimation);
-      const sets = [{
+      return {
         identity: fighter as string,
         skin: resolved.skin,
         animations: resolved.animations,
-      }];
-      if (fighter === "ice-climbers") {
-        sets.push({
-          identity: ICE_CLIMBERS_COMPANION_ASSET_ID,
-          skin: resolved.skin,
-          animations: ICE_CLIMBERS_COMPANION_ANIMATIONS[resolved.skin],
-        });
-      }
-      return sets;
+      };
     });
     const definitions = new Map<string, RemoteAnimationDefinition>();
     for (const { animations } of animationSets) {
@@ -815,27 +677,7 @@ export class CharacterSpriteLibrary {
       : null;
   }
 
-  companionFrameFor(
-    fighter: FighterSnapshot,
-    elapsedSeconds: number,
-  ): ResolvedCharacterFrame | null {
-    if (!this.remoteAnimation.enabled || fighter.fighter !== "ice-climbers") return null;
-    const slot = remoteAnimationSlotForFighter(fighter);
-    if (!slot) return null;
-    const animations = ICE_CLIMBERS_COMPANION_ANIMATIONS[fighter.skin];
-    return this.resolveRemoteFrame(
-      fighter,
-      elapsedSeconds,
-      slot,
-      animations[slot],
-      fighter.slot + 2,
-      ICE_CLIMBERS_COMPANION_ASSET_ID,
-      fighter.skin,
-      animations,
-    );
-  }
-
-  usesExactAnimations(): boolean {
+  usesAtlasAnimations(): boolean {
     return this.remoteAnimation.enabled;
   }
 
@@ -873,13 +715,13 @@ export class CharacterSpriteLibrary {
     animationSkin: SkinId,
     animations: Readonly<Record<RemoteAnimationSlot, RemoteAnimationDefinition>>,
   ): ResolvedCharacterFrame | null {
-    const previous = this.lastResolvedExactFrames.get(track);
+    const previous = this.lastResolvedAtlasFrames.get(track);
     const stableFallback = previous?.identity === identity && previous.skin === animationSkin
       ? previous.frame
       : null;
     if (this.failedRemoteImages.has(definition.mediaUrl)) return stableFallback;
     const key = `${identity}:${animationSkin}:${slot}:${fighter.currentMove ?? fighter.state}`;
-    let active = this.activeExactImages.get(track);
+    let active = this.activeAtlasImages.get(track);
     if (!active || active.key !== key) {
       const image = this.loadRemoteImage(definition, track);
       active = {
@@ -889,7 +731,7 @@ export class CharacterSpriteLibrary {
         lastElapsed: elapsedSeconds,
         frameCursor: 0,
       };
-      this.activeExactImages.set(track, active);
+      this.activeAtlasImages.set(track, active);
       this.primeAnimationSet(identity, animationSkin, animations, definition.mediaUrl);
     }
     const image = active.image;
@@ -920,7 +762,7 @@ export class CharacterSpriteLibrary {
         height: definition.cellSize,
       },
     };
-    this.lastResolvedExactFrames.set(track, {
+    this.lastResolvedAtlasFrames.set(track, {
       identity,
       skin: animationSkin,
       frame: resolved,
@@ -946,8 +788,8 @@ export class CharacterSpriteLibrary {
       () => {
         this.failedRemoteImages.add(definition.mediaUrl);
         this.remoteImages.delete(definition.mediaUrl);
-        if (fighterSlot !== undefined && this.activeExactImages.get(fighterSlot)?.image === image) {
-          this.activeExactImages.delete(fighterSlot);
+        if (fighterSlot !== undefined && this.activeAtlasImages.get(fighterSlot)?.image === image) {
+          this.activeAtlasImages.delete(fighterSlot);
         }
       },
       { once: true },
@@ -1027,7 +869,7 @@ export class CharacterSpriteLibrary {
   private trimRemoteImages(): void {
     if (this.remoteImages.size <= 32) return;
     const activeImages = new Set(
-      [...this.activeExactImages.values()].map(({ image }) => image),
+      [...this.activeAtlasImages.values()].map(({ image }) => image),
     );
     for (const [url, image] of this.remoteImages) {
       if (this.remoteImages.size <= 32) break;
@@ -1086,17 +928,11 @@ export class CharacterSpriteLibrary {
     fighter: FighterSnapshot,
     slot: RemoteAnimationSlot,
     definition: RemoteAnimationDefinition,
-    active: ActiveExactAnimation,
+    active: ActiveAtlasAnimation,
     elapsedSeconds: number,
   ): number {
     if (fighter.currentMove) {
       const move = getFighterDefinition(fighter.fighter).attacks[fighter.currentMove];
-      const segmentedFrame = this.segmentedSpecialFrameIndex(
-        fighter,
-        slot,
-        move,
-      );
-      if (segmentedFrame !== null) return segmentedFrame;
       const totalFrames = move.startup + move.active + move.recovery;
       const progress = Math.min(1, fighter.moveFrame / Math.max(1, totalFrames - 1));
       return Math.min(
@@ -1165,9 +1001,7 @@ export class CharacterSpriteLibrary {
         const speedRatio = Math.min(1, Math.abs(fighter.velocity.x) / runSpeed);
         playbackFps = slot === "walk"
           ? 8 + speedRatio * 10
-          : definition.fps *
-            (isMeleeFighterId(fighter.fighter) ? MELEE_RUN_PLAYBACK_MULTIPLIER : 1) *
-            Math.max(0.62, speedRatio);
+          : definition.fps * Math.max(0.62, speedRatio);
       }
       active.frameCursor += delta * playbackFps;
       return Math.floor(active.frameCursor) % definition.frameCount;
@@ -1179,37 +1013,4 @@ export class CharacterSpriteLibrary {
     return Math.min(definition.frameCount - 1, rawIndex);
   }
 
-  private segmentedSpecialFrameIndex(
-    fighter: FighterSnapshot,
-    slot: RemoteAnimationSlot,
-    move: ReturnType<typeof getFighterDefinition>["attacks"][MoveName],
-  ): number | null {
-    if (slot !== "up_special" || fighter.currentMove !== "up-special") return null;
-    const phase = fighter.specialPhase;
-    const phaseSelection = UP_SPECIAL_PHASE_SEGMENTS[fighter.fighter];
-    const segments = SPECIAL_SEGMENTS[`${fighter.fighter}/${slot}`];
-    if (!phase || !phaseSelection || !segments) return null;
-    const [firstIndex, lastIndex] = phaseSelection[phase];
-    const first = segments[firstIndex];
-    const last = segments[lastIndex];
-    if (!first || !last) return null;
-
-    const phaseStart = phase === "startup"
-      ? 0
-      : phase === "active"
-        ? move.startup
-        : move.startup + move.active;
-    const phaseFrames = phase === "startup"
-      ? move.startup
-      : phase === "active"
-        ? move.active
-        : move.recovery;
-    const progress = Math.min(
-      1,
-      Math.max(0, fighter.moveFrame - phaseStart) / Math.max(1, phaseFrames - 1),
-    );
-    const start = first.start;
-    const end = last.start + last.count - 1;
-    return Math.min(end, Math.floor(start + (end - start) * progress));
-  }
 }

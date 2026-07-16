@@ -8,6 +8,14 @@ created with **GPT-5.6-Sol**, under the direction and review of Swarek. Their
 CC0 declaration and hashes are recorded in
 [`public/assets/open/PROVENANCE.md`](public/assets/open/PROVENANCE.md).
 
+The website social preview at `website/public/og.png` was generated for this
+project with OpenAI image generation under Swarek's direction. The compressed
+`website/public/github-social.jpg` is the same composition for GitHub's upload
+limit. It uses the credited CC0 Quaternius hero, Quaternius cactus, and Verdant
+Grove assets listed below. The finished composition is released under CC0-1.0.
+Hashes and transformations for the website and README launch media are recorded
+in `website/public/PROVENANCE.md` and `docs/media/PROVENANCE.md`.
+
 ## Fighters
 
 Every fighter pack below is published under CC0 1.0 on its source page. The

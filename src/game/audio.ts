@@ -1,6 +1,5 @@
 import {
   FIGHTER_IDS,
-  isMeleeFighterId,
   type FighterId,
   type StageId,
 } from "./contracts";
@@ -40,7 +39,7 @@ export interface SoundEffectOptions {
 
 export type MenuStreamStatus = "idle" | "loading" | "ready" | "failed";
 
-const OPEN_AUDIO_SAMPLES = {
+export const LOCAL_AUDIO_SAMPLES = {
   bootIntro: "/assets/audio/open/sfx/boot.ogg",
   menuMove: "/assets/audio/open/sfx/menu-move.ogg",
   menuConfirm: "/assets/audio/open/sfx/menu-confirm.ogg",
@@ -78,83 +77,21 @@ const OPEN_AUDIO_SAMPLES = {
   gameSet: "/assets/audio/open/sfx/game-set.ogg",
 } as const;
 
-const PRIVATE_AUDIO_SAMPLES = {
-  bootIntro: "/assets/audio/sfx/boot-intro.wav",
-  menuMove: "/assets/audio/sfx/menu-move.wav",
-  menuConfirm: "/assets/audio/sfx/menu-confirm.wav",
-  menuBack: "/assets/audio/sfx/menu-back.wav",
-  hitLight: "/assets/audio/sfx/hit-light.wav",
-  hitMedium: "/assets/audio/sfx/hit-medium.wav",
-  hitHeavy: "/assets/audio/sfx/hit-heavy.wav",
-  shield: "/assets/audio/sfx/shield.wav",
-  shieldBreak: "/assets/audio/sfx/shield-break.wav",
-  ko: "/assets/audio/sfx/ko.wav",
-  land: "/assets/audio/sfx/land.wav",
-  dodge: "/assets/audio/sfx/dodge.wav",
-  grab: "/assets/audio/sfx/grab.wav",
-  throw: "/assets/audio/sfx/throw.wav",
-  projectile: "/assets/audio/sfx/projectile.wav",
-  itemPickup: "/assets/audio/sfx/item-pickup.wav",
-  itemSpawn: "/assets/audio/sfx/item-spawn.wav",
-  respawn: "/assets/audio/sfx/respawn.wav",
-  ledge: "/assets/audio/sfx/ledge.wav",
-  waterPush: "/assets/audio/sfx/water-push.wav",
-  itemBomb: "/assets/audio/sfx/item-bomb.wav",
-  itemShell: "/assets/audio/sfx/item-shell.wav",
-  itemSlip: "/assets/audio/sfx/item-slip.wav",
-  itemBumper: "/assets/audio/sfx/item-bumper.wav",
-  itemPitfall: "/assets/audio/sfx/item-pitfall.wav",
-  itemRay: "/assets/audio/sfx/item-ray.wav",
-  itemFire: "/assets/audio/sfx/item-fire.wav",
-  itemReflect: "/assets/audio/sfx/item-reflect.wav",
-  itemPower: "/assets/audio/sfx/item-power.wav",
-  ready: "/assets/audio/announcer/ready.wav",
-  three: "/assets/audio/announcer/three.wav",
-  two: "/assets/audio/announcer/two.wav",
-  one: "/assets/audio/announcer/one.wav",
-  go: "/assets/audio/announcer/go.wav",
-  gameSet: "/assets/audio/announcer/game-set.wav",
-} as const;
-
-export const LOCAL_AUDIO_SAMPLES = __PRIVATE_CONTENT_MODE__
-  ? PRIVATE_AUDIO_SAMPLES
-  : OPEN_AUDIO_SAMPLES;
-
-const PRIVATE_STAGE_MUSIC: Readonly<Record<string, string>> = {
-  battlefield: "/assets/audio/music/battlefield.m4a",
-  "pokemon-stadium": "/assets/audio/music/pokemon-stadium.m4a",
-  "hyrule-castle": "/assets/audio/music/hyrule-castle.m4a",
-};
-
 export const LOCAL_MUSIC_TRACKS: Readonly<Record<MusicTrackId, string>> = {
-  menu: __PRIVATE_CONTENT_MODE__
-    ? "/assets/audio/music/menu.m4a"
-    : "/assets/audio/open/music/menu-loop.ogg",
+  menu: "/assets/audio/open/music/menu-loop.ogg",
   ...Object.fromEntries(STAGE_IDS.map((stage) => [
     stage,
-    __PRIVATE_CONTENT_MODE__
-      ? PRIVATE_STAGE_MUSIC[stage] ?? "/assets/audio/music/smash-battlefield.m4a"
-      : "/assets/audio/open/music/battle-loop.ogg",
+    "/assets/audio/open/music/battle-loop.ogg",
   ])),
 } as Readonly<Record<MusicTrackId, string>>;
 
 export const FIGHTER_AUDIO = Object.fromEntries(
-  FIGHTER_IDS.map((fighter) => [fighter,
-    __PRIVATE_CONTENT_MODE__ && isMeleeFighterId(fighter)
-      ? {
-          attack: `/assets/audio/fighters/${fighter}/attack.wav`,
-          jump: `/assets/audio/fighters/${fighter}/jump.wav`,
-          victory: `/assets/audio/fighters/${fighter}/victory.wav`,
-          announce: `/assets/audio/announcer/${fighter}.wav`,
-        }
-      : {
-          // Open fighters keep neutral redistributable cues in both modes.
-          attack: LOCAL_AUDIO_SAMPLES.hitLight,
-          jump: LOCAL_AUDIO_SAMPLES.dodge,
-          victory: LOCAL_AUDIO_SAMPLES.gameSet,
-          announce: LOCAL_AUDIO_SAMPLES.ready,
-        },
-  ]),
+  FIGHTER_IDS.map((fighter) => [fighter, {
+    attack: LOCAL_AUDIO_SAMPLES.hitLight,
+    jump: LOCAL_AUDIO_SAMPLES.dodge,
+    victory: LOCAL_AUDIO_SAMPLES.gameSet,
+    announce: LOCAL_AUDIO_SAMPLES.ready,
+  }]),
 ) as Readonly<
   Record<FighterId, Readonly<Record<FighterAudioCue | "announce", string>>>
 >;
@@ -388,7 +325,7 @@ export class GameAudio {
     if (!sound) return;
     if (sound === "land") this.playSample(LOCAL_AUDIO_SAMPLES.land, 0.7, "land", 45);
     else if (sound === "shield-break") this.playSample(LOCAL_AUDIO_SAMPLES.shieldBreak);
-    else if (sound === "franklin-reflect") this.playSample(LOCAL_AUDIO_SAMPLES.itemReflect);
+    else if (sound === "projectile-reflect") this.playSample(LOCAL_AUDIO_SAMPLES.itemReflect);
     else if (sound === "victory") this.playSample(LOCAL_AUDIO_SAMPLES.gameSet, 1, "game-set", 500);
     else if (sound === "dodge") this.playSample(LOCAL_AUDIO_SAMPLES.dodge, 0.8, "dodge", 70);
     else if (sound === "grab") this.playSample(LOCAL_AUDIO_SAMPLES.grab, 0.82, "grab", 70);

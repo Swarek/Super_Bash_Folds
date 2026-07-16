@@ -69,7 +69,7 @@ const report = (title, entries, format = (entry) => String(entry)) => {
   if (entries.length > 60) console.error(`- … ${entries.length - 60} other`);
 };
 
-report("Private paths still retrievable from history", forbiddenPaths);
+report("Local-only paths still retrievable from history", forbiddenPaths);
 report("Sensitive filenames in history", sensitivePaths);
 report(
   "Historical blobs larger than 50 MiB",
@@ -83,5 +83,5 @@ if (forbiddenPaths.length > 0 || sensitivePaths.length > 0 || oversized.length >
   );
   process.exitCode = 1;
 } else {
-  console.log(`${objects.length} historical objects verified; no private paths, sensitive files, or oversized blobs found.`);
+  console.log(`${objects.length} historical objects verified; no local-only paths, sensitive files, or oversized blobs found.`);
 }

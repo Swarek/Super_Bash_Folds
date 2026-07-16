@@ -1,12 +1,12 @@
 import type { OpenFighterId } from "./contracts";
 import {
-  buildUltimateAttacks,
+  buildStandardAttacks,
   meleeGravity,
   meleeHorizontalAcceleration,
   meleeHorizontalSpeed,
   meleeVerticalSpeed,
   standardThrows,
-  type UltimateMoveProfile,
+  type FighterMoveProfile,
 } from "./fighterBuilders";
 import { OPEN_FIGHTER_PACKS } from "./generated/openFighterRegistry";
 import type { FighterDefinition } from "./roster";
@@ -34,7 +34,7 @@ interface OpenFighterSeed {
   power?: number;
   speed?: number;
   reach?: number;
-  specials: UltimateMoveProfile["specials"];
+  specials: FighterMoveProfile["specials"];
 }
 
 const createOpenFighter = (seed: OpenFighterSeed): FighterDefinition => ({
@@ -67,7 +67,7 @@ const createOpenFighter = (seed: OpenFighterSeed): FighterDefinition => ({
   maxJumps: 2,
   shieldHealth: Math.round(54 + Math.min(20, seed.weight / 7)),
   shieldRegen: Math.max(5.2, 8.2 - seed.weight / 55),
-  attacks: buildUltimateAttacks({
+  attacks: buildStandardAttacks({
     fighterName: seed.displayName,
     power: seed.power,
     speed: seed.speed,

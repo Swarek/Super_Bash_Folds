@@ -1,23 +1,70 @@
 # Super Bash Folds
 
-[Official website](https://super-bash-folds.spry-crumb-3668.chatgpt.site) ·
-[Source code](https://github.com/Swarek/Super_Bash_Folds)
+<p align="center">
+  <strong>An open-source platform fighter where fighters and stages are portable content packs.</strong>
+</p>
 
-A local two-player platform fighter designed so that fighters and stages can be
-added as self-contained packs instead of requiring changes to the engine.
+<p align="center">
+  <a href="https://super-bash-folds.spry-crumb-3668.chatgpt.site/play/index.html"><strong>Play in your browser</strong></a>
+  ·
+  <a href="https://github.com/Swarek/Super_Bash_Folds/issues?q=is%3Aissue+state%3Aopen+label%3A%22good+first+issue%22"><strong>Good first issues</strong></a>
+  ·
+  <a href="https://github.com/Swarek/Super_Bash_Folds/discussions"><strong>Join the community</strong></a>
+</p>
 
-The public repository currently contains 14 open fighter prototypes, one CC0
-stage, 20 original items, and a redistributable audio library. Large combat
-assets are loaded only when a match starts and then cached for subsequent
-matches.
+<p align="center">
+  <a href="https://github.com/Swarek/Super_Bash_Folds/actions/workflows/ci.yml"><img alt="Public content CI" src="https://github.com/Swarek/Super_Bash_Folds/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/code-MIT-4d8cff"></a>
+  <a href="https://github.com/Swarek/Super_Bash_Folds/milestone/1"><img alt="Public preview" src="https://img.shields.io/badge/status-public_preview-65dfcc"></a>
+  <a href="https://github.com/Swarek/Super_Bash_Folds/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Swarek/Super_Bash_Folds?style=flat"></a>
+</p>
 
-Super Bash Folds is an independent project. It is not affiliated with, endorsed
-by, or approved by any video game publisher. The public repository and build
-are limited to original code and content with documented redistribution rights.
+![Open-source gameplay showing RGS Stick Figure and Cactus on Verdant Grove](docs/media/gameplay.webp)
 
-## Quick start
+Super Bash Folds is a fast local platform fighter for the web. The engine
+supports keyboard and controllers, configurable controls, CPU opponents,
+shields, rolls, air dodges, grabs, throws, ledges, projectiles, items, stock
+matches, timed matches, and sudden death.
 
-Prerequisite: Node.js 20 or newer.
+Its defining feature is the content system: a fighter or stage lives in one
+folder, is validated by the project tools, and joins the game without a manual
+engine registry edit.
+
+> [!IMPORTANT]
+> The playable build and this repository contain only original or
+> redistributable content. Third-party franchise assets shown in early private
+> development footage are not included, supported, or required.
+
+## Project status
+
+The current public preview is a playable foundation, not a finished competitive
+game. It includes:
+
+- 14 open-licensed fighter prototypes;
+- one CC0 stage;
+- 20 original items and a redistributable audio library;
+- local multiplayer, CPU play, configurable controls, and controller support;
+- fighter and stage pack generators, validators, and an Animation Lab;
+- automated public-content, history, test, build, and performance checks.
+
+The highest-priority goal is a flagship original fighter with a complete,
+purpose-built animation set. Artists, animators, game designers, developers,
+and playtesters are all welcome.
+
+## Project origin
+
+The initial game engine, content-pack tooling, public website, documentation,
+generated interface art, and launch video edit were produced with
+**GPT-5.6-Sol**, directed, tested, and reviewed by Swarek. The project is now an
+open foundation: new community work is credited through Git history and asset
+provenance records.
+
+## Play or run locally
+
+Play the hosted build at
+[super-bash-folds.spry-crumb-3668.chatgpt.site/play](https://super-bash-folds.spry-crumb-3668.chatgpt.site/play/index.html).
+
+To run the project locally, install Node.js 20 or newer:
 
 ```sh
 git clone https://github.com/Swarek/Super_Bash_Folds.git
@@ -26,30 +73,25 @@ npm ci
 npm run dev
 ```
 
-Vite displays the game's local address, which defaults to
+Vite prints the local address, which defaults to
 [`http://localhost:4173/`](http://localhost:4173/).
-Keyboard, mouse, and controllers are supported. Bindings can be configured
-directly from the Controls menu.
 
-## Public build and local overlay
+## Choose a contribution
 
-`npm run dev` always launches redistributable content, even when private files
-exist on the machine. A maintainer who already has a local overlay ignored by
-Git can run:
+| If you enjoy… | A useful first contribution |
+| --- | --- |
+| Character art or animation | Help design and animate the first flagship original fighter |
+| Game design | Review a move set, hitboxes, knockback, and competitive counterplay |
+| TypeScript | Improve pack tooling, engine mechanics, accessibility, or tests |
+| Level art | Create a redistributable stage pack |
+| Playing platform fighters | Test controllers, movement, match rules, and report reproducible issues |
+| Documentation | Turn one pack workflow into a smaller, clearer tutorial |
 
-```sh
-npm run dev:private
-```
-
-This command refuses to activate an incomplete overlay. Its content is not part
-of the public project, must not be redistributed, and is not covered by the
-repository's MIT license.
-
-`npm run build` and `npm run build:public` produce a public `dist/`, remove
-reserved paths, and verify the result. `npm run build:private` remains local.
-`npm run preview:private` automatically rebuilds the private bundle before
-serving it. These commands are intended only for local overlay testing. Always
-run `npm run build:public` again before publishing an artifact.
+Start with the [contribution guide](CONTRIBUTING.md), browse
+[`good first issue`](https://github.com/Swarek/Super_Bash_Folds/issues?q=is%3Aissue+state%3Aopen+label%3A%22good+first+issue%22),
+or propose an idea in
+[GitHub Discussions](https://github.com/Swarek/Super_Bash_Folds/discussions).
+The current direction is tracked in [ROADMAP.md](ROADMAP.md).
 
 ## Add a fighter
 
@@ -60,9 +102,9 @@ npm run fighter:build -- my-fighter
 npm run fighter:check
 ```
 
-The pack directory is the source of truth. The TypeScript registry, render
-manifests, portraits, and atlases are synchronized by the pipeline. The
-50-animation contract and common errors are documented in
+The pack directory is the source of truth. The project generates registries,
+render manifests, portraits, and atlases from it. The 50-animation contract,
+licensing rules, and troubleshooting steps are documented in
 [`fighters/README.md`](fighters/README.md).
 
 ## Add a stage
@@ -74,40 +116,36 @@ npm run stage:build
 npm run stage:check
 ```
 
-Each pack defines its collisions, ledges, spawn points, blast zone, rendering,
-and license. The menu and `StageId` type are generated automatically. See
-[`stages/README.md`](stages/README.md).
+A stage pack owns its collisions, ledges, spawn points, blast zone, rendering,
+and license metadata. See [`stages/README.md`](stages/README.md).
 
-## Verify the project
+## Verify a contribution
 
-Atlas verification also requires `dwebp`, provided by the `webp` package
-(`brew install webp` on macOS or `sudo apt-get install webp` on Debian/Ubuntu).
+Install the tools reported by `npm run content:doctor`, then run the check
+closest to your change while iterating. Before opening a pull request, run:
 
 ```sh
-npm test
-npm run fighter:check -- --deep
-npm run stage:check
 npm run validate:public
 ```
 
-`validate:public` forces public mode, checks the asset policy, runs the public
-tests, inspects Git history, and produces a build without relying on a local
-overlay. The final contents of `dist/`, initial JavaScript budgets, and
-thumbnails are also verified during the build.
-
-By default, `npm test` covers the public repository, including the engine.
-Maintainers who have the ignored private overlay can additionally run
-`npm run test:private`. This command must never be required by public CI.
+This command validates packs and asset policy, runs the public test suite,
+checks Git history, builds the game, and verifies the distributable output and
+performance budgets.
 
 ## Licenses and provenance
 
 - Code: [MIT](LICENSE).
 - Original project assets under `public/assets/open/`: CC0-1.0.
-- Third-party assets: licenses and provenance are documented in
-  [`THIRD_PARTY_ASSETS.md`](THIRD_PARTY_ASSETS.md).
-- Asset contribution rules: [`ASSET_POLICY.md`](ASSET_POLICY.md).
-- Naming, trademark, and content policy:
-  [`IP_AND_CONTENT_POLICY.md`](IP_AND_CONTENT_POLICY.md).
+- Third-party assets: [credits, licenses, and source links](THIRD_PARTY_ASSETS.md).
+- Asset contributions: [asset policy](ASSET_POLICY.md).
+- Naming and content boundaries: [IP and content policy](IP_AND_CONTENT_POLICY.md).
 
-Generated files must not be edited directly. Contributions are welcome; start
-with [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Every distributed asset must have a verifiable source and compatible license.
+Generated files must not be edited directly.
+
+## Community
+
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md). Use
+[Discussions](https://github.com/Swarek/Super_Bash_Folds/discussions) for ideas
+and design questions, and [Issues](https://github.com/Swarek/Super_Bash_Folds/issues)
+for reproducible bugs or accepted work.

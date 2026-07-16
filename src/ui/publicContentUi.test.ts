@@ -8,7 +8,7 @@ afterEach(() => {
   document.body.innerHTML = "";
 });
 
-describe.runIf(__PUBLIC_CONTENT_ONLY__)("public-content-only UI", () => {
+describe("public UI", () => {
   it("starts with two fighters that exist in the open runtime roster", () => {
     vi.spyOn(window, "matchMedia").mockReturnValue({
       matches: true,

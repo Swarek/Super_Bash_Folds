@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Swarek/Super-Bash-Folds.git"
+    "url": "https://github.com/Swarek/Super_Bash_Folds.git"
   },
   "engines": {
     "node": ">=20"
@@ -13,19 +13,19 @@
   "type": "module",
   "scripts": {
     "predev": "npm run content:build",
-    "dev": "PRIVATE_CONTENT_MODE=0 PUBLIC_CONTENT_ONLY=1 vite --host 0.0.0.0",
-    "dev:private": "npm run content:build && PRIVATE_CONTENT_MODE=1 PUBLIC_CONTENT_ONLY=0 vite --host 0.0.0.0",
+    "dev": "vite --host 0.0.0.0",
     "prebuild": "npm run content:build",
-    "build": "PRIVATE_CONTENT_MODE=0 PUBLIC_CONTENT_ONLY=1 npm run build:app && npm run check:public-dist",
+    "build": "npm run check:public-source && npm run build:app && npm run check:public-dist",
     "build:app": "tsc --noEmit && vite build && npm run check:performance",
     "build:public": "npm run build",
-    "build:private": "npm run content:build && PRIVATE_CONTENT_MODE=1 PUBLIC_CONTENT_ONLY=0 npm run build:app",
     "site:sync-game": "npm run build:public && node scripts/sync_site_game.mjs",
     "check:public-assets": "node scripts/check_public_assets.mjs",
     "check:public-history": "node scripts/check_public_history.mjs",
+    "check:public-source": "node scripts/check_public_source.mjs",
     "check:public-dist": "node scripts/check_public_dist.mjs",
     "check:performance": "node scripts/check_performance_budget.mjs",
     "content:build": "npm run fighter:build && npm run stage:build",
+    "content:doctor": "node scripts/content_doctor.mjs",
     "fighter:new": "node scripts/fighter_packs.mjs new",
     "fighter:build": "node scripts/fighter_packs.mjs build",
     "fighter:check": "node scripts/fighter_packs.mjs check",
@@ -36,14 +36,12 @@
     "validate:content": "node scripts/validate_content.mjs",
     "validate:open-fighters": "node scripts/validate_open_fighters.mjs",
     "pretest": "npm run content:build",
-    "test": "PRIVATE_CONTENT_MODE=0 PUBLIC_CONTENT_ONLY=1 vitest run",
+    "test": "vitest run",
     "test:public": "npm test",
-    "test:private": "npm run content:build && PRIVATE_CONTENT_MODE=1 PUBLIC_CONTENT_ONLY=0 vitest run",
-    "test:public-content": "PRIVATE_CONTENT_MODE=0 PUBLIC_CONTENT_ONLY=1 vitest run src/game/publicContent.test.ts src/game/roster.test.ts src/game/content.test.ts src/ui/publicContentUi.test.ts",
-    "validate:public": "npm run check:public-assets && npm run check:public-history && npm run fighter:check && npm run stage:check && npm run test:public && npm run build:public",
+    "test:public-content": "vitest run src/game/publicContent.test.ts src/game/roster.test.ts src/game/content.test.ts src/ui/publicContentUi.test.ts",
+    "validate:public": "npm run check:public-assets && npm run check:public-history && npm run check:public-source && npm run fighter:check && npm run stage:check && npm run validate:open-fighters && npm run test:public && npm run build:public",
     "test:watch": "vitest",
-    "preview": "npm run check:public-dist && PRIVATE_CONTENT_MODE=0 PUBLIC_CONTENT_ONLY=1 vite preview --host 0.0.0.0",
-    "preview:private": "npm run build:private && PRIVATE_CONTENT_MODE=1 PUBLIC_CONTENT_ONLY=0 vite preview --host 0.0.0.0"
+    "preview": "npm run check:public-dist && vite preview --host 0.0.0.0"
   },
   "devDependencies": {
     "@types/three": "^0.185.1",

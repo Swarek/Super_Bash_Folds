@@ -3,6 +3,8 @@
 The Super Bash Folds code is released under MIT. Original project creations
 under `public/assets/open/` and `public/favicon.svg` are dedicated to the public
 domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+The launch media listed in `website/public/PROVENANCE.md` and
+`docs/media/PROVENANCE.md` is also released under CC0 1.0.
 Third-party assets retain the license listed in their manifest and in
 [`THIRD_PARTY_ASSETS.md`](THIRD_PARTY_ASSETS.md).
 
@@ -33,11 +35,10 @@ Source archives, extraction tools, manifests naming game files, and data-mining
 instructions are also prohibited in the public repository. This rule applies
 to both the current state and the entire Git history.
 
-A developer may keep a private overlay in paths ignored by Git, but must never
-use `git add -f` to bypass them. `npm run dev` and `npm run build:public`
-enforce the public boundary even when that overlay exists. Only the explicit
-`dev:private`, `build:private`, and `preview:private` commands may activate it
-locally; they produce no redistributable content.
+Non-public experiments must stay outside this checkout or inside the generic
+local vaults ignored by Git. Never use `git add -f` to bypass that boundary.
+`npm run dev`, `npm test`, and every build command load public content only;
+this repository exposes no private-content activation path.
 
 ## Add a pack
 

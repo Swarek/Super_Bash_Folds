@@ -246,8 +246,8 @@ const ui = new UIController(
   root,
   {
     onBootStart: () => {
-      // Start the requested SSBU menu track with the automatic boot. Browsers
-      // that reject unprompted sound are retried on the first captured input.
+      // Start the menu track with the automatic boot. Browsers that reject
+      // unprompted sound are retried on the first captured input.
       audio.startMenuMusic();
     },
     onStartMatch: startMatch,
@@ -354,7 +354,7 @@ const playEvents = (events: readonly GameEvent[], snapshot: GameSnapshot): void 
         else audio.hit(eventStrength(event));
         break;
       case "shield-hit":
-        if (event.sound === "franklin-reflect") audio.cue(event.sound);
+        if (event.sound === "projectile-reflect") audio.cue(event.sound);
         else audio.shield(0.6);
         break;
       case "clank":
@@ -557,7 +557,7 @@ input.setEnabled(false);
 requestAnimationFrame(tick);
 
 // Exposed only for focused browser smoke tests and local debugging.
-Object.defineProperty(window, "__SUPER_OPEN_BROS__", {
+Object.defineProperty(window, "__SUPER_BASH_FOLDS__", {
   value: {
     getSnapshot: () => game?.getSnapshot() ?? null,
     startMatch: (config?: MatchConfig) => {

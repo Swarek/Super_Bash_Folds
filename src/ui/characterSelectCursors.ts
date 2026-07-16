@@ -36,16 +36,10 @@ const INTERACTIVE_SELECTOR = [
 ].join(",");
 
 function handMarkup(slot: PlayerSlot): string {
-  const pointer = __PRIVATE_CONTENT_MODE__
-    ? "/assets/ui/cursor/ultimate-pointer.png"
-    : "/assets/open/ui/cursor-pointer.svg";
-  const grab = __PRIVATE_CONTENT_MODE__
-    ? "/assets/ui/cursor/ultimate-grab.png"
-    : "/assets/open/ui/cursor-grab.svg";
   return `
     <span class="cc-player-cursor__hand" aria-hidden="true">
-      <img class="cc-player-cursor__pointer" src="${pointer}" alt="" draggable="false">
-      <img class="cc-player-cursor__grab" src="${grab}" alt="" draggable="false">
+      <img class="cc-player-cursor__pointer" src="/assets/open/ui/cursor-pointer.svg" alt="" draggable="false">
+      <img class="cc-player-cursor__grab" src="/assets/open/ui/cursor-grab.svg" alt="" draggable="false">
     </span>
     <span>P${slot + 1}</span>`;
 }

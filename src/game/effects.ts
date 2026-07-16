@@ -6,7 +6,6 @@ import type {
 } from "./engine";
 import {
   FIGHTER_IDS,
-  isOpenFighterId,
   type FighterId,
   type PlayerSlot,
 } from "./contracts";
@@ -18,13 +17,10 @@ import {
   type Vec2,
 } from "./roster";
 import { OPEN_FIGHTER_PACKS } from "./generated/openFighterRegistry";
-import { UltimateEffectSpriteLibrary } from "./ultimateEffectAssets";
 
 export const MAX_EFFECT_PARTICLES = 384;
 export const MAX_TRANSIENT_EFFECTS = 64;
 const MAX_PROJECTILE_TRAILS = 24;
-const DEFAULT_EFFECT_ASSET_FAMILY: "private" | "open" =
-  __PRIVATE_CONTENT_MODE__ ? "private" : "open";
 
 type EffectLayer = "behind" | "front" | "screen";
 type ParticleKind =
@@ -103,7 +99,6 @@ interface EffectParticle {
   drag: number;
   gravity: number;
   priority: number;
-  assetFamily: "private" | "open";
 }
 
 interface TransientEffect {
@@ -118,7 +113,6 @@ interface TransientEffect {
   layer: EffectLayer;
   priority: number;
   tier: ImpactTier;
-  assetFamily: "private" | "open";
 }
 
 interface FighterEffectState {
@@ -136,7 +130,6 @@ interface ProjectileEffectState {
   distance: number;
   points: Vec2[];
   kind: ProjectileDefinition["kind"];
-  assetFamily: "private" | "open";
 }
 
 type FutureEvent = GameEvent & {
@@ -144,7 +137,6 @@ type FutureEvent = GameEvent & {
   impactSpeed?: number;
   source?: "melee" | "projectile" | "throw" | "item";
   projectileKind?: ProjectileDefinition["kind"];
-  entityId?: number;
 };
 
 const FIGHTER_ACCENTS = Object.fromEntries(
@@ -165,203 +157,14 @@ const MATERIAL_COLORS: Readonly<Record<AttackEffectMaterial, string>> = {
 const PROJECTILE_COLORS: Readonly<Record<ProjectileDefinition["kind"], string>> = {
   fireball: "#ff6f36",
   arrow: "#d8f5ff",
-  boomerang: "#80eaff",
   bomb: "#ff9c45",
-  "charge-shot": "#61f8dc",
-  missile: "#ff8754",
-  "thunder-jolt": "#ffe34e",
-  thunder: "#a7f2ff",
   capsule: "#ef6d71",
-  egg: "#f7f0bd",
   blaster: "#d95cff",
-  "pk-fire": "#ff7245",
-  "pk-flash": "#c5a7ff",
-  "pk-thunder": "#7de9ff",
-  "ice-shot": "#b7f7ff",
   needle: "#dbeaff",
-  "din-fire": "#ff8b39",
-  turnip: "#d8f0a4",
-  "shadow-ball": "#b253ff",
-  chef: "#ffdf7a",
-  phantom: "#c9a8ff",
-  "fire-breath": "#ff5a32",
+  "energy-orb": "#b253ff",
   "ground-wave": "#ffd07a",
 };
 
-const PRIVATE_SPECIAL_MATERIALS: Readonly<
-  Partial<Record<FighterId, Readonly<Partial<Record<MoveName, AttackEffectMaterial>>>>>
-> = {
-  mario: {
-    "neutral-special": "fire",
-    "side-special": "wind",
-    "up-special": "fire",
-    "down-special": "water",
-  },
-  link: {
-    "neutral-special": "wind",
-    "side-special": "wind",
-    "up-special": "blade",
-    "down-special": "fire",
-  },
-  samus: {
-    "forward-smash": "energy",
-    "up-smash": "fire",
-    "down-tilt": "fire",
-    "neutral-special": "energy",
-    "side-special": "fire",
-    "up-special": "energy",
-    "down-special": "fire",
-  },
-  pikachu: {
-    jab: "electric",
-    "forward-smash": "electric",
-    "down-smash": "electric",
-    "neutral-air": "electric",
-    "forward-air": "electric",
-    "neutral-special": "electric",
-    "side-special": "electric",
-    "up-special": "electric",
-    "down-special": "electric",
-  },
-  "donkey-kong": {
-    "forward-smash": "heavy",
-    "up-smash": "heavy",
-    "down-smash": "heavy",
-    "neutral-special": "heavy",
-    "down-special": "heavy",
-  },
-  "dr-mario": {
-    "neutral-special": "energy",
-    "side-special": "wind",
-    "up-special": "physical",
-    "down-special": "wind",
-  },
-  luigi: {
-    "neutral-special": "fire",
-    "side-special": "fire",
-    "up-special": "physical",
-    "down-special": "wind",
-  },
-  bowser: {
-    "neutral-special": "fire",
-    "side-special": "heavy",
-    "up-special": "wind",
-    "down-special": "heavy",
-  },
-  peach: {
-    "neutral-special": "energy",
-    "side-special": "energy",
-    "up-special": "wind",
-    "down-special": "physical",
-  },
-  yoshi: {
-    "side-special": "wind",
-    "up-special": "energy",
-    "down-special": "heavy",
-  },
-  "captain-falcon": {
-    "neutral-special": "fire",
-    "side-special": "fire",
-    "up-special": "fire",
-    "down-special": "fire",
-  },
-  ganondorf: {
-    "forward-smash": "blade",
-    "up-smash": "blade",
-    "down-smash": "blade",
-    "neutral-special": "energy",
-    "side-special": "energy",
-    "up-special": "electric",
-    "down-special": "energy",
-  },
-  falco: {
-    "neutral-special": "energy",
-    "side-special": "energy",
-    "up-special": "fire",
-    "down-special": "energy",
-  },
-  fox: {
-    "neutral-special": "energy",
-    "side-special": "energy",
-    "up-special": "fire",
-    "down-special": "energy",
-  },
-  ness: {
-    "forward-smash": "energy",
-    "up-smash": "energy",
-    "down-smash": "energy",
-    "neutral-air": "energy",
-    "forward-air": "energy",
-    "up-air": "energy",
-    "neutral-special": "energy",
-    "side-special": "fire",
-    "up-special": "electric",
-    "down-special": "energy",
-  },
-  "ice-climbers": {
-    "neutral-special": "water",
-    "side-special": "wind",
-    "up-special": "wind",
-    "down-special": "water",
-  },
-  kirby: {
-    "neutral-special": "wind",
-    "side-special": "heavy",
-    "up-special": "blade",
-    "down-special": "heavy",
-  },
-  zelda: {
-    "forward-smash": "energy",
-    "up-smash": "energy",
-    "down-smash": "energy",
-    "neutral-air": "energy",
-    "forward-air": "electric",
-    "back-air": "electric",
-    "up-air": "energy",
-    "neutral-special": "energy",
-    "side-special": "fire",
-    "up-special": "wind",
-    "down-special": "energy",
-  },
-  sheik: {
-    "neutral-special": "blade",
-    "side-special": "fire",
-    "up-special": "energy",
-    "down-special": "physical",
-  },
-  "young-link": {
-    "neutral-special": "fire",
-    "side-special": "wind",
-    "up-special": "blade",
-    "down-special": "fire",
-  },
-  jigglypuff: {
-    "neutral-special": "wind",
-    "side-special": "physical",
-    "up-special": "energy",
-    "down-special": "energy",
-  },
-  mewtwo: {
-    "forward-air": "energy",
-    "neutral-special": "energy",
-    "side-special": "energy",
-    "up-special": "energy",
-    "down-special": "energy",
-  },
-  "mr-game-and-watch": {
-    "neutral-special": "fire",
-    "side-special": "physical",
-    "up-special": "wind",
-    "down-special": "energy",
-  },
-  roy: {
-    "forward-smash": "fire",
-    "neutral-special": "fire",
-    "side-special": "fire",
-    "up-special": "fire",
-    "down-special": "fire",
-  },
-};
 
 const OPEN_SPECIAL_MATERIALS = Object.fromEntries(
   OPEN_FIGHTER_PACKS.map((pack) => [pack.id, pack.effects.materials]),
@@ -369,38 +172,23 @@ const OPEN_SPECIAL_MATERIALS = Object.fromEntries(
   Partial<Record<FighterId, Readonly<Partial<Record<MoveName, AttackEffectMaterial>>>>>
 >;
 
-const SPECIAL_MATERIALS: Readonly<
-  Partial<Record<FighterId, Readonly<Partial<Record<MoveName, AttackEffectMaterial>>>>>
-> = {
-  ...PRIVATE_SPECIAL_MATERIALS,
-  ...OPEN_SPECIAL_MATERIALS,
-};
+const SPECIAL_MATERIALS = OPEN_SPECIAL_MATERIALS;
 
-const LINK_PHYSICAL_MOVES = new Set<MoveName>(["neutral-air", "back-air"]);
-const BLADE_FIGHTERS = new Set<FighterId>([
-  "link",
-  "young-link",
-  "marth",
-  "roy",
-  ...OPEN_FIGHTER_PACKS
+const BLADE_FIGHTERS = new Set<FighterId>(
+  OPEN_FIGHTER_PACKS
     .filter((pack) => (pack.effects.traits as readonly string[]).includes("blade"))
     .map((pack) => pack.id),
-]);
-const ELECTRIC_FIGHTERS = new Set<FighterId>([
-  "pikachu",
-  "pichu",
-  ...OPEN_FIGHTER_PACKS
+);
+const ELECTRIC_FIGHTERS = new Set<FighterId>(
+  OPEN_FIGHTER_PACKS
     .filter((pack) => (pack.effects.traits as readonly string[]).includes("electric"))
     .map((pack) => pack.id),
-]);
-const HEAVY_FIGHTERS = new Set<FighterId>([
-  "donkey-kong",
-  "bowser",
-  "ganondorf",
-  ...OPEN_FIGHTER_PACKS
+);
+const HEAVY_FIGHTERS = new Set<FighterId>(
+  OPEN_FIGHTER_PACKS
     .filter((pack) => (pack.effects.traits as readonly string[]).includes("heavy"))
     .map((pack) => pack.id),
-]);
+);
 
 const moveShape = (move: MoveName, attack: AttackDefinition): AttackArcShape => {
   if (attack.projectile) return "burst";
@@ -418,11 +206,11 @@ export const resolveAttackEffectProfile = (
   const attack = getFighterDefinition(fighter).attacks[move];
   let material = SPECIAL_MATERIALS[fighter]?.[move];
   if (!material) {
-    if (BLADE_FIGHTERS.has(fighter) && !LINK_PHYSICAL_MOVES.has(move)) material = "blade";
+    if (BLADE_FIGHTERS.has(fighter)) material = "blade";
     else if (ELECTRIC_FIGHTERS.has(fighter)) material = "electric";
     else if (HEAVY_FIGHTERS.has(fighter)) material = "heavy";
-    else if (attack.projectile?.kind === "pk-flash" || attack.projectile?.kind === "pk-thunder" || attack.projectile?.kind === "shadow-ball") material = "energy";
-    else if (attack.projectile?.kind === "fireball" || attack.projectile?.kind === "pk-fire" || attack.projectile?.kind === "din-fire" || attack.projectile?.kind === "fire-breath") material = "fire";
+    else if (attack.projectile?.kind === "energy-orb") material = "energy";
+    else if (attack.projectile?.kind === "fireball") material = "fire";
     else material = "physical";
   }
   return {
@@ -577,7 +365,6 @@ const inferredProjectileKind = (event: FutureEvent): ProjectileDefinition["kind"
 };
 
 export class CombatEffects {
-  private readonly officialSprites = new UltimateEffectSpriteLibrary();
   private readonly particles: EffectParticle[] = [];
   private readonly transients: TransientEffect[] = [];
   private readonly fighterStates: [FighterEffectState | null, FighterEffectState | null] = [null, null];
@@ -586,7 +373,6 @@ export class CombatEffects {
   private droppedParticles = 0;
   private droppedTransients = 0;
   private eventSeed = 0x51f15e;
-  private activeAssetFamily: "private" | "open" = DEFAULT_EFFECT_ASSET_FAMILY;
 
   reset(): void {
     this.particles.length = 0;
@@ -598,7 +384,6 @@ export class CombatEffects {
     this.droppedParticles = 0;
     this.droppedTransients = 0;
     this.eventSeed = 0x51f15e;
-    this.activeAssetFamily = DEFAULT_EFFECT_ASSET_FAMILY;
   }
 
   debugStats(): {
@@ -617,10 +402,9 @@ export class CombatEffects {
       projectileTrails: this.projectileStates.size,
       droppedParticles: this.droppedParticles,
       droppedTransients: this.droppedTransients,
-      openParticles: this.particles.filter(({ assetFamily }) => assetFamily === "open").length,
-      openTransients: this.transients.filter(({ assetFamily }) => assetFamily === "open").length,
-      openProjectileTrails: [...this.projectileStates.values()]
-        .filter(({ assetFamily }) => assetFamily === "open").length,
+      openParticles: this.particles.length,
+      openTransients: this.transients.length,
+      openProjectileTrails: this.projectileStates.size,
     };
   }
 
@@ -632,13 +416,6 @@ export class CombatEffects {
     for (const baseEvent of events) {
       const event = baseEvent as FutureEvent;
       const position = eventPosition(event);
-      const projectileFamily = event.entityId === undefined
-        ? undefined
-        : this.projectileStates.get(event.entityId)?.assetFamily;
-      this.activeAssetFamily = projectileFamily ??
-        (event.slot === undefined
-          ? DEFAULT_EFFECT_ASSET_FAMILY
-          : this.assetFamilyForFighter(snapshot.fighters[event.slot]));
       this.eventSeed = (Math.imul(event.frame + 1, 0x45d9f3b) ^ ((event.slot ?? 0) << 11)) >>> 0;
       if ((event.type as string) === "projectile-impact") {
         const kind = inferredProjectileKind(event);
@@ -646,7 +423,7 @@ export class CombatEffects {
         const damage = Number(event.damage ?? event.value ?? (kind === "bomb" ? 14 : 7));
         const tier = impactTierForDamage(damage);
         this.addTransient("impact", position, normalize(event.velocity ?? { x: 1, y: 0 }), 38 + damage * 1.4, color, "#ffffff", "front", 0.3, 3, tier);
-        this.spawnRadial(position, tier === "heavy" ? 18 : 10, color, kind === "thunder" || kind === "thunder-jolt" ? "electric" : "spark", impactStrength(damage) * 0.72, 2);
+        this.spawnRadial(position, tier === "heavy" ? 18 : 10, color, "spark", impactStrength(damage) * 0.72, 2);
         shake = Math.max(shake, tier === "heavy" ? 12 : 5);
         continue;
       }
@@ -796,7 +573,7 @@ export class CombatEffects {
           const kind = inferredProjectileKind(event);
           const color = kind ? projectileColor(kind) : "#93f4ff";
           this.addTransient("ring", position, this.slotFacing(snapshot, event.slot), 34, color, "#ffffff", "behind", 0.22, 2, "light");
-          this.spawnDirectional(position, this.slotFacing(snapshot, event.slot), 7, color, kind === "thunder" || kind === "thunder-jolt" ? "electric" : "spark", 0.46, 1);
+          this.spawnDirectional(position, this.slotFacing(snapshot, event.slot), 7, color, "spark", 0.46, 1);
           break;
         }
         case "item-spawn":
@@ -834,8 +611,6 @@ export class CombatEffects {
       }
     }
 
-    this.activeAssetFamily = DEFAULT_EFFECT_ASSET_FAMILY;
-
     return { shake, flash, flashColor };
   }
 
@@ -845,8 +620,7 @@ export class CombatEffects {
     this.updateTransients(safeDt);
     if (snapshot.frame !== this.lastSimulationFrame) {
       for (const fighter of snapshot.fighters) this.updateFighterMotion(fighter);
-      this.updateProjectileMotion(snapshot.projectiles, snapshot.fighters);
-      this.activeAssetFamily = DEFAULT_EFFECT_ASSET_FAMILY;
+      this.updateProjectileMotion(snapshot.projectiles);
       this.lastSimulationFrame = snapshot.frame;
     }
   }
@@ -873,28 +647,18 @@ export class CombatEffects {
     return slot === undefined ? { x: 1, y: 0 } : snapshot.fighters[slot].velocity;
   }
 
-  private assetFamilyForFighter(fighter: FighterSnapshot): "private" | "open" {
-    return !__PRIVATE_CONTENT_MODE__ || isOpenFighterId(fighter.fighter)
-      ? "open"
-      : "private";
-  }
-
   private slotFacing(snapshot: GameSnapshot, slot: PlayerSlot | undefined, multiplier = 1): Vec2 {
     const facing = slot === undefined ? 1 : snapshot.fighters[slot].facing;
     return { x: facing * multiplier, y: 0 };
   }
 
-  private addParticle(particle: Omit<EffectParticle, "assetFamily">): void {
-    const sourcedParticle: EffectParticle = {
-      ...particle,
-      assetFamily: this.activeAssetFamily,
-    };
+  private addParticle(particle: EffectParticle): void {
     if (this.particles.length < MAX_EFFECT_PARTICLES) {
-      this.particles.push(sourcedParticle);
+      this.particles.push(particle);
       return;
     }
     let replacement = -1;
-    let lowestPriority = sourcedParticle.priority;
+    let lowestPriority = particle.priority;
     for (let index = 0; index < this.particles.length; index += 1) {
       const candidate = this.particles[index];
       if (candidate && candidate.priority < lowestPriority) {
@@ -902,7 +666,7 @@ export class CombatEffects {
         lowestPriority = candidate.priority;
       }
     }
-    if (replacement >= 0) this.particles[replacement] = sourcedParticle;
+    if (replacement >= 0) this.particles[replacement] = particle;
     else this.droppedParticles += 1;
   }
 
@@ -930,7 +694,6 @@ export class CombatEffects {
       layer,
       priority,
       tier,
-      assetFamily: this.activeAssetFamily,
     };
     if (this.transients.length < MAX_TRANSIENT_EFFECTS) {
       this.transients.push(effect);
@@ -1038,7 +801,6 @@ export class CombatEffects {
   }
 
   private updateFighterMotion(fighter: FighterSnapshot): void {
-    this.activeAssetFamily = this.assetFamilyForFighter(fighter);
     const previous = this.fighterStates[fighter.slot];
     const next: FighterEffectState = {
       position: { ...fighter.position },
@@ -1098,14 +860,9 @@ export class CombatEffects {
     this.fighterStates[fighter.slot] = next;
   }
 
-  private updateProjectileMotion(
-    projectiles: readonly ProjectileSnapshot[],
-    fighters: GameSnapshot["fighters"],
-  ): void {
+  private updateProjectileMotion(projectiles: readonly ProjectileSnapshot[]): void {
     const active = new Set<number>();
     for (const projectile of projectiles) {
-      const assetFamily = this.assetFamilyForFighter(fighters[projectile.owner]);
-      this.activeAssetFamily = assetFamily;
       active.add(projectile.id);
       const previous = this.projectileStates.get(projectile.id);
       if (!previous) {
@@ -1114,11 +871,9 @@ export class CombatEffects {
           distance: 0,
           points: [{ ...projectile.position }],
           kind: projectile.kind,
-          assetFamily,
         });
         continue;
       }
-      previous.assetFamily = assetFamily;
       const distance = Math.hypot(
         projectile.position.x - previous.position.x,
         projectile.position.y - previous.position.y,
@@ -1129,15 +884,13 @@ export class CombatEffects {
         previous.points.push({ ...projectile.position });
         if (previous.points.length > MAX_PROJECTILE_TRAILS) previous.points.shift();
       }
-      const spacing = projectile.kind === "missile" || projectile.kind === "fireball" ? 24 : 36;
+      const spacing = projectile.kind === "fireball" ? 24 : 36;
       while (previous.distance >= spacing) {
         previous.distance -= spacing;
         this.eventSeed = (Math.imul(this.lastSimulationFrame + projectile.id, 0x27d4eb2d)) >>> 0;
-        const kind: ParticleKind = projectile.kind === "thunder" || projectile.kind === "thunder-jolt"
-          ? "electric"
-          : projectile.kind === "fireball" || projectile.kind === "missile" || projectile.kind === "bomb"
-            ? "ember"
-            : "streak";
+        const kind: ParticleKind = projectile.kind === "fireball" || projectile.kind === "bomb"
+          ? "ember"
+          : "streak";
         const direction = normalize({ x: -projectile.velocity.x, y: -projectile.velocity.y });
         this.spawnDirectional(projectile.position, direction, 1, projectileColor(projectile.kind), kind, 0.42, 0, "behind");
       }
@@ -1188,32 +941,20 @@ export class CombatEffects {
         if (!point || !previous) continue;
         const screen = view.worldToScreen(point);
         const rotation = Math.atan2(-(point.y - previous.y), point.x - previous.x);
-        const electric = state.kind === "thunder" || state.kind === "thunder-jolt";
-        const width = (state.kind === "charge-shot" ? 34 : 22) * view.zoom;
-        const height = (state.kind === "charge-shot" ? 18 : 10) * view.zoom;
-        if (state.assetFamily === "open") {
-          ctx.save();
-          ctx.translate(screen.x, screen.y);
-          ctx.rotate(rotation);
-          ctx.globalAlpha = 0.48;
-          ctx.globalCompositeOperation = "lighter";
-          ctx.strokeStyle = projectileColor(state.kind);
-          ctx.lineWidth = Math.max(2, height * 0.34);
-          ctx.beginPath();
-          ctx.moveTo(-width / 2, 0);
-          ctx.lineTo(width / 2, 0);
-          ctx.stroke();
-          ctx.restore();
-        } else {
-          this.officialSprites.drawParticle(ctx, electric ? "electric" : "streak", {
-            x: screen.x,
-            y: screen.y,
-            width,
-            height,
-            rotation,
-            alpha: 0.48,
-          });
-        }
+        const width = (state.kind === "energy-orb" ? 34 : 22) * view.zoom;
+        const height = (state.kind === "energy-orb" ? 18 : 10) * view.zoom;
+        ctx.save();
+        ctx.translate(screen.x, screen.y);
+        ctx.rotate(rotation);
+        ctx.globalAlpha = 0.48;
+        ctx.globalCompositeOperation = "lighter";
+        ctx.strokeStyle = projectileColor(state.kind);
+        ctx.lineWidth = Math.max(2, height * 0.34);
+        ctx.beginPath();
+        ctx.moveTo(-width / 2, 0);
+        ctx.lineTo(width / 2, 0);
+        ctx.stroke();
+        ctx.restore();
       }
     }
   }
@@ -1232,18 +973,7 @@ export class CombatEffects {
         if (screen.x < -120 || screen.x > view.width + 120 || screen.y < -120 || screen.y > view.height + 120) continue;
         const alpha = clamp(particle.life / particle.maxLife, 0, 1);
         const size = particle.size * (layer === "screen" ? 1 : view.zoom) * (0.62 + alpha * 0.38);
-        if (particle.assetFamily === "open") {
-          this.drawOpenParticle(ctx, particle, screen, size, alpha);
-          continue;
-        }
-        this.officialSprites.drawParticle(ctx, particle.kind, {
-          x: screen.x,
-          y: screen.y,
-          width: size * (particle.kind === "streak" ? 4.2 : 2.8),
-          height: size * (particle.kind === "streak" ? 1.35 : 2.8),
-          rotation: -particle.rotation,
-          alpha: alpha * (particle.kind === "dust" || particle.kind === "smoke" ? 0.62 : 0.92),
-        });
+        this.drawParticle(ctx, particle, screen, size, alpha);
       }
     }
     ctx.restore();
@@ -1259,23 +989,12 @@ export class CombatEffects {
       const alpha = Math.sin(Math.PI * clamp(progress, 0, 1));
       const screen = view.worldToScreen(effect.position);
       const size = effect.size * (layer === "screen" ? 1 : view.zoom);
-      if (effect.assetFamily === "open") {
-        this.drawOpenTransient(ctx, effect, screen, size, alpha);
-        continue;
-      }
-      this.officialSprites.drawTransient(ctx, effect.kind, effect.tier, {
-        x: screen.x,
-        y: screen.y,
-        width: size * (1.25 + progress * 0.55),
-        height: effect.kind === "shockwave" ? size * 0.52 : size * (1.25 + progress * 0.55),
-        rotation: Math.atan2(-effect.direction.y, effect.direction.x),
-        alpha,
-      });
+      this.drawTransient(ctx, effect, screen, size, alpha);
     }
     ctx.restore();
   }
 
-  private drawOpenParticle(
+  private drawParticle(
     ctx: CanvasRenderingContext2D,
     particle: EffectParticle,
     screen: Vec2,
@@ -1326,7 +1045,7 @@ export class CombatEffects {
     ctx.restore();
   }
 
-  private drawOpenTransient(
+  private drawTransient(
     ctx: CanvasRenderingContext2D,
     effect: TransientEffect,
     screen: Vec2,
@@ -1407,50 +1126,32 @@ export class CombatEffects {
       const centerY = origin.y + offsetY;
       const alpha = fighter.charge > 0.01 ? 0.32 + fighter.charge * 0.35 : Math.sin(Math.PI * clamp(progress, 0.02, 0.98));
       const effectFacing = moveName === "back-air" ? (fighter.facing === 1 ? -1 : 1) : fighter.facing;
-      const shapeRotation = profile.shape === "upper"
-        ? -0.72
-        : profile.shape === "lower"
-          ? 0.72
-          : profile.shape === "thrust"
-            ? 0
-            : progress * 0.55 - 0.28;
-      const drewPrivateEffect = this.officialSprites.drawAttack(ctx, fighter.fighter, moveName, profile.material, {
-        x: centerX,
-        y: centerY,
-        width: radius * (profile.shape === "thrust" ? 2.2 : 2.65),
-        height: radius * (profile.shape === "burst" || profile.shape === "spin" ? 2.15 : 1.35),
-        rotation: shapeRotation * effectFacing,
-        flipX: effectFacing < 0,
-        alpha,
-      });
-      if (!drewPrivateEffect && isOpenFighterId(fighter.fighter)) {
-        const geometry = resolveAttackArcGeometry(profile.shape, effectFacing, progress);
-        const horizontalRadius = radius * (profile.shape === "thrust" ? 1.08 : 1.28);
-        const verticalRadius = radius *
-          (profile.shape === "burst" || profile.shape === "spin" ? 1.02 : 0.68);
-        ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.globalCompositeOperation = "lighter";
-        ctx.lineCap = "round";
-        ctx.strokeStyle = profile.color;
-        ctx.lineWidth = Math.max(5, 11 * profile.width * view.zoom);
-        ctx.beginPath();
-        ctx.ellipse(
-          centerX,
-          centerY,
-          horizontalRadius,
-          verticalRadius,
-          0,
-          geometry.start,
-          geometry.end,
-          geometry.counterclockwise,
-        );
-        ctx.stroke();
-        ctx.strokeStyle = profile.coreColor;
-        ctx.lineWidth = Math.max(2, 3.5 * profile.width * view.zoom);
-        ctx.stroke();
-        ctx.restore();
-      }
+      const geometry = resolveAttackArcGeometry(profile.shape, effectFacing, progress);
+      const horizontalRadius = radius * (profile.shape === "thrust" ? 1.08 : 1.28);
+      const verticalRadius = radius *
+        (profile.shape === "burst" || profile.shape === "spin" ? 1.02 : 0.68);
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.globalCompositeOperation = "lighter";
+      ctx.lineCap = "round";
+      ctx.strokeStyle = profile.color;
+      ctx.lineWidth = Math.max(5, 11 * profile.width * view.zoom);
+      ctx.beginPath();
+      ctx.ellipse(
+        centerX,
+        centerY,
+        horizontalRadius,
+        verticalRadius,
+        0,
+        geometry.start,
+        geometry.end,
+        geometry.counterclockwise,
+      );
+      ctx.stroke();
+      ctx.strokeStyle = profile.coreColor;
+      ctx.lineWidth = Math.max(2, 3.5 * profile.width * view.zoom);
+      ctx.stroke();
+      ctx.restore();
     }
     ctx.restore();
   }

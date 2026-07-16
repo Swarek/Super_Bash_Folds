@@ -45,7 +45,7 @@ const harness = () => {
 };
 
 describe("local audio engine", () => {
-  it.runIf(!__PRIVATE_CONTENT_MODE__)("declares only redistributable tracks in public mode", () => {
+  it("declares only redistributable tracks", () => {
     expect(Object.keys(LOCAL_MUSIC_TRACKS)).toEqual(["menu", ...STAGE_IDS]);
     for (const source of Object.values(LOCAL_MUSIC_TRACKS)) {
       expect(source).toMatch(/^\/assets\/audio\/open\/music\/.+\.ogg$/);
@@ -57,7 +57,7 @@ describe("local audio engine", () => {
     );
   });
 
-  it.runIf(!__PRIVATE_CONTENT_MODE__)("routes every public sample away from the private overlay", () => {
+  it("routes every sample through the open asset library", () => {
     for (const source of Object.values(LOCAL_AUDIO_SAMPLES)) {
       expect(source).toMatch(/^\/assets\/audio\/open\//);
     }
@@ -65,25 +65,6 @@ describe("local audio engine", () => {
       for (const source of Object.values(cues)) {
         expect(source).toMatch(/^\/assets\/audio\/open\//);
       }
-    }
-  });
-
-  it.runIf(__PRIVATE_CONTENT_MODE__)("restores local private music for the explicit overlay", () => {
-    expect(Object.keys(LOCAL_MUSIC_TRACKS)).toEqual(["menu", ...STAGE_IDS]);
-    expect(LOCAL_MUSIC_TRACKS.menu).toBe("/assets/audio/music/menu.m4a");
-    for (const source of Object.values(LOCAL_MUSIC_TRACKS)) {
-      expect(source).toMatch(/^\/assets\/audio\/music\/.+\.m4a$/);
-      expect(source).not.toMatch(/^https?:/);
-    }
-    const expectedByStage: Readonly<Record<string, string>> = {
-      battlefield: "/assets/audio/music/battlefield.m4a",
-      "pokemon-stadium": "/assets/audio/music/pokemon-stadium.m4a",
-      "hyrule-castle": "/assets/audio/music/hyrule-castle.m4a",
-    };
-    for (const stage of STAGE_IDS) {
-      expect(LOCAL_MUSIC_TRACKS[stage]).toBe(
-        expectedByStage[stage] ?? "/assets/audio/music/smash-battlefield.m4a",
-      );
     }
   });
 
@@ -135,6 +116,7 @@ describe("local audio engine", () => {
     audio.cue("respawn");
     audio.cue("ledge");
     audio.cue("water-push");
+    audio.cue("projectile-reflect");
     audio.cue("swing-light");
     audio.cue("swing-heavy");
     audio.cue("special");
@@ -151,6 +133,7 @@ describe("local audio engine", () => {
     expect(sources).toContain(LOCAL_AUDIO_SAMPLES.go);
     expect(sources).toContain(LOCAL_AUDIO_SAMPLES.dodge);
     expect(sources).toContain(LOCAL_AUDIO_SAMPLES.itemBomb);
+    expect(sources).toContain(LOCAL_AUDIO_SAMPLES.itemReflect);
     expect(sources).toEqual(expect.arrayContaining([
       LOCAL_AUDIO_SAMPLES.dodge,
       LOCAL_AUDIO_SAMPLES.grab,
@@ -166,7 +149,7 @@ describe("local audio engine", () => {
     ]));
   });
 
-  it("uses existing neutral samples for open fighters instead of missing private paths", () => {
+  it("uses neutral redistributable samples for every fighter", () => {
     const { audio, players } = harness();
     audio.fighterCue("george", "attack");
     audio.fighterCue("wolf", "jump");
@@ -177,24 +160,6 @@ describe("local audio engine", () => {
       LOCAL_AUDIO_SAMPLES.hitLight,
       LOCAL_AUDIO_SAMPLES.dodge,
       LOCAL_AUDIO_SAMPLES.ready,
-    ]);
-  });
-
-  it.runIf(__PRIVATE_CONTENT_MODE__)("restores fighter voices and announcer cues for private fighters", () => {
-    const { audio, players } = harness();
-    audio.fighterCue("mario", "attack");
-    audio.fighterCue("link", "jump");
-    audio.fighterCue("samus", "victory");
-    audio.announceFighter("donkey-kong");
-
-    expect(FIGHTER_AUDIO.mario.attack).toBe(
-      "/assets/audio/fighters/mario/attack.wav",
-    );
-    expect(players.map(({ source }) => source)).toEqual([
-      "/assets/audio/fighters/mario/attack.wav",
-      "/assets/audio/fighters/link/jump.wav",
-      "/assets/audio/fighters/samus/victory.wav",
-      "/assets/audio/announcer/donkey-kong.wav",
     ]);
   });
 

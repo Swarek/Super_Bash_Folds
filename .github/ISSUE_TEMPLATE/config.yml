@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ideas and questions
+    url: https://github.com/Swarek/Super_Bash_Folds/discussions
+    about: Use Discussions for early ideas, questions, and design exploration.
+  - name: Security or sensitive content
+    url: https://github.com/Swarek/Super_Bash_Folds/security/policy
+    about: Do not disclose vulnerabilities, credentials, personal data, or prohibited assets publicly.

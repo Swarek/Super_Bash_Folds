@@ -13,14 +13,14 @@ import {
   CAMERA_ZOOM_IN_RATE,
   CAMERA_ZOOM_OUT_RATE,
   GameRenderer,
-  EXACT_SPRITE_REFERENCE_HEIGHT_PX,
-  EXACT_SPRITE_VISUAL_TO_BODY_RATIO,
+  SPRITE_REFERENCE_HEIGHT_PX,
+  SPRITE_VISUAL_TO_BODY_RATIO,
   cameraShakeOffset,
   cameraSmoothingAmount,
   clampStageCameraX,
   clampStageCameraY,
   computeGameplayCameraTarget,
-  exactSpritePixelScale,
+  spritePixelScale,
   fighterArtFootOffset,
   fighterShadowOffset,
   findOpaquePixelBounds,
@@ -40,8 +40,6 @@ const cameraFighter = (
   size = { width: 62, height: 82 },
   respawnFrames = 0,
 ) => ({ position: { x, y }, velocity, size, respawnFrames });
-
-const privateAssetIt = it.runIf(!__PUBLIC_CONTENT_ONLY__);
 
 describe("findOpaquePixelBounds", () => {
   it("returns the tight bounds of visible pixels", () => {
@@ -66,32 +64,20 @@ describe("findOpaquePixelBounds", () => {
     expect(findOpaquePixelBounds(new Uint8ClampedArray(3 * 2 * 4), 3, 2)).toBeNull();
   });
 
-  it("normalises exact sprite silhouettes to the gameplay body proportions", () => {
+  it("normalises atlas silhouettes to gameplay body proportions", () => {
     for (const fighter of FIGHTER_IDS) {
       const visibleWorldHeight =
-        EXACT_SPRITE_REFERENCE_HEIGHT_PX[fighter] * exactSpritePixelScale(fighter);
+        SPRITE_REFERENCE_HEIGHT_PX[fighter] * spritePixelScale(fighter);
       expect(visibleWorldHeight).toBeCloseTo(
-        getFighterDefinition(fighter).size.height * EXACT_SPRITE_VISUAL_TO_BODY_RATIO,
+        getFighterDefinition(fighter).size.height * SPRITE_VISUAL_TO_BODY_RATIO,
         5,
       );
     }
 
-    expect(EXACT_SPRITE_VISUAL_TO_BODY_RATIO).toBe(1.17);
+    expect(SPRITE_VISUAL_TO_BODY_RATIO).toBe(1.17);
   });
 
-  privateAssetIt("keeps comparative proportions for the private exact atlases", () => {
-    expect(EXACT_SPRITE_REFERENCE_HEIGHT_PX.link * exactSpritePixelScale("link")).toBeGreaterThan(
-      EXACT_SPRITE_REFERENCE_HEIGHT_PX.mario * exactSpritePixelScale("mario"),
-    );
-    expect(getFighterDefinition("donkey-kong").size.height).toBeGreaterThan(
-      getFighterDefinition("samus").size.height,
-    );
-    expect(getFighterDefinition("pikachu").size.height).toBeLessThan(
-      getFighterDefinition("mario").size.height,
-    );
-  });
-
-  it("anchors exact feet and shadows to each fighter's physical ground contact", () => {
+  it("anchors atlas feet and shadows to each fighter's physical ground contact", () => {
     for (const fighter of FIGHTER_IDS) {
       const halfHeight = getFighterDefinition(fighter).size.height / 2;
       expect(fighterArtFootOffset(getFighterDefinition(fighter).size.height, true)).toBe(halfHeight);
@@ -99,13 +85,13 @@ describe("findOpaquePixelBounds", () => {
     }
   });
 
-  it("preserves legacy local-sprite anchors when exact sheets are disabled", () => {
+  it("preserves local-sprite anchors when atlas sheets are disabled", () => {
     expect(fighterArtFootOffset(82, false)).toBe(54);
     expect(fighterShadowOffset(82, false)).toBe(53);
   });
 });
 
-describe("exact sprite frame bounds cache", () => {
+describe("atlas sprite frame bounds cache", () => {
   it("caches bounds per atlas crop instead of reusing the first frame", () => {
     const firstPixels = new Uint8ClampedArray(4 * 3 * 4);
     const secondPixels = new Uint8ClampedArray(4 * 3 * 4);
@@ -170,9 +156,9 @@ describe("exact sprite frame bounds cache", () => {
   });
 });
 
-describe("exact sprite material compositing", () => {
+describe("atlas sprite material compositing", () => {
   it("copies native pixels without tint or residue from the previous cell", () => {
-    const exactContext = {
+    const atlasContext = {
       globalAlpha: 1,
       globalCompositeOperation: "source-over",
       filter: "none",
@@ -183,44 +169,44 @@ describe("exact sprite material compositing", () => {
       fillRect: vi.fn(),
     };
     const drawCompositeModes: string[] = [];
-    exactContext.drawImage.mockImplementation(() => {
-      drawCompositeModes.push(exactContext.globalCompositeOperation);
+    atlasContext.drawImage.mockImplementation(() => {
+      drawCompositeModes.push(atlasContext.globalCompositeOperation);
     });
     const mainContext = { drawImage: vi.fn() };
     const harness = {
-      exactFrameContext: exactContext,
-      exactFrameCanvas: { width: 0, height: 0 },
+      atlasFrameContext: atlasContext,
+      atlasFrameCanvas: { width: 0, height: 0 },
       context: mainContext,
     };
-    const drawExact = (
+    const drawAtlas = (
       GameRenderer.prototype as unknown as {
-        drawExactSpriteFrame(
+        drawAtlasSpriteFrame(
           sprite: HTMLImageElement,
           crop: { x: number; y: number; width: number; height: number },
           profile: { x: number; y: number; width: number; height: number },
         ): boolean;
       }
-    ).drawExactSpriteFrame;
+    ).drawAtlasSpriteFrame;
 
-    expect(drawExact.call(
+    expect(drawAtlas.call(
       harness,
       {} as HTMLImageElement,
       { x: 192, y: 0, width: 192, height: 192 },
       { x: -80, y: -90, width: 160, height: 160 },
     )).toBe(true);
-    expect(drawExact.call(
+    expect(drawAtlas.call(
       harness,
       {} as HTMLImageElement,
       { x: 384, y: 0, width: 192, height: 192 },
       { x: -80, y: -90, width: 160, height: 160 },
     )).toBe(true);
-    expect(exactContext.resetTransform).toHaveBeenCalledTimes(2);
-    expect(exactContext.clearRect).toHaveBeenNthCalledWith(1, 0, 0, 192, 192);
-    expect(exactContext.clearRect).toHaveBeenNthCalledWith(2, 0, 0, 192, 192);
-    expect(exactContext.drawImage).toHaveBeenCalledTimes(2);
+    expect(atlasContext.resetTransform).toHaveBeenCalledTimes(2);
+    expect(atlasContext.clearRect).toHaveBeenNthCalledWith(1, 0, 0, 192, 192);
+    expect(atlasContext.clearRect).toHaveBeenNthCalledWith(2, 0, 0, 192, 192);
+    expect(atlasContext.drawImage).toHaveBeenCalledTimes(2);
     expect(drawCompositeModes).toEqual(["copy", "copy"]);
-    expect(exactContext.fillRect).not.toHaveBeenCalled();
-    expect(exactContext.globalCompositeOperation).toBe("source-over");
+    expect(atlasContext.fillRect).not.toHaveBeenCalled();
+    expect(atlasContext.globalCompositeOperation).toBe("source-over");
     expect(mainContext.drawImage).toHaveBeenCalledTimes(2);
   });
 });
@@ -383,7 +369,7 @@ describe("gameplay-first camera", () => {
     expect(target.y).toBeGreaterThan(150);
   });
 
-  it("keeps a grounded fighter and a high Donkey Kong in the safe area at the same time", () => {
+  it("keeps a grounded fighter and a large high fighter in the safe area at the same time", () => {
     const width = 1280;
     const height = 720;
     const target = computeGameplayCameraTarget(
@@ -395,11 +381,11 @@ describe("gameplay-first camera", () => {
       height,
     );
     const anchor = height * CAMERA_SCREEN_ANCHOR_RATIO;
-    const dkVisualTop =
+    const highFighterVisualTop =
       anchor - (700 + 112 * 0.67 - target.y) * target.zoom;
     const groundedVisualBottom = anchor - (0 - target.y) * target.zoom;
 
-    expect(dkVisualTop).toBeGreaterThanOrEqual(height * CAMERA_SAFE_TOP_RATIO);
+    expect(highFighterVisualTop).toBeGreaterThanOrEqual(height * CAMERA_SAFE_TOP_RATIO);
     expect(groundedVisualBottom).toBeLessThanOrEqual(
       height * CAMERA_SAFE_BOTTOM_RATIO,
     );
@@ -582,28 +568,28 @@ describe("gameplay-first camera", () => {
     expect(nextGoal.zoom).toBeLessThanOrEqual(previousGoal.zoom);
   });
 
-  it("follows Donkey Kong's full hop and double jump from a high platform", () => {
+  it("follows a heavy fighter's full hop and double jump from a high platform", () => {
     const width = 1280;
     const height = 720;
-    const dk = getFighterDefinition("donkey-kong");
+    const highFighter = getFighterDefinition("dark-knight-2d");
     const grounded = cameraFighter(-160, 41);
     let y = 385;
     let velocityY = 0;
     let camera = computeGameplayCameraTarget(
-      [grounded, cameraFighter(160, y, { x: 0, y: velocityY }, dk.size)],
+      [grounded, cameraFighter(160, y, { x: 0, y: velocityY }, highFighter.size)],
       width,
       height,
     );
     let cameraGoal = { ...camera };
     let minimumVisualTop = Number.POSITIVE_INFINITY;
 
-    velocityY = dk.jumpSpeed;
+    velocityY = highFighter.jumpSpeed;
     for (let frame = 0; frame < 70; frame += 1) {
-      if (frame === 28) velocityY = dk.doubleJumpSpeed;
-      velocityY -= dk.gravity / 60;
+      if (frame === 28) velocityY = highFighter.doubleJumpSpeed;
+      velocityY -= highFighter.gravity / 60;
       y += velocityY / 60;
       const target = computeGameplayCameraTarget(
-        [grounded, cameraFighter(160, y, { x: 0, y: velocityY }, dk.size)],
+        [grounded, cameraFighter(160, y, { x: 0, y: velocityY }, highFighter.size)],
         width,
         height,
       );
@@ -611,7 +597,7 @@ describe("gameplay-first camera", () => {
         camera,
         cameraGoal,
         target,
-        [grounded, cameraFighter(160, y, { x: 0, y: velocityY }, dk.size)],
+        [grounded, cameraFighter(160, y, { x: 0, y: velocityY }, highFighter.size)],
         width,
         height,
         false,
@@ -644,7 +630,7 @@ describe("gameplay-first camera", () => {
       if (y < 700) {
         const visualTop =
           height * CAMERA_SCREEN_ANCHOR_RATIO -
-          (y + dk.size.height * 0.67 - camera.y) * camera.zoom;
+          (y + highFighter.size.height * 0.67 - camera.y) * camera.zoom;
         minimumVisualTop = Math.min(minimumVisualTop, visualTop);
       }
     }
@@ -652,14 +638,14 @@ describe("gameplay-first camera", () => {
     expect(minimumVisualTop).toBeGreaterThanOrEqual(height * 0.04);
   });
 
-  privateAssetIt("keeps Mewtwo versus Fox smooth near the high platform", () => {
+  it("keeps two open fighters smooth near the high platform", () => {
     const width = 1280;
     const height = 720;
-    const mewtwo = getFighterDefinition("mewtwo");
-    const fox = getFighterDefinition("fox");
+    const airborneFighter = getFighterDefinition("kaykit-knight");
+    const groundedFighter = getFighterDefinition("george");
     const initialFighters = [
-      cameraFighter(-140, 41, { x: 0, y: 0 }, fox.size),
-      cameraFighter(140, 41, { x: 0, y: 0 }, mewtwo.size),
+      cameraFighter(-140, 41, { x: 0, y: 0 }, groundedFighter.size),
+      cameraFighter(140, 41, { x: 0, y: 0 }, airborneFighter.size),
     ];
     const initialCamera = computeGameplayCameraTarget(initialFighters, width, height);
     const harness = {
@@ -683,11 +669,11 @@ describe("gameplay-first camera", () => {
 
     for (let frame = 0; frame < 150; frame += 1) {
       const ascentProgress = Math.min(1, frame / 55);
-      const mewtwoY = 41 + 545 * (1 - Math.cos(ascentProgress * Math.PI / 2));
+      const airborneY = 41 + 545 * (1 - Math.cos(ascentProgress * Math.PI / 2));
       const velocityY = frame < 55 ? 720 * Math.cos(ascentProgress * Math.PI / 2) : 0;
       const fighters = [
-        cameraFighter(-140, 41, { x: 0, y: 0 }, fox.size),
-        cameraFighter(140, mewtwoY, { x: 0, y: velocityY }, mewtwo.size),
+        cameraFighter(-140, 41, { x: 0, y: 0 }, groundedFighter.size),
+        cameraFighter(140, airborneY, { x: 0, y: velocityY }, airborneFighter.size),
       ];
 
       updateCamera.call(harness, { fighters, events: [] } as unknown as GameSnapshot, 1 / 60);

@@ -59,7 +59,7 @@ export const OPEN_FIGHTER_PACKS = [
           "label": "Arcane Bolt",
           "damage": 9,
           "projectile": {
-            "kind": "shadow-ball",
+            "kind": "energy-orb",
             "speed": 410,
             "gravity": 0,
             "lifetimeFrames": 105,
@@ -864,7 +864,7 @@ export const OPEN_FIGHTER_PACKS = [
           "label": "Cursed Orb",
           "damage": 11,
           "projectile": {
-            "kind": "shadow-ball",
+            "kind": "energy-orb",
             "speed": 430,
             "gravity": 0,
             "lifetimeFrames": 110,
@@ -1375,7 +1375,7 @@ export const OPEN_FIGHTER_PACKS = [
           "label": "Runic Seal",
           "damage": 10,
           "projectile": {
-            "kind": "shadow-ball",
+            "kind": "energy-orb",
             "speed": 420,
             "gravity": 0,
             "lifetimeFrames": 108,

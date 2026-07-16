@@ -108,10 +108,13 @@ The targeted `npm run fighter:build -- <id>` command automatically regenerates
 the fighter thumbnail. After manually replacing multiple fighter portraits or
 stage previews, run `npm run optimize:ui-assets`.
 
-Stats, standard attacks, all four special moves, and effects already supported
-by the engine are configurable in the pack. A completely new mechanic, such as
-a new kind of tether, a transformation, or unsupported projectile behavior,
-still requires an engine implementation before the pack can reference it.
+Stats, movement tuning, animation mapping, all four special moves, and effects
+already supported by the engine are configurable in the pack. Standard attack
+logic is still shared by the engine; follow
+[issue #11](https://github.com/Swarek/Super_Bash_Folds/issues/11) for the pack
+contract that will expose it. A completely new mechanic, such as a new kind of
+tether, a transformation, or unsupported projectile behavior, still requires
+an engine implementation before the pack can reference it.
 
 ## Troubleshooting
 

@@ -8,12 +8,18 @@ import { fileURLToPath } from "node:url";
 import { isForbiddenPublicRepositoryPath } from "./public_asset_boundary.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
-const privateFighters = [
-  "dr-mario", "mario", "luigi", "bowser", "peach", "yoshi", "donkey-kong",
-  "captain-falcon", "ganondorf", "falco", "fox", "ness", "ice-climbers",
-  "kirby", "samus", "zelda", "sheik", "link", "young-link", "pichu",
-  "pikachu", "jigglypuff", "mewtwo", "mr-game-and-watch", "marth", "roy",
-];
+const open2DMetadata = JSON.parse(readFileSync(
+  resolve(root, "public/assets/characters/open/2d-animation-metadata.json"),
+  "utf8",
+));
+const open3DManifest = JSON.parse(readFileSync(
+  resolve(root, "scripts/open_fighter_pipeline/manifest.json"),
+  "utf8",
+));
+const openFighterIds = new Set([
+  ...Object.keys(open2DMetadata.fighters ?? {}),
+  ...Object.keys(open3DManifest.fighters ?? {}),
+]);
 
 const candidates = execFileSync(
   "git",
@@ -22,24 +28,6 @@ const candidates = execFileSync(
 ).toString("utf8").split("\0").filter(Boolean);
 
 const errors = [];
-const rejectPrefix = [
-  "assets-source/",
-  "validation/",
-  "public/assets/stages/",
-  "public/assets/audio/sfx/",
-  "public/assets/audio/music/",
-  "public/assets/audio/announcer/",
-  "public/assets/audio/fighters/",
-  "public/assets/items/",
-  "public/assets/effects/ultimate/",
-  "public/assets/ui/cursor/ultimate-",
-  "public/assets/characters/ultimate-",
-];
-for (const fighter of privateFighters) {
-  rejectPrefix.push(`public/assets/characters/${fighter}/`);
-  rejectPrefix.push(`public/assets/ui/fighters/${fighter}/`);
-}
-
 const forbiddenBinaryExtensions = new Set([
   ".arc", ".bntx", ".eff", ".nro", ".nuanmb", ".numatb", ".numdlb",
   ".nus3audio", ".nus3bank", ".nutexb", ".prc", ".sli", ".ssbh",
@@ -73,11 +61,12 @@ for (const path of candidates) {
   const info = lstatSync(absolute);
   totalBytes += info.size;
   if (info.isSymbolicLink()) errors.push(`${path}: symbolic links are prohibited`);
-  if (rejectPrefix.some((prefix) => path.startsWith(prefix))) {
-    errors.push(`${path}: path reserved for the private overlay`);
-  }
   if (isForbiddenPublicRepositoryPath(path)) {
-    errors.push(`${path}: path prohibited in the public repository`);
+    errors.push(`${path}: local-only path is prohibited in the public repository`);
+  }
+  const portrait = path.match(/^public\/assets\/ui\/fighters\/([^/]+)\//);
+  if (portrait && !openFighterIds.has(portrait[1])) {
+    errors.push(`${path}: portrait does not belong to a registered open fighter`);
   }
   if (forbiddenBinaryExtensions.has(extname(path).toLowerCase())) {
     errors.push(`${path}: private binary format is prohibited`);
@@ -108,6 +97,10 @@ const required = [
   "public/assets/open/SHA256SUMS",
   "stages/verdant-grove/PROVENANCE.md",
   "stages/verdant-grove/SHA256SUMS",
+  "website/public/PROVENANCE.md",
+  "website/public/SHA256SUMS",
+  "docs/media/PROVENANCE.md",
+  "docs/media/SHA256SUMS",
 ];
 for (const path of required) {
   if (!candidates.includes(path)) errors.push(`${path}: required public file is missing`);
@@ -135,6 +128,8 @@ const verifyChecksums = (directory, manifestPath, label) => {
 
 verifyChecksums("public/assets/audio/open", "public/assets/audio/open/SHA256SUMS", "audio");
 verifyChecksums("public/assets/open", "public/assets/open/SHA256SUMS", "original asset");
+verifyChecksums("website/public", "website/public/SHA256SUMS", "website launch media");
+verifyChecksums("docs/media", "docs/media/SHA256SUMS", "README launch media");
 
 if (errors.length > 0) {
   console.error("Public asset policy check failed:");
@@ -142,6 +137,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `${candidates.length} public files verified (${(totalBytes / 1024 / 1024).toFixed(1)} MiB), no private paths or obvious secrets found.`,
+    `${candidates.length} public files verified (${(totalBytes / 1024 / 1024).toFixed(1)} MiB), no local-only paths or obvious secrets found.`,
   );
 }

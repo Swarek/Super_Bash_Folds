@@ -24,69 +24,9 @@ validation/
 website/public/assets/
 website/public/play/
 
-# Local source vault. Public, audited runtime derivatives carry their own
-# provenance beside the files that are actually distributed.
+# Local scratch vault. Nothing in this directory is loaded, built, or
+# distributed by the public project.
 assets-source/
 
-# Large local-only SSBU source assets. Keep the catalog and documentation,
-# but never add Nintendo archives or extracted game files to Git.
-assets-source/archives/
-assets-source/extracted/
-assets-source/converted/
-assets-source/mega-complete/
-
-# Converted Nintendo stage meshes remain part of the private local overlay.
-# Open replacements must be audited before any stage asset is versioned.
-public/assets/stages/
-
-# Locally supplied/downloaded copyrighted audio masters. Runtime transcodes
-# stay in public/assets/audio for this private prototype.
-assets-source/downloaded/audio/
-
-# Re-downloadable upstream archives are kept locally for provenance checks.
-# Commit manifests, checksums, extracted sources and runtime atlases instead.
-assets-source/open-fighters/**/archives/
-
-# Private Smash fighter runtime overlay. These files remain available to the
-# local prototype but must never enter the future public repository.
-public/assets/characters/ultimate-sheets/
-public/assets/characters/ultimate-sheets-graded/
-public/assets/characters/ultimate-sheets-native/
-public/assets/characters/donkey-kong/
-public/assets/characters/link/
-public/assets/characters/mario/
-public/assets/characters/pikachu/
-public/assets/characters/samus/
-public/assets/audio/fighters/
-public/assets/audio/music/
-public/assets/audio/announcer/
-public/assets/audio/sfx/
-public/assets/effects/ultimate/
-public/assets/items/
-public/assets/ui/cursor/ultimate-*.png
-public/assets/ui/fighters/bowser/
-public/assets/ui/fighters/captain-falcon/
-public/assets/ui/fighters/donkey-kong/
-public/assets/ui/fighters/dr-mario/
-public/assets/ui/fighters/falco/
-public/assets/ui/fighters/fox/
-public/assets/ui/fighters/ganondorf/
-public/assets/ui/fighters/ice-climbers/
-public/assets/ui/fighters/jigglypuff/
-public/assets/ui/fighters/kirby/
-public/assets/ui/fighters/link/
-public/assets/ui/fighters/luigi/
-public/assets/ui/fighters/mario/
-public/assets/ui/fighters/marth/
-public/assets/ui/fighters/mewtwo/
-public/assets/ui/fighters/mr-game-and-watch/
-public/assets/ui/fighters/ness/
-public/assets/ui/fighters/peach/
-public/assets/ui/fighters/pichu/
-public/assets/ui/fighters/pikachu/
-public/assets/ui/fighters/roy/
-public/assets/ui/fighters/samus/
-public/assets/ui/fighters/sheik/
-public/assets/ui/fighters/yoshi/
-public/assets/ui/fighters/young-link/
-public/assets/ui/fighters/zelda/
+# Keep any non-public experiment in the generic local vaults above. The public
+# runtime never discovers or loads those directories.

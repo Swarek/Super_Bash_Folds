@@ -18,7 +18,7 @@ const config = (items = false): MatchConfig => ({
   items,
   itemFrequency: "high",
   // Item behavior is stage-agnostic. Keep this wide fixture explicit so the
-  // local Battlefield overlay cannot move the x=-700 setup offstage.
+  // x=-700 setup remains onstage as new open arenas are added.
   stage: OPEN_STAGE_IDS[0],
 });
 
@@ -91,45 +91,12 @@ describe("twenty-item combat system", () => {
     }
   });
 
-  it.runIf(!__PRIVATE_CONTENT_MODE__)("uses only original open item presentations publicly", () => {
+  it("uses only original open item presentations", () => {
     for (const kind of ITEM_KINDS) {
       expect(ITEM_DEFINITIONS[kind].iconUrl).toBe(`/assets/open/items/${kind}.svg`);
     }
     expect(ITEM_DEFINITIONS["vitality-fruit"].label).toBe("Vitality Fruit");
     expect(ITEM_DEFINITIONS["time-dilator"].label).toBe("Time Dilator");
-  });
-
-  it.runIf(__PRIVATE_CONTENT_MODE__)("restores every local Nintendo item presentation without changing gameplay ids", () => {
-    const expected = [
-      ["vitality-fruit", "Maxim Tomato", "maxim-tomato"],
-      ["med-kit", "Heart Container", "heart-container"],
-      ["power-orb", "Super Mushroom", "super-mushroom"],
-      ["wind-boots", "Bunny Hood", "bunny-hood"],
-      ["iron-ward", "Metal Box", "metal-box"],
-      ["nova-star", "Star", "super-star"],
-      ["plasma-blade", "Beam Sword", "beam-sword"],
-      ["power-bat", "Home-Run Bat", "home-run-bat"],
-      ["pulse-blaster", "Ray Gun", "ray-gun"],
-      ["flame-sprayer", "Fire Flower", "fire-flower"],
-      ["blast-core", "Bob-omb", "bob-omb"],
-      ["ricochet-disc", "Green Shell", "green-shell"],
-      ["slick-gel", "Banana Peel", "banana-peel"],
-      ["proximity-mine", "Proximity Mine", "motion-sensor-bomb"],
-      ["rebound-pad", "Bumper", "bumper"],
-      ["snare-trap", "Pitfall", "pitfall"],
-      ["shock-seed", "Deku Nut", "deku-nut"],
-      ["smoke-bomb", "Smoke Ball", "smoke-ball"],
-      ["reflector-charm", "Franklin Badge", "franklin-badge"],
-      ["time-dilator", "Timer", "timer"],
-    ] as const;
-
-    expect(ITEM_KINDS).toEqual(expected.map(([kind]) => kind));
-    for (const [kind, label, asset] of expected) {
-      expect(ITEM_DEFINITIONS[kind]).toMatchObject({
-        label,
-        iconUrl: `/assets/items/${asset}.png`,
-      });
-    }
   });
 
   it.each(ITEM_KINDS)("exercises %s without a silent no-op", (kind) => {
@@ -172,24 +139,24 @@ describe("twenty-item combat system", () => {
   });
 
   it("applies persistent power-up state to the correct fighter", () => {
-    const mushroom = exercise("power-orb").snapshot;
-    expect(mushroom.fighters[0].activeEffects.damageMultiplier).toBeGreaterThan(1);
+    const power = exercise("power-orb").snapshot;
+    expect(power.fighters[0].activeEffects.damageMultiplier).toBeGreaterThan(1);
 
-    const hood = exercise("wind-boots").snapshot;
-    expect(hood.fighters[0].activeEffects.speedMultiplier).toBeGreaterThan(1);
-    expect(hood.fighters[0].activeEffects.jumpMultiplier).toBeGreaterThan(1);
+    const speed = exercise("wind-boots").snapshot;
+    expect(speed.fighters[0].activeEffects.speedMultiplier).toBeGreaterThan(1);
+    expect(speed.fighters[0].activeEffects.jumpMultiplier).toBeGreaterThan(1);
 
-    const metal = exercise("iron-ward").snapshot;
-    expect(metal.fighters[0].activeEffects.defenseMultiplier).toBeLessThan(1);
+    const armor = exercise("iron-ward").snapshot;
+    expect(armor.fighters[0].activeEffects.defenseMultiplier).toBeLessThan(1);
 
-    const star = exercise("nova-star").snapshot;
-    expect(star.fighters[0].invulnerableFrames).toBeGreaterThan(300);
+    const invincibility = exercise("nova-star").snapshot;
+    expect(invincibility.fighters[0].invulnerableFrames).toBeGreaterThan(300);
 
-    const badge = exercise("reflector-charm").snapshot;
-    expect(badge.fighters[0].activeEffects.projectileShieldFrames).toBeGreaterThan(400);
+    const reflector = exercise("reflector-charm").snapshot;
+    expect(reflector.fighters[0].activeEffects.projectileShieldFrames).toBeGreaterThan(400);
 
-    const timer = exercise("time-dilator").snapshot;
-    expect(timer.fighters[1].activeEffects.speedMultiplier).toBeLessThan(1);
+    const slowTime = exercise("time-dilator").snapshot;
+    expect(slowTime.fighters[1].activeEffects.speedMultiplier).toBeLessThan(1);
   });
 
   it.each(["plasma-blade", "power-bat"] as const)("makes %s connect as a melee weapon", (kind) => {

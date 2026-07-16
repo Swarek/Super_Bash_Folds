@@ -18,5 +18,5 @@ Files selected from the archive:
 these two CC0 files. The large block forms continuous ground, while the
 floating block is resized and repeated three times. `backdrop.webp` is a
 transcode of the source background. The thumbnail is resized to 512x288. The
-transcodes retain no metadata. This pack contains no Nintendo asset or file
-from the source machine.
+transcodes retain no metadata. This pack contains no proprietary third-party
+asset or file from the source machine.

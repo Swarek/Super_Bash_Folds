@@ -1,0 +1,17 @@
+{
+  "name": "Super Bash Folds",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install --no-install-recommends --yes webp ffmpeg && npm ci",
+  "forwardPorts": [4173],
+  "portsAttributes": {
+    "4173": {
+      "label": "Super Bash Folds",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  }
+}

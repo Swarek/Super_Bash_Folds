@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Credits & Sources — Super Bash Folds",
@@ -13,6 +14,7 @@ type Credit = {
   pack: string;
   sources: { label: string; href: string }[];
   license?: string;
+  licenseHref?: string;
 };
 
 const cc0 = "CC0 1.0";
@@ -42,6 +44,29 @@ const otherAssets: Credit[] = [
 ];
 
 const projectCreatedWork: Credit[] = [
+  {
+    asset: "Initial engine, tooling, website, and documentation",
+    creator: "GPT-5.6-Sol",
+    creditLabel: "Initial implementation with",
+    note: "Directed, tested, and reviewed by Swarek. Community contributions remain credited through Git history.",
+    pack: "Project production",
+    sources: [
+      { label: "View the source on GitHub", href: "https://github.com/Swarek/Super_Bash_Folds" },
+    ],
+    license: "MIT",
+    licenseHref: "https://github.com/Swarek/Super_Bash_Folds/blob/main/LICENSE",
+  },
+  {
+    asset: "Launch gameplay edit",
+    creator: "GPT-5.6-Sol",
+    creditLabel: "Edited with",
+    note: "Gameplay recorded and directed by Swarek; the public-build edit and derivatives were assembled with GPT-5.6-Sol.",
+    pack: "Project production",
+    sources: [
+      { label: "View public media on GitHub", href: "https://github.com/Swarek/Super_Bash_Folds/tree/main/website/public/media" },
+    ],
+    license: cc0,
+  },
   {
     asset: "Original item icons",
     creator: "GPT-5.6-Sol",
@@ -75,6 +100,17 @@ const projectCreatedWork: Credit[] = [
     ],
     license: cc0,
   },
+  {
+    asset: "Launch social artwork",
+    creator: "GPT-5.6-Sol",
+    creditLabel: "Created with",
+    note: "Generated with OpenAI image generation from credited CC0 project assets, directed and reviewed by Swarek.",
+    pack: "Original project artwork",
+    sources: [
+      { label: "View files on GitHub", href: "https://github.com/Swarek/Super_Bash_Folds/tree/main/website/public" },
+    ],
+    license: cc0,
+  },
 ];
 
 function CreditCard({ credit }: { credit: Credit }) {
@@ -93,7 +129,7 @@ function CreditCard({ credit }: { credit: Credit }) {
           </a>
         ))}
       </div>
-      <a className="license-pill" href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noreferrer">
+      <a className="license-pill" href={credit.licenseHref ?? "https://creativecommons.org/publicdomain/zero/1.0/"} target="_blank" rel="noreferrer">
         {credit.license ?? cc0}
       </a>
     </article>
@@ -104,10 +140,10 @@ export default function Credits() {
   return (
     <main className="credits-page">
       <header className="credits-header">
-        <a className="brand" href="/" aria-label="Super Bash Folds — home">
+        <Link className="brand" href="/" aria-label="Super Bash Folds — home">
           <span className="brand-mark" aria-hidden="true"><i /><b /></span>
           <span><strong>Super Bash</strong><em>Folds</em></span>
-        </a>
+        </Link>
         <a className="header-cta" href="/play/index.html">Play now <span aria-hidden="true">→</span></a>
       </header>
 
@@ -150,7 +186,7 @@ export default function Credits() {
       </section>
 
       <footer className="credits-footer">
-        <a href="/">← Back to Super Bash Folds</a>
+        <Link href="/">← Back to Super Bash Folds</Link>
         <a href="/play/index.html">Play now →</a>
       </footer>
     </main>

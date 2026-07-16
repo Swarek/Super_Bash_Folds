@@ -18,6 +18,7 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--aqua); outline-offset: 4px; }
 
 .site-header {
   position: absolute;
@@ -48,6 +49,9 @@ nav a::after { position: absolute; bottom: 1px; left: 0; width: 0; height: 2px; 
 nav a:hover::after, nav a:focus-visible::after { width: 100%; }
 .header-cta { justify-self: end; padding: 11px 17px; border: 1px solid rgba(255,255,255,.4); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; transition: background .2s, color .2s; }
 .header-cta:hover, .header-cta:focus-visible { background: var(--white); color: var(--ink); }
+.header-actions { justify-self: end; display: flex; align-items: center; gap: 10px; }
+.header-github { padding: 11px 4px; color: var(--aqua); font-size: .78rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.header-github:hover, .header-github:focus-visible { color: var(--white); }
 
 .hero {
   position: relative;
@@ -80,9 +84,23 @@ nav a:hover::after, nav a:focus-visible::after { width: 100%; }
 .button-primary { border-color: var(--coral); background: var(--coral); }
 .button-primary:hover, .button-primary:focus-visible { background: #ff7a63; }
 .button-ghost:hover, .button-ghost:focus-visible { background: var(--white); color: var(--ink); }
+.button-dark { border-color: var(--ink); background: var(--ink); color: var(--white); }
+.button-dark:hover, .button-dark:focus-visible { background: var(--night); }
+.hero-create-link { display: inline-flex; gap: 10px; margin-top: 18px; color: var(--aqua); font-size: .73rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.hero-create-link:hover, .hero-create-link:focus-visible { color: var(--white); }
 .hero-meta { display: flex; gap: 30px; margin-top: 44px; color: #9eafc1; font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; }
 .hero-meta span { display: grid; gap: 3px; }
 .hero-meta strong { color: var(--white); font-size: 1rem; }
+
+.hero-gameplay { position: relative; z-index: 2; overflow: hidden; border: 1px solid rgba(255,255,255,.22); background: #050a12; box-shadow: 28px 32px 0 rgba(77,140,255,.22), -12px -12px 0 rgba(255,101,77,.17); transform: rotate(1.2deg); }
+.hero-gameplay::before { position: absolute; z-index: 2; inset: 0; pointer-events: none; content: ""; box-shadow: inset 0 0 0 8px rgba(11,21,38,.35); }
+.hero-gameplay video { display: block; width: 100%; aspect-ratio: 1920 / 1042; object-fit: cover; }
+.gameplay-caption { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 17px 20px; background: var(--paper); color: var(--ink); }
+.gameplay-caption strong { font-family: var(--font-display); font-weight: 400; letter-spacing: .05em; text-transform: uppercase; }
+.gameplay-caption small { color: #536070; font-size: .67rem; font-weight: 750; letter-spacing: .05em; text-transform: uppercase; }
+
+.public-note { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 25px; padding: 18px clamp(22px, 5vw, 80px); border-bottom: 1px solid rgba(11,21,38,.12); background: var(--aqua); color: var(--ink); font-size: .78rem; line-height: 1.45; }
+.public-note strong { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
 
 .hero-arena { position: relative; z-index: 2; height: min(52vw, 650px); min-height: 520px; }
 .impact-word { position: absolute; z-index: 0; top: 12%; left: 12%; color: rgba(255,255,255,.035); font: 400 clamp(7rem, 13vw, 13rem)/1 var(--font-display); transform: rotate(-8deg); }
@@ -105,6 +123,19 @@ nav a:hover::after, nav a:focus-visible::after { width: 100%; }
 .manifesto > p { max-width: 230px; font-size: .88rem; font-weight: 700; line-height: 1.55; text-transform: uppercase; }
 .manifesto h2 { position: relative; z-index: 1; font-size: clamp(3.3rem, 7vw, 7rem); line-height: .82; }
 .manifesto-note { display: grid; gap: 8px; font-size: .66rem; font-weight: 900; letter-spacing: .12em; writing-mode: vertical-rl; }
+
+.mission-section { display: grid; grid-template-columns: minmax(250px,.65fr) minmax(380px,1.15fr) minmax(280px,.8fr); align-items: center; gap: clamp(35px,5vw,82px); padding: 120px clamp(22px,6vw,95px); background: var(--white); }
+.open-slot { position: relative; min-height: 430px; overflow: hidden; display: grid; place-content: center; border: 3px dashed rgba(11,21,38,.34); background: repeating-linear-gradient(-45deg,rgba(77,140,255,.08) 0 13px,rgba(101,223,204,.1) 13px 26px); clip-path: polygon(0 4%,94% 0,100% 93%,8% 100%); transform: rotate(-2deg); }
+.open-slot > span { position: absolute; top: 24px; left: 28px; font-size: .65rem; font-weight: 900; letter-spacing: .12em; }
+.open-slot strong { text-align: center; font: 400 clamp(3.2rem,5.4vw,5.8rem)/.82 var(--font-display); letter-spacing: -.02em; }
+.open-slot i { position: absolute; right: 24px; bottom: 20px; color: var(--coral); font: normal 400 4rem/1 var(--font-display); }
+.mission-copy h2 { font-size: clamp(3.3rem,6.4vw,6.8rem); line-height: .84; }
+.mission-copy > p:not(.eyebrow) { max-width: 650px; color: #536070; line-height: 1.75; }
+.mission-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; margin-top: 28px; }
+.contribution-list { border-top: 1px solid var(--line); }
+.contribution-list article { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.contribution-list h3 { margin: 0 0 8px; font-size: .87rem; letter-spacing: .06em; text-transform: uppercase; }
+.contribution-list p { margin: 0; color: #536070; font-size: .84rem; line-height: 1.65; }
 
 .roster-section { padding: 120px clamp(22px, 5vw, 80px); }
 .section-heading { display: grid; grid-template-columns: 1.2fr .55fr; align-items: end; gap: 50px; margin-bottom: 62px; }
@@ -138,6 +169,7 @@ h2 em { color: var(--coral); font-style: normal; }
 .stage-label strong { font-family: var(--font-display); font-weight: 400; letter-spacing: .05em; text-transform: uppercase; }
 .create-copy > p:not(.eyebrow) { max-width: 480px; color: #536070; line-height: 1.75; }
 .text-link { display: inline-flex; gap: 18px; margin-top: 17px; padding-bottom: 5px; border-bottom: 3px solid var(--coral); font-size: .76rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.create-links { display: flex; flex-wrap: wrap; gap: 16px 28px; }
 
 .quickstart { display: grid; grid-template-columns: .7fr 1.3fr; align-items: center; gap: 7vw; padding: 110px clamp(22px, 7vw, 110px); background: var(--sky); color: var(--white); }
 .quickstart h2 em { color: var(--ink); }
@@ -188,16 +220,19 @@ footer > div { justify-self: end; display: flex; flex-wrap: wrap; justify-conten
 
 @media (max-width: 1050px) {
   .site-header { grid-template-columns: 1fr auto; }.site-header nav { display: none; }
-  .hero { grid-template-columns: 1fr; padding-top: 145px; }.hero-copy { max-width: 780px; }.hero-arena { width: min(760px, 100%); margin: -25px auto 0; }
+  .hero { grid-template-columns: 1fr; padding-top: 145px; }.hero-copy { max-width: 780px; }.hero-arena, .hero-gameplay { width: min(820px, 100%); margin: 45px auto 0; }
+  .mission-section { grid-template-columns: minmax(240px,.7fr) 1.3fr; }.contribution-list { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3,1fr); border-top: 0; gap: 24px; }.contribution-list article { border-top: 1px solid var(--line); }
   .fighter-grid { grid-template-columns: repeat(3, 1fr); }.roster-card { min-height: 360px; }
   .feature-section, .create-section { grid-template-columns: 1fr; }.feature-section { gap: 60px; }.create-section { gap: 85px; }.stage-preview { max-width: 800px; }
   .credits-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 700px) {
-  .site-header { padding-top: 20px; }.header-cta { padding: 10px 12px; font-size: .65rem; }.brand strong { font-size: .78rem; }.brand em { font-size: 1.08rem; }.brand-mark { scale: .82; transform-origin: left center; margin-right: -5px; }
+  .site-header { padding-top: 20px; gap: 10px; }.header-actions { gap: 7px; }.header-github, .header-cta { min-height: 44px; display: inline-flex; align-items: center; padding: 10px 8px; font-size: .62rem; }.brand strong { font-size: .78rem; }.brand em { font-size: 1.08rem; }.brand-mark { scale: .82; transform-origin: left center; margin-right: -5px; }
   .hero { min-height: 0; padding-top: 120px; }.hero h1 { font-size: clamp(4.7rem, 24vw, 7rem); }.hero-intro { margin-top: 34px; }.hero-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }.hero-arena { min-height: 390px; height: 105vw; margin-top: 10px; }.fighter-card { width: 52%; }.fighter-card-rival { width: 45%; }.platform-front { bottom: 13%; }
+  .hero-gameplay { margin-top: 42px; box-shadow: 12px 14px 0 rgba(77,140,255,.22); transform: none; }.gameplay-caption { display: grid; }.public-note { grid-template-columns: 1fr; gap: 5px; }
   .manifesto { grid-template-columns: 1fr; padding-block: 65px; }.manifesto > p { margin: 0; }.manifesto-note { display: flex; writing-mode: initial; }
+  .mission-section { grid-template-columns: 1fr; padding-block: 85px; }.open-slot { min-height: 320px; }.contribution-list { grid-column: auto; grid-template-columns: 1fr; gap: 0; }.mission-copy h2 { font-size: clamp(3.2rem,17vw,5rem); }
   .roster-section, .feature-section, .create-section { padding-block: 85px; }.section-heading { grid-template-columns: 1fr; gap: 25px; }.section-heading h2, .feature-intro h2, .create-copy h2, .quickstart h2 { font-size: clamp(3.2rem, 17vw, 5rem); }
   .fighter-grid { grid-template-columns: repeat(2, 1fr); }.roster-card { min-height: 270px; }
   .stage-preview { box-shadow: 13px 16px 0 var(--aqua); }.stage-label { gap: 8px; }.stage-label span { display: none; }
@@ -207,5 +242,5 @@ footer > div { justify-self: end; display: flex; flex-wrap: wrap; justify-conten
 }
 
 @media (max-width: 420px) {
-  .header-cta span { display: none; }.hero-actions .button { width: 100%; }.hero-meta { font-size: .54rem; }.roster-card { min-height: 225px; }.roster-card h3 { font-size: 1rem; }.feature-list article { grid-template-columns: 35px 1fr; }
+  .header-github { display: none; }.header-cta span { display: none; }.hero-actions .button { width: 100%; }.hero-meta { font-size: .58rem; }.roster-card { min-height: 225px; }.roster-card h3 { font-size: 1rem; }.feature-list article { grid-template-columns: 35px 1fr; }
 }

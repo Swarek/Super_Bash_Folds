@@ -155,13 +155,13 @@ const FIGHTERS: readonly FighterMeta[] = FIGHTER_IDS.map((id) => {
     productionReady: getFighterSkin(id, "00").productionReady,
   };
 });
-const firstRuntimeFighter = FIGHTERS.find(({ id }) => id === "mario")?.id ?? FIGHTERS[0]?.id;
+const firstRuntimeFighter = FIGHTERS[0]?.id;
 if (!firstRuntimeFighter) {
   throw new Error("No fighter pack is ready for the runtime roster.");
 }
 const DEFAULT_FIGHTERS: [FighterId, FighterId] = [
   firstRuntimeFighter,
-  FIGHTERS.find(({ id }) => id === "link")?.id ?? FIGHTERS[1]?.id ?? firstRuntimeFighter,
+  FIGHTERS[1]?.id ?? firstRuntimeFighter,
 ];
 
 type RosterDirection = "left" | "right" | "up" | "down";
@@ -807,7 +807,7 @@ export class UIController extends EventTarget {
           <footer class="cc-home__footer">
             <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
             <span><kbd>Enter</kbd> confirm</span>
-            <span class="cc-home__edition">Platform fighter open source</span>
+            <span class="cc-home__edition">Open-source platform fighter</span>
           </footer>
         </section>`,
       this.keyboardFocusSound ? "[data-ui-action='home-play']" : undefined,
@@ -1025,7 +1025,7 @@ export class UIController extends EventTarget {
               <p>Shield blocks attacks and grab beats shield. In the air, jump then down-diagonal + shield produces a wavedash; shield just before landing L-cancels an aerial.</p>
             </article>
           </div>
-          <div class="cc-tip-ribbon"><strong>Melee style</strong><span>Quickly reverse left/right to dash-dance. Release jump quickly for a short hop, then press down after the apex to fast-fall. Down also drops through soft platforms.</span></div>
+          <div class="cc-tip-ribbon"><strong>Advanced movement</strong><span>Quickly reverse left/right to dash-dance. Release jump quickly for a short hop, then press down after the apex to fast-fall. Down also drops through soft platforms.</span></div>
         </section>`,
       "[data-ui-action='back-home']",
     );

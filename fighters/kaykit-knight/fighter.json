@@ -39,7 +39,7 @@
         "label": "Arcane Bolt",
         "damage": 9,
         "projectile": {
-          "kind": "shadow-ball",
+            "kind": "energy-orb",
           "speed": 410,
           "gravity": 0,
           "lifetimeFrames": 105,

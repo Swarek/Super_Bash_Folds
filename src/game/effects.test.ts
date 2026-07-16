@@ -18,8 +18,8 @@ import { DEFAULT_STAGE_ID } from "./stages";
 
 const config: MatchConfig = {
   players: [
-    { fighter: "mario", skin: "00", name: "P1", slot: 0, cpu: false, cpuLevel: 1 },
-    { fighter: "link", skin: "00", name: "P2", slot: 1, cpu: false, cpuLevel: 1 },
+    { fighter: "kaykit-knight", skin: "00", name: "P1", slot: 0, cpu: false, cpuLevel: 1 },
+    { fighter: "george", skin: "00", name: "P2", slot: 1, cpu: false, cpuLevel: 1 },
   ],
   stocks: 3,
   items: true,
@@ -57,12 +57,10 @@ describe("attack effect profiles", () => {
     }
   });
 
-  it("gives signature materials to the original fighter styles", () => {
-    expect(resolveAttackEffectProfile("mario", "neutral-special").material).toBe("fire");
-    expect(resolveAttackEffectProfile("link", "forward-smash").material).toBe("blade");
-    expect(resolveAttackEffectProfile("samus", "neutral-special").material).toBe("energy");
-    expect(resolveAttackEffectProfile("pikachu", "jab").material).toBe("electric");
-    expect(resolveAttackEffectProfile("donkey-kong", "forward-smash").material).toBe("heavy");
+  it("uses authored materials and traits from open fighter packs", () => {
+    expect(resolveAttackEffectProfile("kaykit-knight", "neutral-special").material).toBe("energy");
+    expect(resolveAttackEffectProfile("kaykit-knight", "forward-smash").material).toBe("blade");
+    expect(resolveAttackEffectProfile("dark-knight-2d", "forward-smash").material).toBe("blade");
   });
 
   it("mirrors short attack arcs without taking the long Canvas path", () => {
@@ -207,7 +205,7 @@ describe("bounded combat effects runtime", () => {
       damage: 18,
       velocity: { x: 500, y: 250 },
       source: "projectile",
-      projectileKind: "charge-shot",
+      projectileKind: "energy-orb",
     } as GameEvent;
     const feedback = effects.consume([hit], snapshot);
     expect(feedback.shake).toBeGreaterThan(20);
@@ -231,7 +229,7 @@ describe("bounded combat effects runtime", () => {
     expect(effects.debugStats().transients).toBe(1);
   });
 
-  it("tags open fighter feedback for the procedural renderer instead of Ultimate assets", () => {
+  it("tags fighter feedback for the procedural renderer", () => {
     const effects = new CombatEffects();
     const openConfig: MatchConfig = {
       ...config,
@@ -262,7 +260,7 @@ describe("bounded combat effects runtime", () => {
     expect(effects.debugStats().openTransients).toBeGreaterThan(0);
   });
 
-  it.runIf(__PUBLIC_CONTENT_ONLY__)("keeps unowned public events on the procedural renderer", () => {
+  it("keeps unowned events on the procedural renderer", () => {
     const effects = new CombatEffects();
     const snapshot = baseSnapshot();
     effects.consume([

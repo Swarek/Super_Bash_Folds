@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { resolve } from "node:path";
+import { extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { findPrivateAssetsInDirectory } from "./public_asset_boundary.mjs";
+import {
+  findForbiddenAssetsInDirectory,
+  findForbiddenRuntimeMarkers,
+} from "./public_asset_boundary.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const dist = resolve(root, "dist");
+const textExtensions = new Set([".css", ".html", ".js", ".json", ".map", ".svg", ".txt"]);
 
 const filesBelow = (directory) => readdirSync(directory, { withFileTypes: true })
   .flatMap((entry) => {
@@ -18,24 +22,24 @@ if (!existsSync(dist)) {
   console.error("Public build is missing. Run npm run build:public before this check.");
   process.exitCode = 1;
 } else {
-  const forbidden = findPrivateAssetsInDirectory(dist);
-  if (forbidden.length > 0) {
-    console.error("The public build still contains files from the private overlay:");
-    for (const path of forbidden) console.error(`- ${path}`);
+  const errors = [];
+  for (const path of findForbiddenAssetsInDirectory(dist)) {
+    errors.push(`${path}: forbidden non-redistributable asset path`);
+  }
+  for (const path of filesBelow(dist)) {
+    if (!textExtensions.has(extname(path).toLowerCase())) continue;
+    if (statSync(path).size > 16 * 1024 * 1024) continue;
+    const markers = findForbiddenRuntimeMarkers(readFileSync(path, "utf8"));
+    for (const marker of markers) {
+      errors.push(`${relative(dist, path)}: ${marker}`);
+    }
+  }
+
+  if (errors.length > 0) {
+    console.error("Public build policy check failed:");
+    for (const error of errors) console.error(`- ${error}`);
     process.exitCode = 1;
   } else {
-    const staleBrandFiles = filesBelow(dist).filter((path) => {
-      if (statSync(path).size > 16 * 1024 * 1024) return false;
-      return /Super Open Bros|superopenbros:|LibreLedge(?!\.(?:settings|gamepads))/i.test(
-        readFileSync(path, "latin1"),
-      );
-    });
-    if (staleBrandFiles.length > 0) {
-      console.error("The public build still contains the project's former identity:");
-      for (const path of staleBrandFiles) console.error(`- ${path.slice(dist.length + 1)}`);
-      process.exitCode = 1;
-    } else {
-      console.log("Public build verified: no private assets or former project identity found in dist/.");
-    }
+    console.log("Public build verified: no non-redistributable assets, private markers, or former identity found in dist/.");
   }
 }

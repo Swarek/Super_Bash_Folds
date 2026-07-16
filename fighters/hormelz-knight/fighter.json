@@ -41,7 +41,7 @@
         "label": "Runic Seal",
         "damage": 10,
         "projectile": {
-          "kind": "shadow-ball",
+            "kind": "energy-orb",
           "speed": 420,
           "gravity": 0,
           "lifetimeFrames": 108,

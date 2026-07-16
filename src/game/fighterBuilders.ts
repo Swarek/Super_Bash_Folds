@@ -58,7 +58,7 @@ export const standardThrows = (power = 1): Record<ThrowName, ThrowDefinition> =>
   down: { damage: 6 * power, angle: 68, baseKnockback: 34, knockbackGrowth: 0.65 },
 });
 
-export interface UltimateMoveProfile {
+export interface FighterMoveProfile {
   fighterName: string;
   power?: number;
   speed?: number;
@@ -99,12 +99,11 @@ const scaledFrames = (frames: number, speed: number): number =>
   Math.max(1, Math.round(frames / speed));
 
 /**
- * Builds the common Ultimate normal-move families while preserving one typed,
- * fully differentiated special kit per fighter. The exact local NUANMB atlas
- * supplies the authored animation; this data owns the simplified combat hitbox.
+ * Builds a common normal-move family while preserving one typed,
+ * fully differentiated special kit per fighter.
  */
-export const buildUltimateAttacks = (
-  profile: UltimateMoveProfile,
+export const buildStandardAttacks = (
+  profile: FighterMoveProfile,
 ): Record<MoveName, AttackDefinition> => {
   const power = profile.power ?? 1;
   const speed = profile.speed ?? 1;
@@ -136,7 +135,7 @@ export const buildUltimateAttacks = (
     extra,
   );
   const special = (
-    key: keyof UltimateMoveProfile["specials"],
+    key: keyof FighterMoveProfile["specials"],
   ): AttackDefinition => {
     const spec = profile.specials[key];
     return move(

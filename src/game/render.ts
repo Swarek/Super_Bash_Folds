@@ -13,7 +13,7 @@ import {
   type ResolvedCharacterFrame,
 } from "./characterAssets";
 import {
-  EXACT_MODEL_TO_BODY_HEIGHT_RATIO,
+  SPRITE_VISUAL_TO_BODY_HEIGHT_RATIO,
   FIGHTER_IDS,
   getFighterDefinition,
 } from "./roster";
@@ -87,10 +87,10 @@ const PALETTES = Object.fromEntries(
 ) as Record<FighterId, Palette>;
 
 // Average opaque height of the supplied idle atlases, measured inside their
-// 192 px browser cells. Normalising against the actual silhouette prevents characters
-// such as Link and Donkey Kong from looking smaller merely because their
-// source render leaves more transparent space around them.
-export const EXACT_SPRITE_REFERENCE_HEIGHT_PX = Object.fromEntries(
+// 192 px browser cells. Normalising against the actual silhouette prevents a
+// fighter from looking smaller merely because its source render leaves more
+// transparent space around it.
+export const SPRITE_REFERENCE_HEIGHT_PX = Object.fromEntries(
   FIGHTER_IDS.map((fighter) => [
     fighter,
     getFighterDefinition(fighter).spriteReferenceHeight,
@@ -99,13 +99,11 @@ export const EXACT_SPRITE_REFERENCE_HEIGHT_PX = Object.fromEntries(
 
 // A single art-to-body ratio keeps every silhouette aligned with the same
 // collision contract while still allowing hats, ears and hands to overhang.
-// Measured against Melee Battlefield's lower-platform gap: the old 1.45 ratio
-// made Mario's silhouette about 24% larger than its Melee stage proportion.
-export const EXACT_SPRITE_VISUAL_TO_BODY_RATIO = EXACT_MODEL_TO_BODY_HEIGHT_RATIO;
+export const SPRITE_VISUAL_TO_BODY_RATIO = SPRITE_VISUAL_TO_BODY_HEIGHT_RATIO;
 
-export const exactSpritePixelScale = (fighter: FighterId): number =>
-  (getFighterDefinition(fighter).size.height * EXACT_SPRITE_VISUAL_TO_BODY_RATIO) /
-  EXACT_SPRITE_REFERENCE_HEIGHT_PX[fighter];
+export const spritePixelScale = (fighter: FighterId): number =>
+  (getFighterDefinition(fighter).size.height * SPRITE_VISUAL_TO_BODY_RATIO) /
+  SPRITE_REFERENCE_HEIGHT_PX[fighter];
 
 const GROUND_SHADOW_WIDTH = Object.fromEntries(
   FIGHTER_IDS.map((fighter) => [
@@ -115,15 +113,13 @@ const GROUND_SHADOW_WIDTH = Object.fromEntries(
 ) as Readonly<Record<FighterId, number>>;
 
 /**
- * Exact sheets are pre-lit native renders. Until native c01+ sheets exist,
- * every selected skin intentionally keeps the c00 material palette: applying a
- * flat overlay here also recolours skin, eyes, weapons and armour.
+ * Atlas sheets are pre-lit renders, so the renderer keeps their authored palette.
  */
-export const fighterArtFootOffset = (fighterHeight: number, exact: boolean): number =>
-  exact ? fighterHeight / 2 : 54;
+export const fighterArtFootOffset = (fighterHeight: number, atlas: boolean): number =>
+  atlas ? fighterHeight / 2 : 54;
 
-export const fighterShadowOffset = (fighterHeight: number, exact: boolean): number =>
-  exact ? fighterHeight / 2 : 53;
+export const fighterShadowOffset = (fighterHeight: number, atlas: boolean): number =>
+  atlas ? fighterHeight / 2 : 53;
 
 export const CAMERA_SCREEN_ANCHOR_RATIO = 0.42;
 export const CAMERA_SAFE_TOP_RATIO = 0.12;
@@ -493,8 +489,8 @@ export class GameRenderer {
   private readonly spriteSampleContext = this.spriteSampleCanvas.getContext("2d", {
     willReadFrequently: true,
   });
-  private readonly exactFrameCanvas = document.createElement("canvas");
-  private readonly exactFrameContext = this.exactFrameCanvas.getContext("2d");
+  private readonly atlasFrameCanvas = document.createElement("canvas");
+  private readonly atlasFrameContext = this.atlasFrameCanvas.getContext("2d");
   private readonly spriteBounds = new WeakMap<
     HTMLImageElement,
     Map<string, SpriteBounds | null>
@@ -906,17 +902,17 @@ export class GameRenderer {
     const hurt = fighter.hitstunFrames > 0;
     const buried = fighter.statusEffect === "bury" && fighter.hitstunFrames > 0;
     const attacking = fighter.currentMove !== null;
-    const exactAnimation = this.characterSprites.usesExactAnimations();
-    const bob = !exactAnimation && fighter.grounded && !attacking
+    const atlasAnimation = this.characterSprites.usesAtlasAnimations();
+    const bob = !atlasAnimation && fighter.grounded && !attacking
       ? Math.sin(this.elapsed * 5 + fighter.slot) * 2
       : 0;
-    const lean = exactAnimation ? 0 : clamp(fighter.velocity.x / 18, -0.25, 0.25);
+    const lean = atlasAnimation ? 0 : clamp(fighter.velocity.x / 18, -0.25, 0.25);
 
     const ctx = this.context;
     ctx.save();
     ctx.translate(screen.x, screen.y + bob * scale);
     ctx.scale(fighter.facing * scale, scale);
-    this.drawFighterGroundShadow(fighter, exactAnimation);
+    this.drawFighterGroundShadow(fighter, atlasAnimation);
     if (buried) {
       ctx.save();
       ctx.scale(fighter.facing, 1);
@@ -951,14 +947,14 @@ export class GameRenderer {
     ctx.restore();
   }
 
-  private drawFighterGroundShadow(fighter: FighterSnapshot, exactAnimation: boolean): void {
+  private drawFighterGroundShadow(fighter: FighterSnapshot, atlasAnimation: boolean): void {
     if (!fighter.grounded) return;
     const ctx = this.context;
     const width = GROUND_SHADOW_WIDTH[fighter.fighter];
     ctx.save();
     // Cancel the facing mirror so the shadow remains stable when turning.
     ctx.scale(fighter.facing, 1);
-    ctx.translate(0, fighterShadowOffset(fighter.size.height, exactAnimation));
+    ctx.translate(0, fighterShadowOffset(fighter.size.height, atlasAnimation));
     ctx.scale(1, 0.25);
     const shadow = ctx.createRadialGradient(0, 0, 0, 0, 0, width * 1.22);
     shadow.addColorStop(0, "rgba(4, 8, 14, .38)");
@@ -1000,55 +996,15 @@ export class GameRenderer {
   private drawCharacterModel(fighter: FighterSnapshot, palette: Palette): void {
     const frame = this.characterSprites.frameFor(fighter, this.elapsed);
     if (frame) {
-      if (fighter.fighter === "ice-climbers") {
-        const nanaFrame = this.characterSprites.companionFrameFor(fighter, this.elapsed);
-        if (nanaFrame) {
-          // The combat engine owns one shared hurtbox, while the visual layer
-          // keeps Nana's real Ultimate model synchronized behind Popo.
-          this.context.save();
-          this.context.translate(-34, 2);
-          this.context.scale(0.92, 0.92);
-          this.context.globalAlpha = 0.94;
-          this.drawAnimatedCharacterSprite(fighter, nanaFrame, palette);
-          this.context.restore();
-        }
-      }
-      this.drawAnimatedCharacterSprite(
-        fighter,
-        frame,
-        palette,
-      );
+      this.drawAnimatedCharacterSprite(fighter, frame);
       return;
     }
-
-    // Exact mode deliberately has no legacy fallback: a slow first decode may
-    // hide the fighter for a fraction of a second, but can never mix two art
-    // styles or make the character appear to change identity.
-    if (this.characterSprites.usesExactAnimations()) return;
-
-    switch (fighter.fighter) {
-      case "mario":
-        this.drawMario(fighter, palette);
-        break;
-      case "link":
-        this.drawLink(fighter, palette);
-        break;
-      case "samus":
-        this.drawSamus(fighter, palette);
-        break;
-      case "pikachu":
-        this.drawPikachu(fighter, palette);
-        break;
-      case "donkey-kong":
-        this.drawDonkeyKong(fighter, palette);
-        break;
-    }
+    this.drawFallbackFighter(fighter, palette);
   }
 
   private drawAnimatedCharacterSprite(
     fighter: FighterSnapshot,
     frame: ResolvedCharacterFrame,
-    palette: Palette,
   ): void {
     const ctx = this.context;
     const sprite = frame.image;
@@ -1060,7 +1016,7 @@ export class GameRenderer {
       width: sprite.naturalWidth,
       height: sprite.naturalHeight,
     };
-    const remotePixelScale = exactSpritePixelScale(fighter.fighter);
+    const remotePixelScale = spritePixelScale(fighter.fighter);
     const footOffset = fighterArtFootOffset(fighter.size.height, remote);
     const remoteReference = remote
       ? this.referenceBoundsForSprite(sprite, sourceFrame)
@@ -1078,13 +1034,11 @@ export class GameRenderer {
       : localProfile;
 
     ctx.save();
-    // Correct the source basis before the outer world-facing transform. Open
-    // renders currently face right; the private Melee atlases face left.
+    // Correct the authored source basis before the outer world-facing transform.
     if (remote && frame.sourceFacing === "left") ctx.scale(-1, 1);
-    if (!remote) this.drawSpriteAccessoryBack(fighter, palette);
     const drawSpriteFrame = (): void => {
       if (profile.crop) {
-        if (remote && this.drawExactSpriteFrame(
+        if (remote && this.drawAtlasSpriteFrame(
           sprite,
           profile.crop,
           profile,
@@ -1104,44 +1058,17 @@ export class GameRenderer {
         ctx.drawImage(sprite, profile.x, profile.y, profile.width, profile.height);
       }
     };
-    switch (remote ? null : fighter.fighter) {
-      case "mario":
-        ctx.filter = "none";
-        break;
-      case "link":
-        ctx.filter = "none";
-        break;
-      case "samus":
-        ctx.filter = "none";
-        break;
-      case "pikachu":
-        ctx.filter = "brightness(0) saturate(100%) invert(83%) sepia(95%) saturate(1641%) hue-rotate(346deg) brightness(105%) contrast(103%)";
-        break;
-      case "donkey-kong":
-        ctx.filter = "saturate(1.18) contrast(1.08)";
-        break;
-    }
-
     drawSpriteFrame();
-    if (!remote && fighter.fighter === "pikachu") {
-      ctx.save();
-      ctx.globalAlpha = 0.72;
-      ctx.globalCompositeOperation = "multiply";
-      ctx.filter = "grayscale(1) contrast(1.38)";
-      drawSpriteFrame();
-      ctx.restore();
-    }
     ctx.filter = "none";
-    if (!remote) this.drawSpriteAccessoryFront(fighter, palette);
     ctx.restore();
   }
 
-  private drawExactSpriteFrame(
+  private drawAtlasSpriteFrame(
     sprite: HTMLImageElement,
     crop: Readonly<{ x: number; y: number; width: number; height: number }>,
     profile: Readonly<{ x: number; y: number; width: number; height: number }>,
   ): boolean {
-    const context = this.exactFrameContext;
+    const context = this.atlasFrameContext;
     if (
       !context ||
       !Number.isFinite(crop.width) ||
@@ -1151,15 +1078,15 @@ export class GameRenderer {
     ) return false;
     const frameWidth = Math.ceil(crop.width);
     const frameHeight = Math.ceil(crop.height);
-    if (this.exactFrameCanvas.width !== frameWidth) this.exactFrameCanvas.width = frameWidth;
-    if (this.exactFrameCanvas.height !== frameHeight) this.exactFrameCanvas.height = frameHeight;
+    if (this.atlasFrameCanvas.width !== frameWidth) this.atlasFrameCanvas.width = frameWidth;
+    if (this.atlasFrameCanvas.height !== frameHeight) this.atlasFrameCanvas.height = frameHeight;
     context.resetTransform();
     context.globalAlpha = 1;
     context.filter = "none";
     context.clearRect(0, 0, frameWidth, frameHeight);
     // `copy` also replaces fully transparent source pixels. Together with the
     // full-buffer clear, this prevents pixels from the previous atlas cell
-    // leaking into the next exact frame when the backing size is unchanged.
+    // leaking into the next atlas frame when the backing size is unchanged.
     context.globalCompositeOperation = "copy";
     context.drawImage(
       sprite,
@@ -1175,7 +1102,7 @@ export class GameRenderer {
     context.globalAlpha = 1;
     context.globalCompositeOperation = "source-over";
     this.context.drawImage(
-      this.exactFrameCanvas,
+      this.atlasFrameCanvas,
       profile.x,
       profile.y,
       profile.width,
@@ -1219,495 +1146,24 @@ export class GameRenderer {
     }
   }
 
-  private drawSpriteAccessoryBack(fighter: FighterSnapshot, palette: Palette): void {
-    const ctx = this.context;
-    if (fighter.fighter === "link") {
-      ctx.save();
-      ctx.translate(-19, -3);
-      ctx.rotate(-0.4);
-      ctx.fillStyle = "#2f67a0";
-      ctx.strokeStyle = "#f1d06a";
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.ellipse(0, 0, 22, 30, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-      ctx.restore();
-    }
-    if (fighter.fighter === "pikachu") {
-      ctx.save();
-      ctx.fillStyle = palette.primary;
-      ctx.strokeStyle = palette.dark;
-      ctx.lineWidth = 5;
-      ctx.lineJoin = "bevel";
-      ctx.beginPath();
-      ctx.moveTo(-22, -7);
-      ctx.lineTo(-50, -19);
-      ctx.lineTo(-37, -37);
-      ctx.lineTo(-64, -50);
-      ctx.lineTo(-48, -15);
-      ctx.lineTo(-63, 0);
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
-      ctx.restore();
-    }
-    if (fighter.fighter === "samus") {
-      ctx.fillStyle = "#7e2919";
-      ctx.beginPath();
-      ctx.ellipse(-17, 4, 24, 37, -0.16, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
 
-  private drawSpriteAccessoryFront(fighter: FighterSnapshot, palette: Palette): void {
+  private drawFallbackFighter(fighter: FighterSnapshot, palette: Palette): void {
     const ctx = this.context;
-    switch (fighter.fighter) {
-      case "mario": {
-        ctx.fillStyle = "#2468cf";
-        this.roundedRect(-17, -5, 34, 33, 9);
-        ctx.fill();
-        ctx.fillStyle = "#f8d448";
-        ctx.beginPath();
-        ctx.arc(-9, 2, 2.5, 0, Math.PI * 2);
-        ctx.arc(9, 2, 2.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = palette.primary;
-        ctx.beginPath();
-        ctx.ellipse(-1, -59, 29, 13, -0.05, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillRect(-26, -59, 48, 8);
-        ctx.fillStyle = "#fff";
-        ctx.beginPath();
-        ctx.arc(-1, -61, 8, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = palette.primary;
-        ctx.font = "900 10px system-ui";
-        ctx.textAlign = "center";
-        ctx.fillText("M", -1, -57);
-        ctx.fillStyle = "#4a2419";
-        ctx.beginPath();
-        ctx.ellipse(12, -42, 13, 5, 0.05, 0, Math.PI * 2);
-        ctx.fill();
-        break;
-      }
-      case "link": {
-        ctx.fillStyle = "#3da65a";
-        ctx.strokeStyle = "#1b5434";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(-19, -29);
-        ctx.lineTo(20, -29);
-        ctx.lineTo(29, 25);
-        ctx.lineTo(0, 19);
-        ctx.lineTo(-28, 25);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = "#35a95c";
-        ctx.beginPath();
-        ctx.moveTo(-23, -61);
-        ctx.lineTo(37, -75);
-        ctx.lineTo(15, -42);
-        ctx.lineTo(-20, -42);
-        ctx.closePath();
-        ctx.fill();
-        const attacking = fighter.currentMove !== null;
-        ctx.save();
-        ctx.translate(28, -8);
-        ctx.rotate(attacking ? -0.92 + fighter.moveFrame * 0.09 : 0.18);
-        ctx.fillStyle = "#eaf6ff";
-        ctx.strokeStyle = "#284c78";
-        ctx.lineWidth = 2;
-        this.roundedRect(-4, -4, 8, 76, 3);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = "#f2ca5a";
-        ctx.fillRect(-13, -1, 26, 6);
-        ctx.restore();
-        break;
-      }
-      case "samus": {
-        ctx.fillStyle = "#ef7026";
-        ctx.strokeStyle = "#712719";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.ellipse(0, -6, 28, 37, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = "#f3c73f";
-        ctx.beginPath();
-        ctx.moveTo(-18, -22);
-        ctx.lineTo(0, -9);
-        ctx.lineTo(19, -22);
-        ctx.lineTo(12, 12);
-        ctx.lineTo(-12, 12);
-        ctx.closePath();
-        ctx.fill();
-        ctx.fillStyle = "#ef7026";
-        ctx.beginPath();
-        ctx.arc(0, -50, 25, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = "#173441";
-        ctx.beginPath();
-        ctx.moveTo(-16, -56);
-        ctx.lineTo(19, -55);
-        ctx.lineTo(10, -39);
-        ctx.lineTo(-11, -40);
-        ctx.closePath();
-        ctx.fill();
-        ctx.fillStyle = palette.accent;
-        ctx.globalAlpha = 0.82;
-        ctx.beginPath();
-        ctx.moveTo(-10, -52);
-        ctx.lineTo(13, -51);
-        ctx.lineTo(7, -44);
-        ctx.lineTo(-7, -44);
-        ctx.closePath();
-        ctx.fill();
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = "#e95d22";
-        this.roundedRect(22, -25, 43, 24, 11);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = palette.accent;
-        ctx.beginPath();
-        ctx.arc(64, -13, 7, 0, Math.PI * 2);
-        ctx.fill();
-        break;
-      }
-      case "pikachu": {
-        ctx.fillStyle = "#ef4b42";
-        ctx.beginPath();
-        ctx.arc(-12, -31, 7, 0, Math.PI * 2);
-        ctx.arc(15, -31, 7, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = palette.dark;
-        ctx.save();
-        ctx.translate(-14, -69);
-        ctx.rotate(-0.28);
-        this.roundedRect(-6, -24, 12, 25, 6);
-        ctx.fill();
-        ctx.restore();
-        ctx.save();
-        ctx.translate(16, -70);
-        ctx.rotate(0.25);
-        this.roundedRect(-6, -24, 12, 25, 6);
-        ctx.fill();
-        ctx.restore();
-        if (fighter.currentMove?.includes("special")) {
-          ctx.strokeStyle = palette.accent;
-          ctx.lineWidth = 4;
-          ctx.shadowColor = palette.accent;
-          ctx.shadowBlur = 14;
-          for (let index = 0; index < 3; index += 1) {
-            ctx.beginPath();
-            ctx.moveTo(-31 + index * 29, -68);
-            ctx.lineTo(-22 + index * 29, -84);
-            ctx.lineTo(-14 + index * 29, -68);
-            ctx.stroke();
-          }
-        }
-        break;
-      }
-      case "donkey-kong": {
-        ctx.fillStyle = palette.secondary;
-        ctx.strokeStyle = "#74232a";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(-9, -28);
-        ctx.lineTo(18, -22);
-        ctx.lineTo(8, 28);
-        ctx.lineTo(-2, 3);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = palette.accent;
-        ctx.font = "900 11px system-ui";
-        ctx.textAlign = "center";
-        ctx.fillText("DK", 5, -3);
-        if (fighter.currentMove) {
-          const punch = 15 + Math.sin(fighter.moveFrame * 0.5) * 10;
-          ctx.fillStyle = palette.primary;
-          ctx.beginPath();
-          ctx.arc(43 + punch, -8, 19, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        break;
-      }
-    }
-  }
-
-  private drawMario(fighter: FighterSnapshot, p: Palette): void {
-    const ctx = this.context;
-    const punch = fighter.currentMove?.includes("side") || fighter.currentMove === "jab" ? 25 : 0;
-    ctx.fillStyle = "#4b241a";
-    this.limb(-16, 19, -18, 49, 12);
-    this.limb(15, 19, 18 + punch * 0.4, 49, 12);
-    ctx.fillStyle = p.secondary;
-    this.limb(-14, 8, -16, 34, 17);
-    this.limb(13, 8, 15, 34, 17);
-    ctx.fillStyle = p.primary;
-    this.roundedRect(-25, -31, 50, 52, 18);
-    ctx.fill();
-    ctx.fillStyle = p.secondary;
-    ctx.fillRect(-20, -6, 40, 31);
-    ctx.fillStyle = p.accent;
-    ctx.beginPath();
-    ctx.arc(-10, 0, 3.5, 0, Math.PI * 2);
-    ctx.arc(10, 0, 3.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = p.light;
-    ctx.beginPath();
-    ctx.arc(0, -48, 25, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#6a3422";
-    ctx.beginPath();
-    ctx.ellipse(13, -43, 15, 7, 0.15, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = p.primary;
-    ctx.beginPath();
-    ctx.ellipse(-2, -64, 28, 13, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillRect(-24, -64, 44, 10);
-    ctx.fillStyle = "#ffffff";
-    ctx.beginPath();
-    ctx.arc(8, -52, 5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#18366b";
-    ctx.beginPath();
-    ctx.arc(10, -52, 2.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = p.primary;
-    this.limb(-22, -20, -39, -2, 13);
-    ctx.fillStyle = p.light;
-    this.limb(25, -18, 39 + punch, -8, 13);
-  }
-
-  private drawLink(fighter: FighterSnapshot, p: Palette): void {
-    const ctx = this.context;
-    const swing = fighter.currentMove?.includes("attack") || fighter.currentMove?.includes("tilt") ? -0.8 : 0.18;
-    ctx.fillStyle = "#463528";
-    this.limb(-13, 19, -15, 50, 11);
-    this.limb(13, 19, 15, 50, 11);
-    ctx.fillStyle = p.primary;
-    ctx.beginPath();
-    ctx.moveTo(-25, -29);
-    ctx.lineTo(25, -29);
-    ctx.lineTo(34, 29);
-    ctx.lineTo(0, 21);
-    ctx.lineTo(-33, 29);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#74452b";
-    ctx.fillRect(-25, 3, 50, 8);
-    ctx.fillStyle = p.light;
-    ctx.beginPath();
-    ctx.arc(0, -47, 24, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#d9b34e";
-    ctx.beginPath();
-    ctx.moveTo(-23, -58);
-    ctx.lineTo(28, -67);
-    ctx.lineTo(15, -45);
-    ctx.lineTo(-21, -41);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = p.primary;
-    ctx.beginPath();
-    ctx.moveTo(-21, -66);
-    ctx.lineTo(39, -80);
-    ctx.lineTo(12, -44);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#fff";
-    ctx.fillRect(7, -52, 8, 5);
-    ctx.fillStyle = "#2c6c92";
-    ctx.fillRect(11, -52, 3, 5);
+    const halfWidth = fighter.size.width * 0.42;
+    const halfHeight = fighter.size.height * 0.48;
     ctx.save();
-    ctx.translate(28, -12);
-    ctx.rotate(swing);
-    ctx.fillStyle = "#dceaff";
-    ctx.fillRect(-4, -5, 8, 82);
-    ctx.fillStyle = p.accent;
-    ctx.fillRect(-13, -2, 26, 7);
-    ctx.restore();
-    ctx.fillStyle = "#3a6ea5";
-    ctx.beginPath();
-    ctx.arc(-26, -6, 20, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = "#d9c15f";
+    ctx.fillStyle = palette.primary;
+    ctx.strokeStyle = palette.dark;
     ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, halfWidth, halfHeight, 0, 0, Math.PI * 2);
+    ctx.fill();
     ctx.stroke();
-  }
-
-  private drawSamus(fighter: FighterSnapshot, p: Palette): void {
-    const ctx = this.context;
-    ctx.fillStyle = p.dark;
-    this.limb(-14, 15, -17, 50, 15);
-    this.limb(14, 15, 17, 50, 15);
-    ctx.fillStyle = p.primary;
+    ctx.fillStyle = palette.secondary;
     ctx.beginPath();
-    ctx.ellipse(0, -5, 29, 38, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = p.secondary;
-    ctx.beginPath();
-    ctx.moveTo(-20, -28);
-    ctx.lineTo(0, -12);
-    ctx.lineTo(20, -28);
-    ctx.lineTo(13, 11);
-    ctx.lineTo(-13, 11);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = p.primary;
-    ctx.beginPath();
-    ctx.arc(0, -51, 26, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = p.dark;
-    ctx.beginPath();
-    ctx.moveTo(-18, -58);
-    ctx.lineTo(21, -57);
-    ctx.lineTo(11, -38);
-    ctx.lineTo(-13, -40);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = p.accent;
-    ctx.globalAlpha *= 0.9;
-    ctx.beginPath();
-    ctx.moveTo(-12, -54);
-    ctx.lineTo(14, -53);
-    ctx.lineTo(8, -43);
-    ctx.lineTo(-8, -44);
-    ctx.closePath();
-    ctx.fill();
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = p.secondary;
-    ctx.beginPath();
-    ctx.arc(-30, -19, 18, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(29, -18, 18, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = p.primary;
-    ctx.save();
-    ctx.translate(37, -11);
-    ctx.rotate(fighter.currentMove?.includes("special") ? -0.25 : 0.12);
-    this.roundedRect(0, -12, 48, 25, 12);
-    ctx.fill();
-    ctx.fillStyle = p.accent;
-    ctx.beginPath();
-    ctx.arc(47, 0, 8, 0, Math.PI * 2);
+    ctx.arc(halfWidth * 0.24, -halfHeight * 0.2, Math.max(5, halfWidth * 0.18), 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
-  }
-
-  private drawPikachu(fighter: FighterSnapshot, p: Palette): void {
-    const ctx = this.context;
-    const attack = fighter.currentMove !== null;
-    ctx.strokeStyle = p.secondary;
-    ctx.lineWidth = 10;
-    ctx.lineJoin = "bevel";
-    ctx.beginPath();
-    ctx.moveTo(-18, 5);
-    ctx.lineTo(-43, -2);
-    ctx.lineTo(-30, -18);
-    ctx.lineTo(-55, -31);
-    ctx.stroke();
-    ctx.fillStyle = p.primary;
-    ctx.beginPath();
-    ctx.ellipse(0, 8, 29, 34, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(5, -34, 28, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.save();
-    ctx.translate(-9, -52);
-    ctx.rotate(-0.22);
-    this.roundedRect(-7, -40, 14, 51, 8);
-    ctx.fill();
-    ctx.fillStyle = p.dark;
-    this.roundedRect(-7, -40, 14, 15, 7);
-    ctx.fill();
-    ctx.restore();
-    ctx.save();
-    ctx.translate(20, -51);
-    ctx.rotate(0.22);
-    ctx.fillStyle = p.primary;
-    this.roundedRect(-7, -40, 14, 51, 8);
-    ctx.fill();
-    ctx.fillStyle = p.dark;
-    this.roundedRect(-7, -40, 14, 15, 7);
-    ctx.fill();
-    ctx.restore();
-    ctx.fillStyle = p.dark;
-    ctx.beginPath();
-    ctx.arc(-5, -39, 4.5, 0, Math.PI * 2);
-    ctx.arc(15, -39, 4.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#e94b43";
-    ctx.beginPath();
-    ctx.arc(-17, -29, 7, 0, Math.PI * 2);
-    ctx.arc(27, -29, 7, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = p.dark;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(5, -29, 7, 0.2, Math.PI - 0.2);
-    ctx.stroke();
-    if (attack) {
-      ctx.strokeStyle = p.accent;
-      ctx.lineWidth = 4;
-      for (let i = 0; i < 3; i += 1) {
-        ctx.beginPath();
-        ctx.moveTo(-35 + i * 28, -69);
-        ctx.lineTo(-25 + i * 28, -82);
-        ctx.lineTo(-17 + i * 28, -67);
-        ctx.stroke();
-      }
-    }
-  }
-
-  private drawDonkeyKong(fighter: FighterSnapshot, p: Palette): void {
-    const ctx = this.context;
-    const slam = fighter.currentMove?.includes("down") || fighter.currentMove?.includes("smash");
-    ctx.fillStyle = p.dark;
-    this.limb(-23, 9, -29, 51, 19);
-    this.limb(22, 9, 28, 51, 19);
-    ctx.fillStyle = p.primary;
-    ctx.beginPath();
-    ctx.ellipse(0, -6, 42, 49, 0, 0, Math.PI * 2);
-    ctx.fill();
-    this.limb(-31, -22, -58, slam ? 30 : 13, 24);
-    this.limb(31, -22, 58, slam ? 30 : 13, 24);
-    ctx.fillStyle = p.light;
-    ctx.beginPath();
-    ctx.ellipse(5, -43, 31, 27, -0.05, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.ellipse(17, -35, 25, 15, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#fff";
-    ctx.beginPath();
-    ctx.arc(-2, -50, 7, 0, Math.PI * 2);
-    ctx.arc(13, -50, 7, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = p.dark;
-    ctx.beginPath();
-    ctx.arc(0, -49, 3, 0, Math.PI * 2);
-    ctx.arc(15, -49, 3, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = p.secondary;
-    ctx.beginPath();
-    ctx.moveTo(-12, -21);
-    ctx.lineTo(18, -13);
-    ctx.lineTo(9, 27);
-    ctx.lineTo(-4, 1);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = p.accent;
-    ctx.font = "900 11px system-ui";
-    ctx.fillText("CC", 2, 1);
   }
 
   private drawShield(fighter: FighterSnapshot, palette: Palette): void {
@@ -1892,17 +1348,6 @@ export class GameRenderer {
   private roundedRect(x: number, y: number, width: number, height: number, radius: number): void {
     this.context.beginPath();
     this.context.roundRect(x, y, width, height, Math.min(radius, width / 2, height / 2));
-  }
-
-  private limb(x1: number, y1: number, x2: number, y2: number, width: number): void {
-    const ctx = this.context;
-    ctx.strokeStyle = ctx.fillStyle;
-    ctx.lineWidth = width;
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
   }
 
 }

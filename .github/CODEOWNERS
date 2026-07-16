@@ -1,0 +1,9 @@
+# Keep the public-content and security boundaries under maintainer review.
+* @Swarek
+
+/.github/ @Swarek
+/ASSET_POLICY.md @Swarek
+/IP_AND_CONTENT_POLICY.md @Swarek
+/SECURITY.md @Swarek
+/scripts/check_public_* @Swarek
+/scripts/public_asset_boundary.* @Swarek

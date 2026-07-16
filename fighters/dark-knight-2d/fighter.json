@@ -41,7 +41,7 @@
         "label": "Cursed Orb",
         "damage": 11,
         "projectile": {
-          "kind": "shadow-ball",
+            "kind": "energy-orb",
           "speed": 430,
           "gravity": 0,
           "lifetimeFrames": 110,

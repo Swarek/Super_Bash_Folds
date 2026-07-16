@@ -53,34 +53,6 @@ export interface ItemDefinition {
   iconUrl: string;
 }
 
-interface PrivateItemPresentation {
-  label: string;
-  asset: string;
-}
-
-const PRIVATE_ITEM_PRESENTATION: Readonly<Record<ItemKind, PrivateItemPresentation>> = {
-  "vitality-fruit": { label: "Maxim Tomato", asset: "maxim-tomato" },
-  "med-kit": { label: "Heart Container", asset: "heart-container" },
-  "power-orb": { label: "Super Mushroom", asset: "super-mushroom" },
-  "wind-boots": { label: "Bunny Hood", asset: "bunny-hood" },
-  "iron-ward": { label: "Metal Box", asset: "metal-box" },
-  "nova-star": { label: "Star", asset: "super-star" },
-  "plasma-blade": { label: "Beam Sword", asset: "beam-sword" },
-  "power-bat": { label: "Home-Run Bat", asset: "home-run-bat" },
-  "pulse-blaster": { label: "Ray Gun", asset: "ray-gun" },
-  "flame-sprayer": { label: "Fire Flower", asset: "fire-flower" },
-  "blast-core": { label: "Bob-omb", asset: "bob-omb" },
-  "ricochet-disc": { label: "Green Shell", asset: "green-shell" },
-  "slick-gel": { label: "Banana Peel", asset: "banana-peel" },
-  "proximity-mine": { label: "Proximity Mine", asset: "motion-sensor-bomb" },
-  "rebound-pad": { label: "Bumper", asset: "bumper" },
-  "snare-trap": { label: "Pitfall", asset: "pitfall" },
-  "shock-seed": { label: "Deku Nut", asset: "deku-nut" },
-  "smoke-bomb": { label: "Smoke Ball", asset: "smoke-ball" },
-  "reflector-charm": { label: "Franklin Badge", asset: "franklin-badge" },
-  "time-dilator": { label: "Timer", asset: "timer" },
-};
-
 const item = (
   label: string,
   category: ItemDefinition["category"],
@@ -91,18 +63,15 @@ const item = (
   color: string,
   id: ItemKind,
 ): ItemDefinition => {
-  const privatePresentation = PRIVATE_ITEM_PRESENTATION[id];
   return {
-    label: __PRIVATE_CONTENT_MODE__ ? privatePresentation.label : label,
+    label,
     category,
     effect,
     amount,
     duration,
     charges,
     color,
-    iconUrl: __PRIVATE_CONTENT_MODE__
-      ? `/assets/items/${privatePresentation.asset}.png`
-      : `/assets/open/items/${id}.svg`,
+    iconUrl: `/assets/open/items/${id}.svg`,
   };
 };
 

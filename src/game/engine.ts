@@ -8,9 +8,7 @@ import type {
   StageId,
 } from "./contracts";
 import {
-  EXACT_MODEL_TO_BODY_HEIGHT_RATIO,
-  MELEE_HORIZONTAL_WORLD_SCALE,
-  MELEE_VERTICAL_WORLD_SCALE,
+  SPRITE_VISUAL_TO_BODY_HEIGHT_RATIO,
   getFighterDefinition,
   type AttackHitboxDefinition,
   type AttackDefinition,
@@ -20,6 +18,10 @@ import {
   type ThrowName,
   type Vec2,
 } from "./roster";
+import {
+  MELEE_HORIZONTAL_WORLD_SCALE,
+  MELEE_VERTICAL_WORLD_SCALE,
+} from "./fighterBuilders";
 import { getStageDefinition, stageSurfaceYAt } from "./stages";
 import {
   ITEM_DEFINITIONS,
@@ -27,6 +29,39 @@ import {
   isAutomaticItem,
   type ItemKind,
 } from "./items";
+
+const itemProjectileAttack = (
+  label: string,
+  damage: number,
+  kind: "blaster" | "fireball",
+  speed: number,
+  radius: number,
+): AttackDefinition => ({
+  label,
+  startup: 1,
+  active: 1,
+  recovery: 4,
+  damage,
+  angle: 35,
+  baseKnockback: 34,
+  knockbackGrowth: 0.72,
+  hitstop: 3,
+  hitstun: 7,
+  radius,
+  offset: { x: 34, y: 4 },
+  shieldDamage: damage * 0.75 + 2,
+  projectile: {
+    kind,
+    speed,
+    gravity: kind === "fireball" ? 80 : 0,
+    lifetimeFrames: kind === "fireball" ? 100 : 70,
+    radius,
+    absorbable: true,
+  },
+});
+
+const ITEM_RAY_ATTACK = itemProjectileAttack("Pulse Shot", 7, "blaster", 720, 14);
+const ITEM_FLAME_ATTACK = itemProjectileAttack("Flame Burst", 5, "fireball", 480, 18);
 
 export const FIXED_DT = 1 / 60;
 export const FIXED_DT_MS = 1_000 / 60;
@@ -63,10 +98,10 @@ export const GROUND_HITSTUN_LANDING_VELOCITY_RETENTION = 0.7;
 export const GROUND_HITSTUN_EDGE_VELOCITY_RETENTION = 0.42;
 /** Movement may resume shortly after the hitbox ends; attacking stays locked for the authored endlag. */
 export const ATTACK_MOBILITY_RECOVERY_FRAMES = 3;
-/** Accessibility floors derived from Battlefield's 164u / 329u platform gaps. */
+/** Accessibility floors derived from the public stage's lower and upper platform gaps. */
 export const MIN_FULL_HOP_RISE = 185;
 export const MIN_DOUBLE_JUMP_RISE = 165;
-/** Fire Fox-style launches need a short sustained travel window, not a one-frame impulse. */
+/** Directional recovery launches need a short sustained travel window, not a one-frame impulse. */
 export const DIRECTIONAL_LAUNCH_SUSTAIN_FRAMES = 14;
 export const DIRECTIONAL_LAUNCH_EXIT_VELOCITY_RETENTION = 0.35;
 /** Melee-style defensive movement during hitlag, scaled to roughly 10% of a body width. */
@@ -126,7 +161,6 @@ export const effectiveProjectileLifetime = (
     definition.ownerDischargeRadius ||
     definition.manualDetonation ||
     definition.restsOnGround ||
-    definition.kind === "fire-breath" ||
     definition.kind === "ground-wave"
   );
   return mechanicallyTimed
@@ -521,8 +555,6 @@ interface ActiveMove {
   specialPhase: "startup" | "active" | "recovery" | "landing" | null;
   lastSpecialDirection: Vec2 | null;
   appliedSelfDamage: boolean;
-  specialVariant: number | null;
-  specialStoredDamage: number;
 }
 
 interface FighterRuntime {
@@ -618,7 +650,6 @@ interface FighterRuntime {
   itemUseFrames: number;
   itemAction: "pickup" | "attack" | null;
   storedCharges: Partial<Record<MoveName, number>>;
-  absorbedEnergy: number;
 }
 
 export const effectiveJumpSquatFrames = (authoredFrames: number): number =>
@@ -1333,7 +1364,6 @@ export class CombatGame {
       itemUseFrames: 0,
       itemAction: null,
       storedCharges: {},
-      absorbedEnergy: 0,
     };
   }
 
@@ -2135,11 +2165,6 @@ export class CombatGame {
     const initialDirection = normalizedDirection(input);
     const storedCharge = move.storesCharge ? (fighter.storedCharges[name] ?? 0) : 0;
     const maximumCharge = move.maxChargeFrames ?? 1;
-    const storedOil =
-      fighter.fighter === "mr-game-and-watch" && name === "down-special"
-        ? fighter.absorbedEnergy
-        : 0;
-    if (storedOil > 0) fighter.absorbedEnergy = 0;
     fighter.action = {
       name,
       frame: 0,
@@ -2160,13 +2185,6 @@ export class CombatGame {
         ? initialDirection
         : null,
       appliedSelfDamage: false,
-      specialVariant:
-        fighter.fighter === "mr-game-and-watch" && name === "side-special"
-          ? 1 + Math.floor(this.random.next() * 9)
-          : fighter.fighter === "luigi" && name === "side-special"
-            ? (this.random.next() < 0.1 ? 1 : 0)
-          : null,
-      specialStoredDamage: storedOil,
     };
     if (move.projectile?.detonatesOnChargeRelease) {
       this.spawnProjectile(fighter, name, move);
@@ -2273,13 +2291,7 @@ export class CombatGame {
         const authoredMovement = !action.startedGrounded && move.airMovement
           ? move.airMovement
           : move.movement;
-        const movementScale =
-          fighter.fighter === "luigi" &&
-          action.name === "side-special" &&
-          action.specialVariant === 1
-            ? 1.75
-            : 1;
-        fighter.velocity.x = Math.abs(authoredMovement.x) * horizontalSign * movementScale;
+        fighter.velocity.x = Math.abs(authoredMovement.x) * horizontalSign;
         if (authoredMovement.y !== 0) {
           fighter.velocity.y = authoredMovement.y;
           fighter.grounded = false;
@@ -2334,10 +2346,10 @@ export class CombatGame {
         behavior.samples,
         Math.max(0, action.frame - 1) / totalFrames,
       );
-      // The NUANMB curve is normalized to the rendered skeleton, whose visible
+      // Root motion is normalized to the rendered skeleton, whose visible
       // height deliberately overhangs the smaller gameplay hurtbox.
       const worldScale =
-        fighter.definition.size.height * EXACT_MODEL_TO_BODY_HEIGHT_RATIO;
+        fighter.definition.size.height * SPRITE_VISUAL_TO_BODY_HEIGHT_RATIO;
       const verticalScale = worldScale * (
         !action.startedGrounded ? behavior.airVerticalMultiplier ?? 1 : 1
       );
@@ -2387,7 +2399,7 @@ export class CombatGame {
         if (!staysOnAuthoredGround) {
           // A recovery is authored as a sustained powered rise. Applying this
           // velocity only on its first frame let gravity erase nearly all of
-          // Bowser, DK and open-fighter Up-B movement before the active phase.
+          // Heavy and open-fighter up-special movement before the active phase.
           const riseProgress = clamp(
             (action.frame - startFrame) / Math.max(1, behavior.steerFrames),
             0,
@@ -3462,7 +3474,6 @@ export class CombatGame {
         move.counters ||
         (
           move.damage <= 0 &&
-          action.specialStoredDamage <= 0 &&
           (move.absorbsProjectiles || move.reflectsProjectiles)
         )
       ) continue;
@@ -3471,16 +3482,7 @@ export class CombatGame {
       if (action.frame < firstActiveFrame || action.frame > lastActiveFrame) continue;
 
       const target = this.fighters[slotOther(attacker.slot)];
-      const effectiveMove: AttackDefinition = action.specialStoredDamage > 0
-        ? {
-            ...move,
-            damage: Math.min(60, Math.max(8, action.specialStoredDamage * 1.5)),
-            baseKnockback: Math.max(65, move.baseKnockback),
-            knockbackGrowth: Math.max(1.02, move.knockbackGrowth),
-            shieldDamage: Math.max(18, action.specialStoredDamage),
-            radius: Math.max(68, move.radius),
-          }
-        : move;
+      const effectiveMove = move;
       const maximumHits = Math.max(1, effectiveMove.multiHit ?? 1);
       const landedHits = action.hitCounts.get(target.slot) ?? 0;
       const lastHitFrame = action.lastHitFrame.get(target.slot);
@@ -3513,20 +3515,8 @@ export class CombatGame {
       action.lastHitFrame.set(target.slot, action.frame);
       const chargeScale = this.chargeScale(move, action.chargeFrames);
       const isFinisher = landedHits + 1 >= maximumHits;
-      const usesVariantDamage =
-        (attacker.fighter === "mr-game-and-watch" && action.name === "side-special") ||
-        (attacker.fighter === "luigi" && action.name === "side-special" && action.specialVariant === 1);
-      const variantDamage =
-        attacker.fighter === "mr-game-and-watch" && action.name === "side-special"
-          ? ([2, 4, 6, 8, 10, 12, 14, 16, 32][(action.specialVariant ?? 1) - 1] ?? move.damage)
-          : attacker.fighter === "luigi" && action.name === "side-special" && action.specialVariant === 1
-            ? 25
-          : move.damage;
-      const damageScale =
-        usesVariantDamage
-          ? chargeScale * variantDamage / Math.max(1, move.damage) /
-            maximumHits * (maximumHits > 1 ? 1 : hitbox.damageMultiplier)
-          : chargeScale / maximumHits * (maximumHits > 1 ? 1 : hitbox.damageMultiplier);
+      const damageScale = chargeScale / maximumHits *
+        (maximumHits > 1 ? 1 : hitbox.damageMultiplier);
       const launchScale = maximumHits > 1 && !isFinisher
         ? chargeScale * 0.16
         : chargeScale * (maximumHits > 1 ? 1 : hitbox.knockbackMultiplier);
@@ -3607,33 +3597,6 @@ export class CombatGame {
         );
         return;
       }
-    }
-    if (attacker.fighter === "mario" && moveName === "down-special") {
-      this.refreshRecoveryAfterAirHit(target);
-      this.clearLaunchVelocity(target);
-      target.velocity = {
-        x: attacker.facing * (310 + Math.min(210, target.percent * 1.25)) * damageScale,
-        y: Math.max(70, target.velocity.y),
-      };
-      target.grounded = false;
-      target.supportPlatform = null;
-      target.state = "hitstun";
-      target.techable = false;
-      target.techWindowFrames = 0;
-      target.hitstunFrames = Math.max(target.hitstunFrames, 7);
-      this.emit({
-        type: "hit",
-        slot: attacker.slot,
-        target: target.slot,
-        move: moveName,
-        position: cloneVec(target.position),
-        value: 0,
-        damage: 0,
-        source,
-        velocity: this.fighterWorldVelocity(target),
-        sound: "water-push",
-      });
-      return;
     }
     if (!move.commandGrab && target.state === "shield" && target.shield > 0) {
       const shieldDamage = move.shieldDamage * damageScale * attacker.damageMultiplier;
@@ -4127,7 +4090,7 @@ export class CombatGame {
         if (length < owner.definition.size.width * 0.6) continue;
       }
 
-      if ((projectile.kind === "missile" || projectile.definition.homing) && target.state !== "ko") {
+      if (projectile.definition.homing && target.state !== "ko") {
         const desired = Math.atan2(
           target.position.y - projectile.position.y,
           target.position.x - projectile.position.x,
@@ -4314,11 +4277,7 @@ export class CombatGame {
           projectile.definition.absorbable
         ) {
           const absorbedDamage = projectile.attack.damage * projectile.powerScale;
-          if (target.fighter === "mr-game-and-watch" && targetAction?.name === "down-special") {
-            target.absorbedEnergy = Math.min(50, target.absorbedEnergy + absorbedDamage);
-          } else {
-            target.percent = Math.max(0, target.percent - absorbedDamage * 0.45);
-          }
+          target.percent = Math.max(0, target.percent - absorbedDamage * 0.45);
           this.emit({
             type: "shield-hit",
             slot: target.slot,
@@ -4335,31 +4294,14 @@ export class CombatGame {
             slot: target.slot,
             target: owner.slot,
             position: cloneVec(projectile.position),
-            sound: "franklin-reflect",
+            sound: "projectile-reflect",
           });
           survivors.push(projectile);
           continue;
         }
-        const linkShieldBlock =
-          (target.fighter === "link" || target.fighter === "young-link") &&
-          target.grounded &&
-          !target.action &&
-          (target.state === "idle" || target.state === "walk") &&
-          projectile.velocity.x * target.facing < 0 &&
-          Math.abs(projectile.position.y - target.position.y) < target.definition.size.height * 0.36;
-        if (linkShieldBlock) {
-          this.emit({
-            type: "shield-hit",
-            slot: target.slot,
-            target: owner.slot,
-            position: cloneVec(projectile.position),
-            sound: "shield-hit",
-          });
-          continue;
-        }
         if (target.projectileShieldFrames > 0) {
           this.reflectProjectile(projectile, target, 1.08);
-          this.emit({ type: "shield-hit", slot: target.slot, target: owner.slot, position: cloneVec(projectile.position), sound: "franklin-reflect" });
+          this.emit({ type: "shield-hit", slot: target.slot, target: owner.slot, position: cloneVec(projectile.position), sound: "projectile-reflect" });
           survivors.push(projectile);
           continue;
         }
@@ -4470,13 +4412,11 @@ export class CombatGame {
         this.applyItemStrike(fighter, target, definition.amount, 132, 86, 1.18, targetInput, "power-bat");
         break;
       case "ray": {
-        const attack = getFighterDefinition("samus").attacks["neutral-special"];
-        this.spawnProjectile(fighter, "neutral-special", attack);
+        this.spawnProjectile(fighter, "neutral-special", ITEM_RAY_ATTACK);
         break;
       }
       case "flame": {
-        const attack = getFighterDefinition("mario").attacks["neutral-special"];
-        this.spawnProjectile(fighter, "neutral-special", attack);
+        this.spawnProjectile(fighter, "neutral-special", ITEM_FLAME_ATTACK);
         break;
       }
       case "bomb":

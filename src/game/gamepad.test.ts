@@ -329,34 +329,6 @@ describe("GamepadManager mapping and analog input", () => {
     refreshed.manager.destroy();
   });
 
-  it("keeps controller assignments saved under both previous game names", () => {
-    const storage = new FakeStorage();
-    const pad = new FakePad(0);
-    storage.setItem("super-open-bros.gamepads.v1", JSON.stringify({
-      version: 1,
-      deadzone: 0.21,
-      sources: [pad.id, null],
-      bindings: {},
-    }));
-
-    const migrated = managerWith([pad], storage);
-    expect(migrated.manager.getSnapshot().deadzone).toBe(0.21);
-    migrated.manager.destroy();
-
-    const olderStorage = new FakeStorage();
-    olderStorage.setItem("cousins-clash.gamepads.v1", JSON.stringify({
-      version: 1,
-      deadzone: 0.23,
-      sources: [pad.id, null],
-      bindings: {},
-    }));
-
-    const { manager } = managerWith([pad], olderStorage);
-    expect(manager.getSnapshot().deadzone).toBe(0.23);
-    expect(manager.getSnapshot().sources[0]).toMatchObject({ type: "gamepad", id: pad.id });
-    manager.destroy();
-  });
-
   it("does not capture the button that opened the remapping control", () => {
     const pad = new FakePad(0).button(0, true);
     const { manager } = managerWith([pad]);

@@ -4,10 +4,6 @@ import {
   OPEN_STAGE_IDS,
   OPEN_STAGE_PACKS,
 } from "./generated/openStageRegistry";
-import {
-  PRIVATE_STAGE_DEFINITIONS,
-  PRIVATE_STAGE_IDS,
-} from "./privateStages";
 
 export interface StageArtCalibration {
   readonly width: number;
@@ -69,10 +65,7 @@ export interface StageDefinition {
   }>;
 }
 
-export const STAGE_IDS = [
-  ...(__PRIVATE_CONTENT_MODE__ ? PRIVATE_STAGE_IDS : []),
-  ...OPEN_STAGE_IDS,
-] satisfies readonly StageId[];
+export const STAGE_IDS = [...OPEN_STAGE_IDS] satisfies readonly StageId[];
 
 export const DEFAULT_STAGE_ID: StageId = STAGE_IDS[0] ?? DEFAULT_OPEN_STAGE_ID;
 
@@ -137,15 +130,8 @@ const openStageDefinitions = generatedStagePacks.map((pack): StageDefinition => 
   license: pack.license,
 }));
 
-const stageDefinitions = [
-  ...(__PRIVATE_CONTENT_MODE__
-    ? PRIVATE_STAGE_IDS.map((id) => PRIVATE_STAGE_DEFINITIONS[id])
-    : []),
-  ...openStageDefinitions,
-];
-
 export const STAGE_DEFINITIONS = Object.fromEntries(
-  stageDefinitions.map((definition) => [definition.id, definition]),
+  openStageDefinitions.map((definition) => [definition.id, definition]),
 ) as Readonly<Record<StageId, StageDefinition>>;
 
 export const getStageDefinition = (id: StageId): StageDefinition =>

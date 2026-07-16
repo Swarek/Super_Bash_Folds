@@ -126,37 +126,29 @@ Reusing the same swing for five attacks does not constitute a complete
 integration. An `adapted` slot must at minimum have timing, a silhouette, and a
 readable direction that match its mechanic.
 
-## Precondition before the first public commit
+## Public-content boundary
 
-The current `.gitignore` already protects local SSBU archives, extractions, and
-conversions under `assets-source/`. However, derivatives used by the prototype
-are still present in public, non-ignored paths, including
-`public/assets/characters`, `public/assets/audio/fighters`,
-`public/assets/effects/ultimate`, and `public/assets/ui/fighters`.
-
-The repository must therefore not be published or added wholesale in its
-current state. A private overlay loaded only during development and an open
-public bundle must be defined first. The audit must also cover Nintendo stages,
-music, sounds, UI, effects, and items: removing only fighter models would not be
-enough to make the repository publishable.
+The public runtime now loads only audited, redistributable packs. Non-public
+experiments must stay outside this checkout or in the generic local vaults
+ignored by Git; no development or build command can activate them. The
+`validate:public` pipeline checks source, assets, Git history, tests, build
+output, and performance before publication.
 
 ## License rules for the public repository
 
 1. **Prefer CC0**, followed by CC BY with complete attribution. CC BY-SA is
    possible but requires derivatives of the asset to retain the same license.
    NC or ND licenses are excluded from the public roster.
-2. An open license attached to Mario, Pokémon, Marvel, or other fan art is not
-   sufficient: the file's author cannot grant rights to a third-party identity
-   they do not own.
+2. An open license attached to fan art of a third-party commercial identity is
+   not sufficient: the file's author cannot grant rights they do not own.
 3. **Do not put Mixamo files in the public repository.** Adobe permits their use
    in a game but not their redistribution as standalone content.
 4. On OpenGameArt or Sketchfab, verify the license of every submission and
    sub-asset; the platform's name is not a license.
 5. Keep attribution even for CC0: it is not mandatory, but it makes provenance
    and future audits much more robust.
-6. Smash characters, portraits, animations, effects, sounds, and derivatives
-   remain in a private source ignored by Git and must never enter the history
-   intended for the public repository.
+6. Third-party franchise characters, portraits, animations, effects, sounds,
+   and derivatives must never enter the public repository or its history.
 
 Reference legal sources: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/),
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/),

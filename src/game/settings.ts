@@ -8,11 +8,6 @@ import { ACTION_NAMES, DEFAULT_BINDINGS } from "./input";
 import { createPersistentBrowserStorage } from "./persistentStorage";
 
 export const SETTINGS_STORAGE_KEY = "super-bash-folds.settings.v1";
-const LEGACY_SETTINGS_STORAGE_KEYS = [
-  "libreledge.settings.v1",
-  "super-open-bros.settings.v1",
-  "cousins-clash.settings.v1",
-] as const;
 
 export interface SettingsStorage {
   getItem(key: string): string | null;
@@ -123,11 +118,7 @@ export function loadSettings(
 ): GameSettings {
   if (!storage) return createDefaultSettings();
   try {
-    const serialized = storage.getItem(SETTINGS_STORAGE_KEY)
-      ?? LEGACY_SETTINGS_STORAGE_KEYS
-        .map((key) => storage.getItem(key))
-        .find((value) => value !== null)
-      ?? null;
+    const serialized = storage.getItem(SETTINGS_STORAGE_KEY);
     return serialized === null
       ? createDefaultSettings()
       : sanitizeSettings(JSON.parse(serialized) as unknown);
@@ -145,7 +136,7 @@ export function saveSettings(
   try {
     storage?.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(safe));
   } catch {
-    // Private mode and full storage must degrade to in-memory settings.
+    // Restricted or full storage must degrade to in-memory settings.
   }
   return safe;
 }
@@ -155,7 +146,6 @@ export function resetSettings(
 ): GameSettings {
   try {
     storage?.removeItem(SETTINGS_STORAGE_KEY);
-    for (const key of LEGACY_SETTINGS_STORAGE_KEYS) storage?.removeItem(key);
   } catch {
     // Reset still succeeds in memory when storage is unavailable.
   }

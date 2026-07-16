@@ -35,11 +35,7 @@ function snapshot(confirmP1: boolean, confirmP2: boolean): GamepadUiSnapshot {
 describe("CharacterSelectCursors", () => {
   afterEach(() => document.body.replaceChildren());
 
-  const cursorAssetIt = (privateMode: boolean) => it.runIf(
-    __PRIVATE_CONTENT_MODE__ === privateMode,
-  );
-
-  cursorAssetIt(false)("uses the distributable cursor art in public mode", () => {
+  it("uses the distributable cursor art", () => {
     const root = document.createElement("div");
     document.body.append(root);
     vi.spyOn(root, "getBoundingClientRect").mockReturnValue(rect(0, 0, 1000, 700));
@@ -61,58 +57,36 @@ describe("CharacterSelectCursors", () => {
     cursors.destroy();
   });
 
-  cursorAssetIt(true)("restores the ignored Ultimate cursor art in private mode", () => {
-    const root = document.createElement("div");
-    document.body.append(root);
-    vi.spyOn(root, "getBoundingClientRect").mockReturnValue(rect(0, 0, 1000, 700));
-    const cursors = new CharacterSelectCursors(root, {
-      selectedFighter: () => "mario",
-      activate: vi.fn(),
-      onBack: vi.fn(),
-    });
-    cursors.update({
-      ...snapshot(false, false),
-      devices: [device(0, 0, false)],
-      sources: [{ type: "gamepad", index: 0, id: "pad-0" }, { type: "keyboard" }],
-    }, 0);
-
-    expect(root.querySelector<HTMLImageElement>(".cc-player-cursor__pointer")?.getAttribute("src"))
-      .toBe("/assets/ui/cursor/ultimate-pointer.png");
-    expect(root.querySelector<HTMLImageElement>(".cc-player-cursor__grab")?.getAttribute("src"))
-      .toBe("/assets/ui/cursor/ultimate-grab.png");
-    cursors.destroy();
-  });
-
   it("keeps two controller cursors independent and activates for their assigned players", () => {
     const root = document.createElement("div");
-    const mario = document.createElement("button");
-    const link = document.createElement("button");
-    mario.dataset.uiAction = "pick-fighter";
-    mario.dataset.fighter = "mario";
-    link.dataset.uiAction = "pick-fighter";
-    link.dataset.fighter = "link";
-    root.append(mario, link);
+    const firstCard = document.createElement("button");
+    const secondCard = document.createElement("button");
+    firstCard.dataset.uiAction = "pick-fighter";
+    firstCard.dataset.fighter = "george";
+    secondCard.dataset.uiAction = "pick-fighter";
+    secondCard.dataset.fighter = "kaykit-knight";
+    root.append(firstCard, secondCard);
     document.body.append(root);
     vi.spyOn(root, "getBoundingClientRect").mockReturnValue(rect(0, 0, 1000, 700));
-    vi.spyOn(mario, "getBoundingClientRect").mockReturnValue(rect(100, 100, 120, 100));
-    vi.spyOn(link, "getBoundingClientRect").mockReturnValue(rect(700, 100, 120, 100));
+    vi.spyOn(firstCard, "getBoundingClientRect").mockReturnValue(rect(100, 100, 120, 100));
+    vi.spyOn(secondCard, "getBoundingClientRect").mockReturnValue(rect(700, 100, 120, 100));
     const activate = vi.fn();
     const cursors = new CharacterSelectCursors(root, {
-      selectedFighter: (slot) => slot === 0 ? "mario" : "link",
+      selectedFighter: (slot) => slot === 0 ? "george" : "kaykit-knight",
       activate,
       onBack: vi.fn(),
-      hitTest: (x) => x < 500 ? mario : link,
+      hitTest: (x) => x < 500 ? firstCard : secondCard,
     });
 
     cursors.update(snapshot(false, false), 0);
     expect(root.querySelectorAll(".cc-player-cursor")).toHaveLength(2);
-    expect(mario.classList.contains("is-cursor-p1")).toBe(true);
-    expect(link.classList.contains("is-cursor-p2")).toBe(true);
+    expect(firstCard.classList.contains("is-cursor-p1")).toBe(true);
+    expect(secondCard.classList.contains("is-cursor-p2")).toBe(true);
 
     cursors.update(snapshot(true, true), 16);
     expect(activate).toHaveBeenCalledTimes(2);
-    expect(activate).toHaveBeenNthCalledWith(1, 0, mario, { x: 160, y: 150 });
-    expect(activate).toHaveBeenNthCalledWith(2, 1, link, { x: 760, y: 150 });
+    expect(activate).toHaveBeenNthCalledWith(1, 0, firstCard, { x: 160, y: 150 });
+    expect(activate).toHaveBeenNthCalledWith(2, 1, secondCard, { x: 760, y: 150 });
     cursors.destroy();
   });
 
@@ -120,9 +94,9 @@ describe("CharacterSelectCursors", () => {
     const root = document.createElement("div");
     const fighter = document.createElement("button");
     fighter.dataset.uiAction = "pick-fighter";
-    fighter.dataset.fighter = "mario";
+    fighter.dataset.fighter = "george";
     const stage = document.createElement("button");
-    stage.textContent = "Battlefield";
+    stage.textContent = "Verdant Grove";
     root.append(fighter, stage);
     document.body.append(root);
     vi.spyOn(root, "getBoundingClientRect").mockReturnValue(rect(0, 0, 1000, 700));
@@ -130,7 +104,7 @@ describe("CharacterSelectCursors", () => {
     const activate = vi.fn();
     let target: Element = fighter;
     const cursors = new CharacterSelectCursors(root, {
-      selectedFighter: () => "mario",
+      selectedFighter: () => "george",
       activate,
       onBack: vi.fn(),
       hitTest: () => target,
