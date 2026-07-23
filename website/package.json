@@ -14,26 +14,26 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/assets --ignore-pattern public/play"
   },
   "dependencies": {
-    "next": "16.2.10",
-    "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "next": "16.2.11",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.45.0",
+    "@cloudflare/vite-plugin": "1.46.0",
     "@tailwindcss/postcss": "4.3.3",
-    "@types/node": "22.20.1",
+    "@types/node": "26.1.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.3",
-    "@vitejs/plugin-rsc": "0.5.27",
-    "eslint": "9.39.5",
-    "eslint-config-next": "16.2.10",
-    "react-server-dom-webpack": "19.2.7",
+    "@vitejs/plugin-react": "6.0.4",
+    "@vitejs/plugin-rsc": "0.5.30",
+    "eslint": "10.7.0",
+    "eslint-config-next": "16.2.11",
+    "react-server-dom-webpack": "19.2.8",
     "tailwindcss": "4.3.3",
-    "typescript": "5.9.3",
+    "typescript": "7.0.2",
     "vinext": "0.2.1",
     "vite": "8.1.5",
-    "wrangler": "4.111.0"
+    "wrangler": "4.113.0"
   },
   "overrides": {
     "postcss": "8.5.10"
